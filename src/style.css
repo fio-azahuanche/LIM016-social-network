@@ -10,12 +10,20 @@ main{
     width: 100%;
     height: 100vh;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
-
+.borde{
+    height: 12vh;
+}
+.borde img{
+    height: 100%;
+}
 .cajaGrande{
     display: flex;
+    height: 70vh;
     flex-wrap: wrap;
-    padding: 1.5%;
+    margin: 3vh 1.5%;
 }
 
 .cajaInterna{
@@ -89,9 +97,9 @@ main{
 }
 
 @media (max-width: 425px){
-    .borde img{
+    /* .borde img{
         height: 70px;
-    }
+    } */
     .cajaInterna{
         width: 100%;
     }
