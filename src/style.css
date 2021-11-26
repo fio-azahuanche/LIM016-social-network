@@ -22,6 +22,7 @@ main{
 .cajaGrande{
     display: flex;
     height: 70vh;
+    margin: 3vh 1.5%;
     flex-wrap: wrap;
     margin: 3vh 1.5%;
 }
@@ -44,6 +45,9 @@ main{
     height: auto;
     display: flex;
     position: relative;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
 }
 
 .datosIngreso{
@@ -54,13 +58,15 @@ main{
     border: 4px solid #B6E3E9;
     outline-color: #3ABFD1;
     padding: 2%;
+    justify-content: center;
 }
 
 .seccionIngreso img{
     z-index: 20;
     width: 30px;
     height: 30px;
-    right: 250px;
+    right: 175px;
+    top: 20px;
     position: absolute;
 }
 
@@ -96,10 +102,7 @@ main{
     width: 80%;
 }
 
-@media (max-width: 425px){
-    /* .borde img{
-        height: 70px;
-    } */
+@media (max-width: 425px){  
     .cajaInterna{
         width: 100%;
     }
