@@ -12,15 +12,15 @@
 
 <body>
   <main>
-    <section class="borde"><img src="imagenes/bordeSuperior.png"></section>
-    <section class="cajaGrande">
-      <div class="cajaInterna">
-        <img id="huellaLogo" src="imagenes/huellaLogo.png">
-        <p class="slogan">“Porque nuestros peluditos necesitan de cuidado”</p>
-      </div>
+    <article class="artRegistro" id="artRegistro">
+      <section class="borde"><img src="imagenes/bordeSuperior.png"></section>
+      <section class="cajaGrande">
+        <div class="cajaInterna">
+          <img id="huellaLogo" src="imagenes/huellaLogo.png">
+          <p class="slogan">“Porque nuestros peluditos necesitan de cuidado”</p>
+        </div>
 
-      <div class="cajaInterna">
-        <form>
+        <div class="cajaInterna">        
           <div class="seccionIngreso">
             <input type="text" id="correo" class="datosIngreso" placeholder="Correo electrónico">
             <img src="imagenes/envelope.png">
@@ -32,16 +32,41 @@
           </div>
 
           <button id="iniciarSesion">Ingresar</button>
-        </form>
-        <p class="texto">O bien ingresa con</p>
-        <div class="logosInicio">
-          <img src="imagenes/FacebookOriginal.png">
-          <img src="imagenes/GoogleOriginal.png">
+          
+          <p class="texto">O bien ingresa con</p>
+
+          <div class="logosInicio">
+            <img src="imagenes/FacebookOriginal.png">
+            <img src="imagenes/GoogleOriginal.png">
+          </div>
+
+          <p class="texto">¿No tienes una cuenta?<a href="#">Registrate</a></p>        
         </div>
-        <p class="texto">¿No tienes una cuenta?<a href="#">Registrate</a></p>
+      </section>
+      <section class="borde"><img src="imagenes/bordeInferior.png"></section>
+    </article>
+       
+    <article class="artMuro" id="artMuro">
+      <header>
+        <img src="imagenes/ImgUsuario.png" width="80px" height="80px">
+        <p>HelpPets</p>
+        <img src="imagenes/sign-out 1.png"  width="50px" height="50px">
+      </header> 
+      <div class="contenedorGrande">
+        <section>
+          <div class="secUsuario">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt laudantium laborum ratione, similique facilis ad? Consequatur, labore omnis. Repellendus perspiciatis blanditiis quae non repudiandae iste libero expedita dolorum atque ab.</p>
+          </div>
+            
+        </section>
+        <section>
+          <div class="secComentarios">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae veritatis architecto voluptatum dolore, at nam hic tempore officia aspernatur mollitia perferendis ipsum voluptatibus aut quo dolorum! Repellat recusandae corporis mollitia.</p>
+          </div>
+        </section>
       </div>
-    </section>
-    <section class="borde"><img src="imagenes/bordeInferior.png"></section>
+    </article>
+    
   </main>
 
   <script type="module" src="main.js"></script>
