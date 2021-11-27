@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
-  <title>Document</title>
+  <title>HelpPets: App para mascotas</title>
 </head>
 
 <body>
@@ -15,35 +15,53 @@
     <article class="artRegistro" id="artRegistro">
       <section class="borde"><img src="imagenes/bordeSuperior.png"></section>
       <section class="cajaGrande">
-        <div class="cajaInterna">
+        <div class="cajaInterna1">
           <img id="huellaLogo" src="imagenes/huellaLogo.png">
           <p class="slogan">“Porque nuestros peluditos necesitan de cuidado”</p>
         </div>
 
-        <div class="cajaInterna">        
-          <div class="seccionIngreso">
-            <input type="text" id="correo" class="datosIngreso" placeholder="Correo electrónico">
-            <img src="imagenes/envelope.png">
-          </div>
+        <div class="cajaInterna2">  
+          <form id="formIngreso">
+            <div class="seccionIngreso">
+              <input type="text" id="correoIngreso" class="datosIngreso" placeholder="Correo electrónico">
+              <img src="imagenes/envelope.png">
+            </div>
+  
+            <div class="seccionIngreso">
+              <input type="password" id="claveIngreso" class="datosIngreso" placeholder="Contraseña">
+              <img src="imagenes/eye-closed.png">
+            </div>
+  
+            <button type="submit" class="iniciarSesion">Ingresar</button>
+            
+            <p class="texto">O bien ingresa con</p>
+  
+            <div class="logosInicio">
+              <img src="imagenes/FacebookOriginal.png">
+              <img src="imagenes/GoogleOriginal.png">
+            </div>
+  
+            <p class="texto">¿No tienes una cuenta? <a id="registrate"> Regístrate</a></p> 
+          </form> 
+          <form id="formRegistro" style="display: none;">
+            <div class="seccionIngreso">
+              <input type="text" id="correoRegistro" class="datosIngreso" placeholder="Correo electrónico">
+              <img src="imagenes/envelope.png">
+            </div>
 
-          <div class="seccionIngreso">
-            <input type="text" id="contraseña" class="datosIngreso" placeholder="Contraseña">
-            <img src="imagenes/eye-closed.png">
-          </div>
+            <div class="seccionIngreso">
+              <input type="text" id="contraseñaRegistro" class="datosIngreso" placeholder="Contraseña">
+              <img src="imagenes/eye-closed.png">
+            </div>
 
-          <button id="iniciarSesion">Ingresar</button>
-          
-          <p class="texto">O bien ingresa con</p>
-
-          <div class="logosInicio">
-            <img src="imagenes/FacebookOriginal.png">
-            <img src="imagenes/GoogleOriginal.png">
-          </div>
-
-          <p class="texto">¿No tienes una cuenta?<a href="#">Registrate</a></p>        
+            <button type="submit" class="iniciarSesion">Registrarse</button>
+            <p class="texto">¿Ya tienes una cuenta? <a id="registrate"> Iniciar Sesion</a></p> 
+          </form>       
         </div>
       </section>
       <section class="borde"><img src="imagenes/bordeInferior.png"></section>
+      
+
     </article>
        
     <article class="artMuro" id="artMuro">
