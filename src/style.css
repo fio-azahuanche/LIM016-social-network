@@ -51,6 +51,7 @@ main{
 }
 
 .datosIngreso{
+    display: flex;
     margin: 1rem;
     width: 40%;
     border-radius: 1.25rem;
@@ -61,14 +62,15 @@ main{
     justify-content: center;
 }
 
-.seccionIngreso img{
+/* .seccionIngreso img{
     z-index: 20;
+    display: flex;
     width: 30px;
     height: 30px;
     right: 175px;
     top: 20px;
     position: absolute;
-}
+} */
 
 #iniciarSesion{
     width: 20%;
