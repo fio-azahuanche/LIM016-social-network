@@ -1,4 +1,3 @@
-// Este es el punto de entrada de tu aplicacion
 // eslint-disable-next-line import/no-unresolved
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js';
 // eslint-disable-next-line import/no-unresolved
