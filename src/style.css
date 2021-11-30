@@ -7,7 +7,7 @@
 
 main{
     background-color: #FAF1D6;
-    /* width: 100%;
+     width: 100%;/*
     height: 100vh; */
     overflow: hidden;
     display: flex;
@@ -25,25 +25,28 @@ main{
 .cajaGrande{
     display: flex;
     height: 70vh;
-    margin: 3vh 1.5%;
     flex-wrap: wrap;
     margin: 3vh 1.5%;
 }
 
 .cajaInterna1, .cajaInterna2{
     width: 50%;
-    height: auto;
+    height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     font-size: 18px;
 }
-
+.cajaInterna1{
+    justify-content: center;
+}
 #huellaLogo{
     width: 40%;
+    margin: 5%;
 }
-
+.cajaInterna2{
+    justify-content: space-evenly;
+}
 form{
     width: 100%;
     display: flex;
@@ -53,22 +56,24 @@ form{
 }
 
 .seccionIngreso{
-    width: 50%;
-    height: 50px;
+    /*  */
+    width: 52%;
+    /* height: 50px; */
     display: flex;
     justify-content: space-between;
     align-items: center;
     border-radius: 1.25rem;
     border: 4px solid #B6E3E9;
     background-color: white;
-    margin: 16px;
-    padding: 2%;
+    /* margin: 16px; */
+    margin: 1%;
+    /* padding: 2%; */
 }
 
 .datosIngreso{
-    margin: 0.5rem;
-    width: 90%;
-    height: auto;
+    margin: 1% 5%;
+    width: 70%;
+    /* height: auto; */
     border: none;
     background: none;
     outline: none;
@@ -77,11 +82,13 @@ form{
 
 .seccionIngreso img{
     width: 12%;
-    /* height: 30px; */
+    margin: 1% 4%;
+     height: 98%;
 }
 
 .iniciarSesion{
-    width: 15%;
+    margin: 2%;
+    width: 20%;
     border-radius: 1.25rem;
     background-color: #FADEE1;
     border: 4px solid rgba(177, 87, 141, 0.42);
@@ -93,16 +100,19 @@ form{
     width: 20%;
     display: flex;
     justify-content: space-around;
-    margin: 0.5rem;
+    /* margin: 0.5rem; */
+    margin: 1.5%;
     cursor: pointer;
 }
 
 .logosInicio img{
-    height: 30px;
+    width: 30%;
+    /* height: 30px; */
 }
 
 .texto{
-    margin: 0.5rem;
+    /* margin: 0.5rem; */
+    margin: 1%;
 }
 
 .texto a{
@@ -112,26 +122,24 @@ form{
 }
 
 .slogan{
-    margin: 1.5%;
+   /*  margin: 1.5%; */
     font-size: 1.75rem;
     text-align: center;
     width: 80%;
 }
 
-@media (max-width: 1024px){
+/* @media (max-width: 1024px){
     .seccionIngreso{
         width: 80%;
     }
     .iniciarSesion{
         width: 30%;
     }
-}
+} */
 
 @media (max-width: 768px){
     .cajaInterna1{
         width: 40%;
-    }
-    .cajaInterna1 p{
         padding: 2%;
     }
     .cajaInterna2{
@@ -140,30 +148,27 @@ form{
     .slogan{
         font-size: 25px;
     }
-    #huellaLogo{
+     #huellaLogo{
         width: 60%;
-    }
+    } 
     .seccionIngreso{
         width: 70%;
-        padding: 0;
-        margin: 0.2rem;
+        /* padding: 0;
+        margin: 0.2rem; */
     }
-    .iniciarSesion{
+     .iniciarSesion{
         width: 25%;
     }
-    .logosInicio{
+    /* .logosInicio{
         width: 30%;
-    }
+    }  */
 }
 
 @media (max-width: 640px){
-    .cajaInterna2{
-        font-size: 12px;
+    .slogan{
+        font-size: 21px;
     }
-    .datosIngreso{
-        font-size: smaller;
-    }
-}
+} 
 
 @media (max-width: 425px){ 
     #huellaLogo{
@@ -171,6 +176,7 @@ form{
     } 
     .cajaInterna1, .cajaInterna2{
         width: 100%;
+        height: auto;
     }
     .slogan{
         width: 90%;
@@ -179,7 +185,7 @@ form{
     }
     .seccionIngreso{
         width: 65%;
-        height: 45px;
+        /* height: 45px; */
         margin: 2%;
     }
     .iniciarSesion{

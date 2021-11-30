@@ -23,12 +23,12 @@
         <div class="cajaInterna2">  
           <form id="formIngreso">
             <div class="seccionIngreso">
-              <input type="text" id="correoIngreso" class="datosIngreso" placeholder="Correo electrónico">
+              <input type="email" name="correoIngreso" class="datosIngreso" placeholder="Correo electrónico" required>
               <img src="imagenes/envelope.png">
             </div>
   
             <div class="seccionIngreso">
-              <input type="password" id="claveIngreso" class="datosIngreso" placeholder="Contraseña">
+              <input type="password" name="claveIngreso" class="datosIngreso" placeholder="Contraseña" required>
               <img src="imagenes/eye-closed.png">
             </div>
 
@@ -46,18 +46,22 @@
 
           <form id="formRegistro" style="display: none;">
             <div class="seccionIngreso">
-              <input type="text" id="correoRegistro" class="datosIngreso" placeholder="Correo electrónico">
+              <input type="text" name="usuarioRegistro" class="datosIngreso" placeholder="Nombre de usuario" required>
+              <img src="imagenes/user.png">
+            </div>
+            <div class="seccionIngreso">
+              <input type="email" name="correoRegistro" class="datosIngreso" placeholder="Correo electrónico" required>
               <img src="imagenes/envelope.png">
             </div>
 
             <div class="seccionIngreso">
-              <input type="text" id="contraseñaRegistro" class="datosIngreso" placeholder="Contraseña">
+              <input type="password" name="claveRegistro" class="datosIngreso" placeholder="Contraseña" required>
               <img src="imagenes/eye-closed.png">
             </div>
 
             <button type="submit" class="iniciarSesion">Registrarse</button>
-            <p class="texto">¿Ya tienes una cuenta? <a id="registrate"> Iniciar Sesion</a></p> 
-          </form>       
+            <p class="texto">¿Ya tienes una cuenta? <a id="registrate"> Iniciar Sesión</a></p> 
+          </form>      
         </div>
       </section>
       <section class="borde"><img src="imagenes/bordeInferior.png"></section>     
@@ -142,7 +146,6 @@
     </article>
     
   </main>
-
   <script type="module" src="main.js"></script>
 </body>
 
