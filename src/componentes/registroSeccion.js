@@ -22,12 +22,7 @@ export const registro=`
     </form> 
   </div>
 `
-const container=document.createElement('div');
-container.innerHTML=registro;
-export const objetoInput={
-  formularioregistro: document.getElementById('formRegistro'),
 
-}
     /* const divRegistro=document.createElement('div');
     divRegistro.setAttribute('id','registro')
     divRegistro.classList.add("cajaInterna2");

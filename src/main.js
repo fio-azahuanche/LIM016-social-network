@@ -12,15 +12,8 @@ window.addEventListener('hashchange', vistasPantalla);
 
 console.log(vistasPantalla);
 
-console.log(ingreso());
 
 
-
-/* const registrate = document.getElementById('registrate');
-registrate.addEventListener('click', () => {
-  document.getElementById('formRegistro').style.display = 'block';
-  document.getElementById('formIngreso').style.display = 'none';
-});*/
 
 /* const formRegistro = document.querySelector('#formRegistro');
 formRegistro.addEventListener('submit', (e) => {
