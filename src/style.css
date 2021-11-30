@@ -198,9 +198,9 @@ form{
 
 /*----------------------------características de la sección del muro-----------------------------*/
 /* .artMuro{
-    height: 100vh;
-}
- */
+     height: 100vh; 
+} */
+
 .grid-container{
     display: grid;
     background-color: #FAF1D6;

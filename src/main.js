@@ -1,28 +1,17 @@
 // eslint-disable-next-line import/no-unresolved
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js';
-// eslint-disable-next-line import/no-unresolved
-import { getAuth, createUserWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js';
+// import { getAuth, createUserWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js';
+// import { app } from './firebase/config.js';
+// import { componentes } from '../lib/index.js';
+import { vistasPantalla } from './router/rutas.js';
+// Este es el punto de entrada de tu aplicacion
 
-const firebaseConfig = {
-  apiKey: 'AIzaSyCaQ7ypqFXHu9ikarcZpoPLKq1t5KxNmic',
-  authDomain: 'helppetsprueba2.firebaseapp.com',
-  projectId: 'helppetsprueba2',
-  storageBucket: 'helppetsprueba2.appspot.com',
-  messagingSenderId: '455441875262',
-  appId: '1:455441875262:web:660c2751c247dc85696c6f',
-};
+window.addEventListener('load', vistasPantalla);
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+window.addEventListener('hashchange', vistasPantalla);
 
-const registrate = document.getElementById('registrate');
-registrate.addEventListener('click', () => {
-  document.getElementById('formRegistro').style.display = 'block';
-  document.getElementById('formIngreso').style.display = 'none';
-});
+console.log(vistasPantalla);
 
-const formRegistro = document.getElementById('formRegistro');
+/* const formRegistro = document.querySelector('#formRegistro');
 formRegistro.addEventListener('submit', (e) => {
   e.preventDefault();
   // const usuarioRegistro = formRegistro.usuarioRegistro.value;
@@ -41,8 +30,9 @@ formRegistro.addEventListener('submit', (e) => {
       console.log(errorCode, errorMessage);
       // ..
     });
-});
+}); */
 
+/*
 const formIngreso = document.getElementById('formIngreso');
 formIngreso.addEventListener('submit', (e) => {
   e.preventDefault();
@@ -50,3 +40,4 @@ formIngreso.addEventListener('submit', (e) => {
   const claveIngreso = formIngreso.claveIngreso.value;
   console.log(correoIngreso, claveIngreso);
 });
+ */
