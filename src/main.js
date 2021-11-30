@@ -1,5 +1,6 @@
 
 // eslint-disable-next-line import/no-unresolved
+
 //import { getAuth, createUserWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js';
 //import { app } from './firebase/config.js';
 //import { componentes } from '../lib/index.js';
@@ -12,25 +13,23 @@ window.addEventListener('hashchange', vistasPantalla);
 
 console.log(vistasPantalla);
 
-
-
-
 /* const formRegistro = document.querySelector('#formRegistro');
 formRegistro.addEventListener('submit', (e) => {
   e.preventDefault();
-  const usuarioRegistro = document.getElementById('usuarioRegistro').value;
-  const correoRegistro = document.getElementById('correoRegistro').value;
-  const claveRegistro = document.getElementById('claveRegistro').value;
-  const auth = getAuth();
+  // const usuarioRegistro = formRegistro.usuarioRegistro.value;
+  const correoRegistro = formRegistro.correoRegistro.value;
+  const claveRegistro = formRegistro.claveRegistro.value;
   createUserWithEmailAndPassword(auth, correoRegistro, claveRegistro)
     .then((userCredential) => {
       // Signed in
       const user = userCredential.user;
+      console.log(user);
       // ...
     })
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
+      console.log(errorCode, errorMessage);
       // ..
     });
 }); */
@@ -39,7 +38,8 @@ formRegistro.addEventListener('submit', (e) => {
 const formIngreso = document.getElementById('formIngreso');
 formIngreso.addEventListener('submit', (e) => {
   e.preventDefault();
-  let correoIngreso = document.getElementById('correoIngreso').value;
-  let claveIngreso = document.getElementById('claveIngreso').value;
+  const correoIngreso = formIngreso.correoIngreso.value;
+  const claveIngreso = formIngreso.claveIngreso.value;
+  console.log(correoIngreso, claveIngreso);
 });
  */
