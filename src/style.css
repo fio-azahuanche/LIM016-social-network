@@ -263,7 +263,7 @@ header{
 }
 
 header p{
-    font-family: 'Indie Flower';
+    font-family: 'Open Sans', sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 75px;
@@ -280,9 +280,11 @@ header p{
     width: 100%;
     height: auto;
     display: flex;
+    background-repeat: no-repeat;
+    background-size: cover;    
     justify-content: center;
-    border-color: #B6E3E9;
     border-radius: 19px 19px 0 0;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
 }
 
 .contenedorImgUsuario img{
@@ -290,6 +292,7 @@ header p{
     width: 100%;
     height: 223px;
     border-radius: 19px 19px 0 0;
+    
 }
 
 .secUsuario{
@@ -297,6 +300,7 @@ header p{
     height: 452px;
     background-color: #F2E0AA;
     border-radius: 19px 19px 0 0;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.30);
     
 }
 
@@ -342,6 +346,7 @@ header p{
     align-items: center;
     font-size: 30px;
     color: #F1E8E4;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.30);
 }
 
 .tituloCategorias p{
@@ -355,6 +360,7 @@ header p{
     background-color: #F2E0AA;
     height: auto;
     padding: 20px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.30);
 }
 
 .categoriaUnica{
@@ -394,8 +400,9 @@ header p{
     height: auto;
     border-radius: 19px;
     padding: 2% 3.5% 0% 3.5%;
-    border: 2.5px solid #844124;
+    border: 2.5px solid #CE7338;
     margin-bottom: 2%;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
 }
 
 .tableroCompartir input{
@@ -414,6 +421,7 @@ header p{
     padding: 1% 0;
     align-items: center;
     justify-content: space-between;
+    
 }
 
 .botonCompartir{
@@ -425,6 +433,7 @@ header p{
     cursor: pointer;
     color:white;
     font-size: 30px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .botonCompartirImagen{
@@ -437,6 +446,7 @@ header p{
     cursor: pointer;    
     align-items: center;
     justify-content: center;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .botones img{
@@ -457,6 +467,7 @@ header p{
     border-radius: 19px;  
     align-items: flex-start;
     margin-bottom: 2%;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .tableroComentarTop{
@@ -466,6 +477,8 @@ header p{
     align-items: flex-start;
     font-size: 30px;
     padding: 2%;
+    border-radius: 19px 19px 0 0 ;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .tableroComentar input{

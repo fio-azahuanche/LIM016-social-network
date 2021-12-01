@@ -10,7 +10,7 @@ export const divMuro=`
             <div class="item2"> <!-- menu -->
                 <div class="secUsuario">
                 <div class="contenedorImgUsuario">
-                    <img src="imagenes/ImgDelUsuario.png">
+                    <img src="https://e.rpp-noticias.io/normal/2018/08/07/420442_658690.jpg">
                 </div>  
                 <div class="ImgCentralUsuario"><img src="imagenes/ImgUsuario.png"></div>
                 <p class="nombreUsuario">Usuario</p>
