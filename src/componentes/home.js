@@ -1,4 +1,4 @@
-//Creacion de la estructura y diseño del Home
+// Creacion de la estructura y diseño del Home
 export const fondoHome = (divFormulario) => {
   const fondo = `
       <section class="borde"><img src="imagenes/bordeSuperior.png"></section>
@@ -10,11 +10,11 @@ export const fondoHome = (divFormulario) => {
         ${divFormulario}
       </section>
       <section class="borde"><img src="imagenes/bordeInferior.png"></section>
-    `
+    `;
   const divFondo = document.createElement('article');
   divFondo.setAttribute('id', 'artRegistro');
   divFondo.classList.add('artRegistro');
   divFondo.innerHTML = fondo;
 
   return divFondo;
-}
+};
