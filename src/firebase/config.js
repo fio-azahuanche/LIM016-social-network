@@ -1,5 +1,6 @@
-//Configuracion de Firebase
+// Configuracion de Firebase
 
+// eslint-disable-next-line import/no-unresolved
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js';
 
 // Your web app's Firebase configuration

@@ -1,4 +1,4 @@
-export const divMuro=`
+export const divMuro = `
         <article class="artMuro"  id="artmuro">   
             <div class="grid-container">
             <header class="item1"> <!-- header -->
@@ -75,4 +75,4 @@ export const divMuro=`
             
             <footer class="item4"></footer>        
             </div>
-        </article>`
+        </article>`;
