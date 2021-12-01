@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Indie Flower', cursive;
+    font-family: 'Open Sans', sans-serif;
 }
 
 main{
@@ -64,9 +64,13 @@ form{
     justify-content: space-between;
     align-items: center;
     border-radius: 1.25rem;
-    border: 4px solid #B6E3E9;
     background-color: white;
     margin: 1%;
+    border: 4px solid #F0AA70;
+    box-sizing: border-box;
+    border-radius: 20px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
+
 }
 
 .datosIngreso{
@@ -88,12 +92,19 @@ form{
     margin: 2%;
     width: 20%;
     border-radius: 1.25rem;
-    background-color: #FADEE1;
-    border: 4px solid rgba(177, 87, 141, 0.42);
+    background-color: #CE7338;
+    border: 4px solid #CE7338;
     cursor: pointer;
     font-size: 18px;
+    color: #FFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
+.iniciarSesion A{
+    color: #FFFF;
+    text-decoration: none;
+    
+}
 .logosInicio{
     width: 20%;
     display: flex;
@@ -111,8 +122,9 @@ form{
 }
 
 .texto a{
-    color: #BE7884;
+    color: #CE7338;
     cursor: pointer;
+    font-weight: 600;
     text-decoration: none;
 }
 
@@ -221,7 +233,7 @@ form{
 .item2{
     /* display: grid; */
     grid-area: menu;
-    background-color: #FAF1D6;
+    background-color: #F2EEE3;
     padding: 20px;   
     width: 100%;
     min-width: 500px;
@@ -230,20 +242,20 @@ form{
 
 .item3{
     grid-area: main;
-    background-color: #FAF1D6;
+    background-color: #F2EEE3;
     padding: 20px;  
 }
 
 .item4{
     grid-area: footer;
-    background-color: #FADEE1;
+    background-color: #F0AA70;
 }
 
 /*------------header--------------*/
 header{
     width: 100%;
     height: auto;
-    background-color: #FADEE1;
+    background-color: #F0AA70;
     display: flex;    
     justify-content: space-between;
     padding: 1%;
@@ -251,14 +263,14 @@ header{
 }
 
 header p{
-    font-family: Indie Flower;
+    font-family: 'Indie Flower';
     font-style: normal;
     font-weight: normal;
     font-size: 75px;
     line-height: 117px;
     text-align: center;
-    color: #E7AEB4;
-    -webkit-text-stroke: 2px #DA332B;
+    color: #844124;
+    -webkit-text-stroke: 2px #844124;
 }
 
 /*-------------caja grande------------*/
@@ -319,7 +331,7 @@ header p{
 }
 
 .tituloCategorias{
-    background-color: #B6E3E9;
+    background-color: #9C5D47;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -329,7 +341,14 @@ header p{
     border-radius: 19px 19px 0 0;
     align-items: center;
     font-size: 30px;
+    color: #F1E8E4;
 }
+
+.tituloCategorias p{
+    color: #F1E8E4;
+    font-weight: 600;
+}
+
 
 .secCategorias{
     width: 100%;
@@ -353,13 +372,13 @@ header p{
 }
 
 .secCategorias p{
-    font-family: Indie Flower;
+    font-family: 'Open Sans', sans-serif;;
     font-style: normal;
     font-weight: normal;
     font-size: 30px;
     text-align: center;
-    color: #E7AEB4;
-    -webkit-text-stroke: 1px #DA332B;
+    color: #6A6060;
+    -webkit-text-stroke: 1px #6A6060;
     cursor: pointer;
 }
 
@@ -370,12 +389,12 @@ header p{
 } */
 
 .tableroCompartir{
-    background-color: #B6E3E9;
+    background-color: #FAD4AE;
     width: 100%;
     height: auto;
     border-radius: 19px;
     padding: 2% 3.5% 0% 3.5%;
-    border: 2.5px solid #52ACB8;
+    border: 2.5px solid #844124;
     margin-bottom: 2%;
 }
 
@@ -386,7 +405,7 @@ header p{
     border-radius: 19px;
     padding: 2%;
     font-size: 24px;
-    border: 2.5px solid #71D5E2;
+    border: 2.5px solid #CE7338;
     
 }
 
@@ -398,11 +417,11 @@ header p{
 }
 
 .botonCompartir{
-    background-color: rgba(255, 176, 223, 0.82);
+    background-color: #CE7338;
     height: 45px;
     width: 199px;
     border-radius: 11px;
-    border: #FDAFAB;
+    border: #EA7311;
     cursor: pointer;
     color:white;
     font-size: 30px;
@@ -410,11 +429,11 @@ header p{
 
 .botonCompartirImagen{
     display: flex;
-    background-color: #ffb2e0a8;
+    background-color: #F0AA70;
     height: 62px;
     width: 73px;
     border-radius: 17px;
-    border: #f89c97;
+    border: #F0AA70;
     cursor: pointer;    
     align-items: center;
     justify-content: center;
@@ -432,7 +451,7 @@ header p{
 }
 
 .tableroComentar{
-    background-color: #B6E3E9;
+    background-color: #FAD4AE;
     width: 100%;
     height: auto;
     border-radius: 19px;  
@@ -477,7 +496,7 @@ header p{
 footer{
     width: 100%;
     height: 106px;
-    background-color: #FADEE1;
+    background-color: #F0AA70;
     display: flex;
     justify-content: space-between;
     padding: 1%;
