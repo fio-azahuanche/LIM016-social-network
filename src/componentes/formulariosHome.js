@@ -1,8 +1,6 @@
 // Render de los formulario de registro e inicio que se imprimen en la vista de Home
-// eslint-disable-next-line import/no-unresolved
-import { getAuth, createUserWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js';
-import { app } from '../firebase/config.js';
 
+import { registroUsuario, inicioSesionUsuario } from "../firebase/funcionesAuth.js";
 // Funcion que se encarga del registro por correo
 
 export const registroCorreo = (nombre, correo, contraseña, selector) => {
@@ -12,8 +10,7 @@ export const registroCorreo = (nombre, correo, contraseña, selector) => {
     // const usuarioRegistro = document.getElementById(nombre).value;
     const correoRegistro = document.getElementById(correo).value;
     const claveRegistro = document.getElementById(contraseña).value;
-    const auth = getAuth(app);
-    createUserWithEmailAndPassword(auth, correoRegistro, claveRegistro)
+    registroUsuario(correoRegistro, claveRegistro)
       .then((userCredential) => {
       // Signed in
       // eslint-disable-next-line
@@ -25,6 +22,33 @@ export const registroCorreo = (nombre, correo, contraseña, selector) => {
         // eslint-disable-next-line
         const errorMessage = error.message;
       });
+  });
+};
+
+export const inicioSesion = (correo, contraseña, selector) => {
+  const iniciarCon = document.getElementById(selector);
+  iniciarCon.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const correoInicio = document.getElementById(correo).value;
+    const claveInicio = document.getElementById(contraseña).value;
+    inicioSesionUsuario(correoInicio, claveInicio)
+      .then((userCredential) => {
+      // Signed in
+      // eslint-disable-next-line
+        const user = userCredential.user;
+        console.log('si esta dando');
+      })
+      .catch((error) => {
+        // eslint-disable-next-line
+        const errorCode = error.code;
+        // eslint-disable-next-line
+        const errorMessage = error.message;
+        console.log('errordelcodigo');
+        console.log('errormensaje');
+      });
+    console.log("donde es?");
+    console.log(correoInicio);
+    console.log(claveInicio);
   });
 };
 
