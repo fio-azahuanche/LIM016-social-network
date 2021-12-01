@@ -1,5 +1,5 @@
 import { componentes } from '../lib/index.js';
-import { forms, registroCorreo } from '../componentes/formulariosHome.js';
+import { forms, registroCorreo, inicioSesion } from '../componentes/formulariosHome.js';
 import { divMuro } from '../componentes/muro.js';
 
 export const vistasPantalla = () => {
@@ -8,6 +8,7 @@ export const vistasPantalla = () => {
   switch (window.location.hash.toLowerCase()) {
     case '': case '#/': case '#/inicio':
       main.appendChild(componentes.fondoHome(forms.inicioSesion()));
+      inicioSesion('correoIngreso', 'claveIngreso', 'formIngreso');
       break;
     case '#/registro':
       main.appendChild(componentes.fondoHome(forms.registro()));
