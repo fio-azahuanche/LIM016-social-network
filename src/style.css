@@ -298,7 +298,7 @@ header p{
     width: 100%;
     height: 452px;
     background-color: #F2E0AA;
-    border-radius: 19px 19px 0 0;
+    border-radius: 19px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.30);
     
 }
@@ -359,6 +359,7 @@ header p{
     background-color: #F2E0AA;
     height: auto;
     padding: 20px;
+    border-radius: 0 0 19px 19px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.30);
 }
 
@@ -514,7 +515,7 @@ footer{
     padding: 1%;
     align-items: center;
 }
-
+/* 
 @media screen and (max-width: 768px) {
     .item1{
         text-align: center;
@@ -525,3 +526,68 @@ footer{
         grid-column: 1/4;
     }
 } 
+ */
+
+ /*---------------------modal error de la sección de ingreso------------*/
+
+ .modalError{
+    width: 100%;
+    height: 40px;
+    display: flex;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    background-color: #EA4335;
+    border-radius: 10px;
+    z-index: 25;
+    position: relative;
+    align-items: center;
+    padding: 10px;
+    margin-top: 10px;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.modalExito{
+    width: 100%;
+    height: 40px;
+    display: flex;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    background-color: #34A853;
+    border-radius: 3px;    
+    z-index: 25;
+    position: relative;
+    align-items: center;
+    padding: auto;
+    margin: 10px 0 0 0;  
+    justify-content: center; 
+    padding: 0 10px;
+}
+
+.modalError i {
+    color: #FFFF;
+    margin-right: 20px;
+    left: 0;
+}
+
+.modalExito i {
+    color: #FFFF;
+    margin-right: 20px;
+    left: 0;
+}
+
+.modalError p {
+    color:#FFFF;
+    font-size: 16px;
+    margin-left: 3x;
+    justify-self: center;
+}
+
+.modalExito p {
+    color:#FFFF;
+    font-size: 16px;
+    margin-left: 3px;
+    justify-self: center;
+}
+
+
+
+

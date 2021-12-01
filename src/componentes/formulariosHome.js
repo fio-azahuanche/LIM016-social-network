@@ -12,15 +12,19 @@ export const registroCorreo = (nombre, correo, contraseña, selector) => {
     const claveRegistro = document.getElementById(contraseña).value;
     registroUsuario(correoRegistro, claveRegistro)
       .then((userCredential) => {
+        const ubicacionModalExito = document.getElementById("ubicacionModalExito");        
+        ubicacionModalExito.innerHTML = modalExitoMensaje.modalExito();
       // Signed in
       // eslint-disable-next-line
         const user = userCredential.user;
       })
       .catch((error) => {
         // eslint-disable-next-line
-        const errorCode = error.code;
+        //const errorCode = error.code;
         // eslint-disable-next-line
-        const errorMessage = error.message;
+        //const errorMessage = error.message;
+        const ubicacionModalError = document.getElementById("ubicacionModalError");
+        ubicacionModalError.innerHTML =  modalErrorMensaje.modalError();              
       });
   });
 };
@@ -48,7 +52,34 @@ export const forms1 = {
                 <button type="submit" class="iniciarSesion">Registrate</button>
                 <p class="texto">¿Ya tienes una cuenta? <a id="registrate" href="#/inicio"> Iniciar Sesión</a></p> 
             </form> 
+            <div id= "ubicacionModalExito"></div>
+            <div id= "ubicacionModalError"></div>
+
         </div>`;
     return formRegistro;
   },
+};
+
+export const modalErrorMensaje = {
+  modalError: () => {
+    const errorMensaje = `
+      <div class= "modalError" id="modalError">
+        <i class="fas fa-exclamation-triangle"></i>
+        <p>Ingresaste los datos incorrectos</p>
+      </div>
+    `
+    return errorMensaje;
+  }
+};
+
+export const modalExitoMensaje = {
+  modalExito: () => {
+    const exitoMensaje = `
+      <div class= "modalExito" id="modalExito">
+        <i class="fas fa-check-circle"></i>
+        <p>Revisa tu correo elétronico para confirmar registro</p>
+      </div>
+    `
+    return exitoMensaje;
+  }
 };

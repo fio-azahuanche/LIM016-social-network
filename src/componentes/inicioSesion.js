@@ -7,16 +7,22 @@ export const inicioSesion = (correo, contraseña, selector) => {
     const correoIngreso = document.getElementById(correo).value;
     const claveIngreso = document.getElementById(contraseña).value;
     inicioSesionUsuario(correoIngreso, claveIngreso)
-      .then((userCredential) => {
-        console.log('usuario inicio sesion:', userCredential.user);
-        if (userCredential.emailVerified === true) {
-          alert('datos correctos');
-        } else {
-          alert('datos incorrectos');
-        }
+      .then((userCredential) => {       
+        console.log(userCredential);
+        /* alert('datos correctos'); */
+        const ubicacionModalExito = document.getElementById("ubicacionModalExito");        
+        ubicacionModalExito.innerHTML = modalExitoMensaje.modalExito();
       })
       .catch((error) => {
-        console.log(error.message);
+        console.log(error);
+        /* alert('datos incorrectos'); */
+        const ubicacionModalError = document.getElementById("ubicacionModalError");
+        ubicacionModalError.innerHTML =  modalErrorMensaje.modalError();
+        setTimeout(function(){       
+          modalError.style.opacity = "1";
+          modalError.style.visibility = "visible";  
+        },1000);       
+        
       });
   });
 };
@@ -48,7 +54,33 @@ export const forms2 = {
                 
                 <p class="texto">¿No tienes una cuenta? <a id="registrate" href="#/registro"> Regístrate</a></p> 
             </form> 
+            <div id= "ubicacionModalExito"></div>
+            <div id= "ubicacionModalError"></div>
         </div>`;
     return formIngreso;
   },
+};
+
+export const modalErrorMensaje = {
+  modalError: () => {
+    const errorMensaje = `
+      <div class= "modalError" id="modalError">
+        <i class="fas fa-exclamation-triangle"></i>
+        <p>Ingrese los datos correctamente</p>
+      </div>
+    `
+    return errorMensaje;
+  }
+};
+
+export const modalExitoMensaje = {
+  modalExito: () => {
+    const exitoMensaje = `
+      <div class= "modalExito" id="modalExito">
+        <i class="fas fa-check-circle"></i>
+        <p>Inicio de Sesión exitoso!</p>
+      </div>
+    `
+    return exitoMensaje;
+  }
 };

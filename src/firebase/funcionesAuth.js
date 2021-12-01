@@ -34,6 +34,7 @@ export const envioClaveRecuperacion = (correo) => {
   const auth = getAuth(app);
   return sendPasswordResetEmail(auth, correo);
 };
+
 //
 /* export const envioCorreoVerificacion= () => firebase.auth().currentUser.sendEmailVerification();
 
