@@ -2,12 +2,12 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
 }
 
 main{
-    background-color: #FAF1D6;
-     width: 100%;/*
-    height: 100vh; */
+    background-color: #F2EEE3;
+    width: 100%;    
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -36,16 +36,20 @@ main{
     align-items: center;
     font-size: 18px;
 }
+
 .cajaInterna1{
     justify-content: center;
 }
+
 #huellaLogo{
     width: 40%;
     margin: 5%;
 }
+
 .cajaInterna2{
     justify-content: space-evenly;
 }
+
 form{
     width: 100%;
     display: flex;
@@ -56,22 +60,22 @@ form{
 
 .seccionIngreso{
     width: 52%;
-    /* height: 50px; */
     display: flex;
     justify-content: space-between;
     align-items: center;
     border-radius: 1.25rem;
-    border: 4px solid #B6E3E9;
     background-color: white;
-    /* margin: 16px; */
     margin: 1%;
-    /* padding: 2%; */
+    border: 4px solid #F0AA70;
+    box-sizing: border-box;
+    border-radius: 20px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
+
 }
 
 .datosIngreso{
     margin: 1% 5%;
     width: 70%;
-    /* height: auto; */
     border: none;
     background: none;
     outline: none;
@@ -81,46 +85,50 @@ form{
 .seccionIngreso img{
     width: 12%;
     margin: 1% 4%;
-     height: 98%;
+    height: 98%;
 }
 
 .iniciarSesion{
     margin: 2%;
     width: 20%;
     border-radius: 1.25rem;
-    background-color: #FADEE1;
-    border: 4px solid rgba(177, 87, 141, 0.42);
+    background-color: #CE7338;
+    border: 4px solid #CE7338;
     cursor: pointer;
     font-size: 18px;
+    color: #FFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
+.iniciarSesion A{
+    color: #FFFF;
+    text-decoration: none;
+    
+}
 .logosInicio{
     width: 20%;
     display: flex;
     justify-content: space-around;
-    /* margin: 0.5rem; */
     margin: 1.5%;
     cursor: pointer;
 }
 
 .logosInicio img{
     width: 30%;
-    /* height: 30px; */
 }
 
 .texto{
-    /* margin: 0.5rem; */
     margin: 1%;
 }
 
 .texto a{
-    color: #BE7884;
+    color: #CE7338;
     cursor: pointer;
+    font-weight: 600;
     text-decoration: none;
 }
 
 .slogan{
-   /*  margin: 1.5%; */
     font-size: 1.75rem;
     text-align: center;
     width: 80%;
@@ -201,7 +209,7 @@ form{
 
 .grid-container{
     display: grid;
-    background-color: #FAF1D6;
+    background-color: #F2EEE3;
     grid-template-areas: 'header header header' 
     'menu main main' 'footer footer footer';
     border:transparent;
@@ -214,39 +222,41 @@ form{
 }
 
 .item1{
-    grid-area: header;  
-    /* height: 10vh;  */
+    /* display: grid; */
+    /* text-align: center; */
+    /* display: grid; */
+    grid-column: 1/ 4;
+    /* grid-row: 1/-1; */
+    /* grid-area: header;  */ 
 }
 
 .item2{
+    /* display: grid; */
     grid-area: menu;
-    background-color: #FAF1D6;
+    background-color: #F2EEE3;
     padding: 20px;   
     width: 100%;
     min-width: 500px;
     max-width: 581px;
-    /* height: 80vh;  */
 }
 
 .item3{
     grid-area: main;
-    background-color: #FAF1D6;
+    background-color: #F2EEE3;
     padding: 20px;  
-    /* height: 80vh;  */  
 }
 
 .item4{
     grid-area: footer;
-    background-color: #FADEE1;
-    /* height: 10vh;  */
+    background-color: #F0AA70;
 }
 
 /*------------header--------------*/
 header{
     width: 100%;
-    /* height: 106px; */
-    background-color: #FADEE1;
-    display: flex;
+    height: auto;
+    background-color: #F0AA70;
+    display: flex;    
     justify-content: space-between;
     padding: 1%;
     align-items: center;
@@ -258,8 +268,8 @@ header p{
     font-size: 75px;
     line-height: 117px;
     text-align: center;
-    color: #E7AEB4;
-    -webkit-text-stroke: 2px #DA332B;
+    color: #844124;
+    -webkit-text-stroke: 2px #844124;
 }
 
 /*-------------caja grande------------*/
@@ -320,7 +330,7 @@ header p{
 }
 
 .tituloCategorias{
-    background-color: #B6E3E9;
+    background-color: #9C5D47;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -330,7 +340,14 @@ header p{
     border-radius: 19px 19px 0 0;
     align-items: center;
     font-size: 30px;
+    color: #F1E8E4;
 }
+
+.tituloCategorias p{
+    color: #F1E8E4;
+    font-weight: 600;
+}
+
 
 .secCategorias{
     width: 100%;
@@ -354,12 +371,13 @@ header p{
 }
 
 .secCategorias p{
+    font-family: 'Open Sans', sans-serif;;
     font-style: normal;
     font-weight: normal;
     font-size: 30px;
     text-align: center;
-    color: #E7AEB4;
-    -webkit-text-stroke: 1px #DA332B;
+    color: #6A6060;
+    -webkit-text-stroke: 1px #6A6060;
     cursor: pointer;
 }
 
@@ -370,12 +388,12 @@ header p{
 } */
 
 .tableroCompartir{
-    background-color: #B6E3E9;
+    background-color: #FAD4AE;
     width: 100%;
     height: auto;
     border-radius: 19px;
     padding: 2% 3.5% 0% 3.5%;
-    border: 2.5px solid #52ACB8;
+    border: 2.5px solid #844124;
     margin-bottom: 2%;
 }
 
@@ -386,7 +404,7 @@ header p{
     border-radius: 19px;
     padding: 2%;
     font-size: 24px;
-    border: 2.5px solid #71D5E2;
+    border: 2.5px solid #CE7338;
     
 }
 
@@ -398,11 +416,11 @@ header p{
 }
 
 .botonCompartir{
-    background-color: rgba(255, 176, 223, 0.82);
+    background-color: #CE7338;
     height: 45px;
     width: 199px;
     border-radius: 11px;
-    border: #FDAFAB;
+    border: #EA7311;
     cursor: pointer;
     color:white;
     font-size: 30px;
@@ -410,11 +428,11 @@ header p{
 
 .botonCompartirImagen{
     display: flex;
-    background-color: #ffb2e0a8;
+    background-color: #F0AA70;
     height: 62px;
     width: 73px;
     border-radius: 17px;
-    border: #f89c97;
+    border: #F0AA70;
     cursor: pointer;    
     align-items: center;
     justify-content: center;
@@ -432,7 +450,7 @@ header p{
 }
 
 .tableroComentar{
-    background-color: #B6E3E9;
+    background-color: #FAD4AE;
     width: 100%;
     height: auto;
     border-radius: 19px;  
@@ -477,9 +495,20 @@ header p{
 footer{
     width: 100%;
     height: 106px;
-    background-color: #FADEE1;
+    background-color: #F0AA70;
     display: flex;
     justify-content: space-between;
     padding: 1%;
     align-items: center;
 }
+
+@media screen and (max-width: 768px) {
+    .item1{
+        text-align: center;
+        grid-column: 1/-1;
+    }
+
+    .item2{
+        grid-column: 1/4;
+    }
+} 
