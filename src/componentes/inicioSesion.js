@@ -1,5 +1,18 @@
 import { inicioSesionUsuario } from '../firebase/funcionesAuth.js';
 
+const modalErrorMensaje = {
+  modalError: () => {
+    const errorMensaje = `
+      <div class= "modalError" id="modalError">
+        <i class="fas fa-exclamation-triangle"></i>
+        <p>Ingresaste incorrectamente los datos</p>
+      </div>
+    `;
+    return errorMensaje;
+  },
+};
+
+// Función que se encarga del inicio de Sesión por correo
 export const inicioSesion = (correo, contraseña, selector) => {
   const iniciarCon = document.getElementById(selector);
   iniciarCon.addEventListener('submit', (e) => {
@@ -7,27 +20,22 @@ export const inicioSesion = (correo, contraseña, selector) => {
     const correoIngreso = document.getElementById(correo).value;
     const claveIngreso = document.getElementById(contraseña).value;
     inicioSesionUsuario(correoIngreso, claveIngreso)
-      .then((userCredential) => {       
-        console.log(userCredential);
-        /* alert('datos correctos'); */
-        const ubicacionModalExito = document.getElementById("ubicacionModalExito");        
-        ubicacionModalExito.innerHTML = modalExitoMensaje.modalExito();
+      .then((userCredential) => {
+        console.log(userCredential.user);
       })
-      .catch((error) => {
-        console.log(error);
-        /* alert('datos incorrectos'); */
-        const ubicacionModalError = document.getElementById("ubicacionModalError");
-        ubicacionModalError.innerHTML =  modalErrorMensaje.modalError();
-        setTimeout(function(){       
-          modalError.style.opacity = "1";
-          modalError.style.visibility = "visible";  
-        },1000);       
-        
+      .catch(() => {
+        const ubicacionModalError = document.getElementById('ubicacionModalError');
+        ubicacionModalError.innerHTML = modalErrorMensaje.modalError();
       });
+    setTimeout(() => {
+      const modalError = document.getElementById('modalError');
+      modalError.classList.toggle('fade');
+    },
+    3000);
   });
 };
 
-// Creacion de formularios de Home de forma dinamica
+// Creacion de formulario de inicio de Sesión de forma dinámica
 export const forms2 = {
   inicioSesion: () => {
     const formIngreso = `
@@ -54,33 +62,8 @@ export const forms2 = {
                 
                 <p class="texto">¿No tienes una cuenta? <a id="registrate" href="#/registro"> Regístrate</a></p> 
             </form> 
-            <div id= "ubicacionModalExito"></div>
             <div id= "ubicacionModalError"></div>
         </div>`;
     return formIngreso;
   },
-};
-
-export const modalErrorMensaje = {
-  modalError: () => {
-    const errorMensaje = `
-      <div class= "modalError" id="modalError">
-        <i class="fas fa-exclamation-triangle"></i>
-        <p>Ingrese los datos correctamente</p>
-      </div>
-    `
-    return errorMensaje;
-  }
-};
-
-export const modalExitoMensaje = {
-  modalExito: () => {
-    const exitoMensaje = `
-      <div class= "modalExito" id="modalExito">
-        <i class="fas fa-check-circle"></i>
-        <p>Inicio de Sesión exitoso!</p>
-      </div>
-    `
-    return exitoMensaje;
-  }
 };
