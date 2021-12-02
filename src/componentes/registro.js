@@ -51,15 +51,19 @@ export const registroCorreo = (nombre, correo, contraseña, selector) => {
     const correoRegistro = document.getElementById(correo).value;
     const claveRegistro = document.getElementById(contraseña).value;
     registroUsuario(correoRegistro, claveRegistro)
-      .then(() => {
+      .then((userCredential) => {
         const ubicacionModalExito = document.getElementById('ubicacionModal');
         ubicacionModalExito.innerHTML = modalMensaje.modalExito();
-        envioCorreoVerificacion();
-        setTimeout(() => {
-          const modalExito = document.getElementById('modalExito');
-          modalExito.classList.toggle('fade');
-        },
-        3000);
+        const user = userCredential.user;
+        if (!user.emailVerified) {
+          envioCorreoVerificacion().then(() => {
+            setTimeout(() => {
+              const modalExito = document.getElementById('modalExito');
+              modalExito.classList.toggle('fade');
+            },
+            3000);
+          });
+        }
       })
       .catch((error) => {
         const ubicacionModalError = document.getElementById('ubicacionModal');
