@@ -3,8 +3,8 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  GoogleAuthProvider,
   sendEmailVerification,
+  signInWithPopup,
 } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js';
 import { app } from './config.js';
 
@@ -21,12 +21,9 @@ export const inicioSesionUsuario = (correo, contraseña) => {
 };
 
 // Ingreso del usuario con cuenta de Google
-export const googleInicioSesion = () => {
-  const proveedorGoogle = new GoogleAuthProvider();
+export const googleInicioSesion = (proveedor) => {
   const auth = getAuth(app);
-  // eslint-disable-next-line no-undef
-  const inicioConGoogle = signInWithPopup(auth, proveedorGoogle);
-  return inicioConGoogle;
+  return signInWithPopup(auth, proveedor);
 };
 
 //

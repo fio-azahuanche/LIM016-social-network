@@ -1,4 +1,6 @@
-import { inicioSesionUsuario } from '../firebase/funcionesAuth.js';
+// eslint-disable-next-line import/no-unresolved
+import { GoogleAuthProvider } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js';
+import { inicioSesionUsuario, googleInicioSesion } from '../firebase/funcionesAuth.js';
 
 // Objeto que crea de forma dinámica los modales
 const modalErrorMensaje = {
@@ -48,6 +50,30 @@ export const inicioSesion = (correo, contraseña, selector) => {
         3000);
       });
   });
+
+  const botongoogle = document.getElementById('imgGoogle');
+  botongoogle.addEventListener('click', () => {
+    const proveedor = new GoogleAuthProvider();
+    googleInicioSesion(proveedor)
+      .then((result) => {
+        window.location.hash = '#/artmuro';
+      // This gives you a Google Access Token. You can use it to access the Google API.
+        // const credential = GoogleAuthProvider.credentialFromResult(result);
+        // const token = credential.accessToken;
+        // The signed-in user info.
+        // const user = result.user;
+        // ...
+      }).catch((error) => {
+      // Handle Errors here.
+        // const errorCode = error.code;
+        // const errorMessage = error.message;
+        // The email of the user's account used.
+        // const email = error.email;
+        // The AuthCredential type that was used.
+        // const credential = GoogleAuthProvider.credentialFromError(error);
+        // ...
+      });
+  });
 };
 
 // Creacion de formulario de inicio de Sesión de forma dinámica
@@ -72,7 +98,7 @@ export const forms2 = {
                 
                 <div class="logosInicio">
                     <img src="imagenes/FacebookOriginal.png">
-                    <img src="imagenes/GoogleOriginal.png">
+                    <img id="imgGoogle" src="imagenes/GoogleOriginal.png">
                 </div>
                 
                 <p class="texto">¿No tienes una cuenta? <a id="registrate" href="#/registro"> Regístrate</a></p> 
