@@ -546,7 +546,7 @@ footer{
     transition: opacity 1s; 
 }
   
-#modalError.fade {
+.modalError.fade {
     opacity: 0;
 }
 

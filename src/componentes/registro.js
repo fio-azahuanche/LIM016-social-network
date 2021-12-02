@@ -1,23 +1,41 @@
 // Render del formulario de registro que se imprimen en la vista de Home
 
-import { registroUsuario } from '../firebase/funcionesAuth.js';
+import { registroUsuario, envioCorreoVerificacion } from '../firebase/funcionesAuth.js';
 
 // Objeto que crea de forma dinámica los modales
 const modalMensaje = {
-  modalError: () => {
+  modalCorreoInvalido: () => {
     const errorMensaje = `
-      <div class= "modalError" id="modalError">
+      <div class= "modalError" id="modalCorreoInvalido">
         <i class="fas fa-exclamation-triangle"></i>
-        <p>Ingresaste incorrectamente los datos</p>
+        <p>Ingresaste un correo inválido.</p>
       </div>
     `;
     return errorMensaje;
+  },
+  modalCorreoExistente: () => {
+    const exitoMensaje = `
+      <div class= "modalError" id="modalCorreoExistente">
+        <i class="fas fa-check-circle"></i>
+        <p>Ya tienes un cuenta existente.</p>
+      </div>
+    `;
+    return exitoMensaje;
+  },
+  modalContraseñaDebil: () => {
+    const exitoMensaje = `
+      <div class= "modalError" id="modalContraseñaDebil">
+        <i class="fas fa-check-circle"></i>
+        <p>La contraseña debe contener al menos 6 carácteres.</p>
+      </div>
+    `;
+    return exitoMensaje;
   },
   modalExito: () => {
     const exitoMensaje = `
       <div class= "modalExito" id="modalExito">
         <i class="fas fa-check-circle"></i>
-        <p>Revisa tu correo elétronico para confirmar registro</p>
+        <p>Revisa tu correo elétronico para confirmar registro.</p>
       </div>
     `;
     return exitoMensaje;
@@ -36,21 +54,30 @@ export const registroCorreo = (nombre, correo, contraseña, selector) => {
       .then(() => {
         const ubicacionModalExito = document.getElementById('ubicacionModal');
         ubicacionModalExito.innerHTML = modalMensaje.modalExito();
+        envioCorreoVerificacion();
+        setTimeout(() => {
+          const modalExito = document.getElementById('modalExito');
+          modalExito.classList.toggle('fade');
+        },
+        3000);
       })
-      .catch(() => {
+      .catch((error) => {
         const ubicacionModalError = document.getElementById('ubicacionModal');
-        ubicacionModalError.innerHTML = modalMensaje.modalError();
+        if (error.message === 'Firebase: Error (auth/invalid-email).') {
+          ubicacionModalError.innerHTML = modalMensaje.modalCorreoInvalido();
+        }
+        if (error.message === 'Firebase: Password should be at least 6 characters (auth/weak-password).') {
+          ubicacionModalError.innerHTML = modalMensaje.modalContraseñaDebil();
+        }
+        if (error.message === 'Firebase: Error (auth/email-already-in-use).') {
+          ubicacionModalError.innerHTML = modalMensaje.modalCorreoExistente();
+        }
+        setTimeout(() => {
+          const modalError = document.querySelector('.modalError');
+          modalError.classList.toggle('fade');
+        },
+        3000);
       });
-    setTimeout(() => {
-      const modalError = document.getElementById('modalError');
-      modalError.classList.toggle('fade');
-    },
-    3000);
-    setTimeout(() => {
-      const modalExito = document.getElementById('modalExito');
-      modalExito.classList.toggle('fade');
-    },
-    3000);
   });
 };
 

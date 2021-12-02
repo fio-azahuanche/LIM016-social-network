@@ -4,7 +4,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   GoogleAuthProvider,
-  sendPasswordResetEmail,
+  sendEmailVerification,
 } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js';
 import { app } from './config.js';
 
@@ -30,14 +30,17 @@ export const googleInicioSesion = () => {
 };
 
 //
-export const envioClaveRecuperacion = (correo) => {
+/* export const envioClaveRecuperacion = (correo) => {
   const auth = getAuth(app);
   return sendPasswordResetEmail(auth, correo);
 };
+ */
+//
+export const envioCorreoVerificacion = () => {
+  const auth = getAuth(app);
+  return sendEmailVerification(auth.currentUser);
+};
 
 //
-/* export const envioCorreoVerificacion= () => firebase.auth().currentUser.sendEmailVerification();
-
-//
-export const onAuthStateChanged = (callback) => firebase.auth().onAuthStateChanged(callback);
+/* export const onAuthStateChanged = (callback) => firebase.auth().onAuthStateChanged(callback);
 export const signOut = () => firebase.auth().signOut(); */

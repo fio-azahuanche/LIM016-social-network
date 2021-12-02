@@ -1,11 +1,21 @@
 import { inicioSesionUsuario } from '../firebase/funcionesAuth.js';
 
+// Objeto que crea de forma dinámica los modales
 const modalErrorMensaje = {
-  modalError: () => {
+  modalDatosInvalidos: () => {
     const errorMensaje = `
-      <div class= "modalError" id="modalError">
+      <div class= "modalError" id="modalDatosInvalidos">
         <i class="fas fa-exclamation-triangle"></i>
-        <p>Ingresaste incorrectamente los datos</p>
+        <p>Ingresaste correo o contraseña inválidos.</p>
+      </div>
+    `;
+    return errorMensaje;
+  },
+  modalUsuarioInvalido: () => {
+    const errorMensaje = `
+      <div class= "modalError" id="modalDatosInvalidos">
+        <i class="fas fa-exclamation-triangle"></i>
+        <p>Aún no estas registrado.</p>
       </div>
     `;
     return errorMensaje;
@@ -20,18 +30,23 @@ export const inicioSesion = (correo, contraseña, selector) => {
     const correoIngreso = document.getElementById(correo).value;
     const claveIngreso = document.getElementById(contraseña).value;
     inicioSesionUsuario(correoIngreso, claveIngreso)
-      .then((userCredential) => {
-        console.log(userCredential.user);
+      .then(() => {
+        alert('funciona el inicio de sesion :v');
       })
-      .catch(() => {
+      .catch((error) => {
         const ubicacionModalError = document.getElementById('ubicacionModalError');
-        ubicacionModalError.innerHTML = modalErrorMensaje.modalError();
+        if (error.message === 'Firebase: Error (auth/invalid-email).' || error.message === 'Firebase: Error (auth/wrong-password).') {
+          ubicacionModalError.innerHTML = modalErrorMensaje.modalDatosInvalidos();
+        }
+        if (error.message === 'Firebase: Error (auth/user-not-found).') {
+          ubicacionModalError.innerHTML = modalErrorMensaje.modalUsuarioInvalido();
+        }
+        setTimeout(() => {
+          const modalError = document.querySelector('.modalError');
+          modalError.classList.toggle('fade');
+        },
+        3000);
       });
-    setTimeout(() => {
-      const modalError = document.getElementById('modalError');
-      modalError.classList.toggle('fade');
-    },
-    3000);
   });
 };
 

@@ -1,5 +1,5 @@
 import { componentes } from '../lib/index.js';
-import { forms1, registroCorreo } from '../componentes/formulariosHome.js';
+import { forms1, registroCorreo } from '../componentes/registro.js';
 import { forms2, inicioSesion } from '../componentes/inicioSesion.js';
 import { divMuro } from '../componentes/muro.js';
 
