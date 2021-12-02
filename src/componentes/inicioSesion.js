@@ -1,4 +1,4 @@
-import { inicioSesionUsuario } from '../firebase/funcionesAuth.js';
+import { inicioSesionUsuario, googleInicioSesion } from '../firebase/funcionesAuth.js';
 
 export const inicioSesion = (correo, contraseña, selector) => {
   const iniciarCon = document.getElementById(selector);
@@ -12,6 +12,9 @@ export const inicioSesion = (correo, contraseña, selector) => {
         /* alert('datos correctos'); */
         const ubicacionModalExito = document.getElementById("ubicacionModalExito");        
         ubicacionModalExito.innerHTML = modalExitoMensaje.modalExito();
+        setTimeout(function(){       
+          modalExito.classList.toggle("modalExito"); 
+        },3000);       
       })
       .catch((error) => {
         console.log(error);
@@ -49,7 +52,7 @@ export const forms2 = {
                 
                 <div class="logosInicio">
                     <img src="imagenes/FacebookOriginal.png">
-                    <img src="imagenes/GoogleOriginal.png">
+                    <img id="googleSignIn" src="imagenes/GoogleOriginal.png">
                 </div>
                 
                 <p class="texto">¿No tienes una cuenta? <a id="registrate" href="#/registro"> Regístrate</a></p> 
@@ -77,7 +80,7 @@ export const modalExitoMensaje = {
   modalExito: () => {
     const exitoMensaje = `
       <div class= "modalExito" id="modalExito">
-        <i class="fas fa-check-circle"></i>
+      <i class="fas fa-check-circle" ></i>
         <p>Inicio de Sesión exitoso!</p>
       </div>
     `
