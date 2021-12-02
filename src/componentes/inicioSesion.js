@@ -12,6 +12,9 @@ export const inicioSesion = (correo, contraseña, selector) => {
         /* alert('datos correctos'); */
         const ubicacionModalExito = document.getElementById("ubicacionModalExito");        
         ubicacionModalExito.innerHTML = modalExitoMensaje.modalExito();
+        setTimeout(function(){       
+          modalExito.classList.toggle("modalExito"); 
+        },3000);       
       })
       .catch((error) => {
         console.log(error);
@@ -77,7 +80,7 @@ export const modalExitoMensaje = {
   modalExito: () => {
     const exitoMensaje = `
       <div class= "modalExito" id="modalExito">
-        <i class="fas fa-check-circle"></i>
+      <i class="fas fa-check-circle" ></i>
         <p>Inicio de Sesión exitoso!</p>
       </div>
     `
