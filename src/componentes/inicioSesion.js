@@ -15,7 +15,7 @@ const modalErrorMensaje = {
   },
   modalUsuarioInvalido: () => {
     const errorMensaje = `
-      <div class= "modalError" id="modalDatosInvalidos">
+      <div class= "modalError" id="modalUsuarioInvalido">
         <i class="fas fa-exclamation-triangle"></i>
         <p>Aún no estas registrado.</p>
       </div>
@@ -33,21 +33,26 @@ export const inicioSesion = (correo, contraseña, selector) => {
     const claveIngreso = document.getElementById(contraseña).value;
     inicioSesionUsuario(correoIngreso, claveIngreso)
       .then(() => {
-        alert('funciona el inicio de sesion :v');
+        window.location.hash = '#/artmuro';
       })
       .catch((error) => {
         const ubicacionModalError = document.getElementById('ubicacionModalError');
         if (error.message === 'Firebase: Error (auth/invalid-email).' || error.message === 'Firebase: Error (auth/wrong-password).') {
           ubicacionModalError.innerHTML = modalErrorMensaje.modalDatosInvalidos();
+          setTimeout(() => {
+            const modalError = document.getElementById('modalDatosInvalidos');
+            modalError.classList.toggle('fade');
+          },
+          3000);
         }
         if (error.message === 'Firebase: Error (auth/user-not-found).') {
           ubicacionModalError.innerHTML = modalErrorMensaje.modalUsuarioInvalido();
+          setTimeout(() => {
+            const modalError = document.getElementById('modalUsuarioInvalido');
+            modalError.classList.toggle('fade');
+          },
+          3000);
         }
-        setTimeout(() => {
-          const modalError = document.querySelector('.modalError');
-          modalError.classList.toggle('fade');
-        },
-        3000);
       });
   });
 

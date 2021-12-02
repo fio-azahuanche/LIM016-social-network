@@ -69,18 +69,28 @@ export const registroCorreo = (nombre, correo, contraseña, selector) => {
         const ubicacionModalError = document.getElementById('ubicacionModal');
         if (error.message === 'Firebase: Error (auth/invalid-email).') {
           ubicacionModalError.innerHTML = modalMensaje.modalCorreoInvalido();
+          setTimeout(() => {
+            const modalError = document.getElementById('modalCorreoInvalido');
+            modalError.classList.toggle('fade');
+          },
+          3000);
         }
         if (error.message === 'Firebase: Password should be at least 6 characters (auth/weak-password).') {
           ubicacionModalError.innerHTML = modalMensaje.modalContraseñaDebil();
+          setTimeout(() => {
+            const modalError = document.getElementById('modalCorreoExistente');
+            modalError.classList.toggle('fade');
+          },
+          3000);
         }
         if (error.message === 'Firebase: Error (auth/email-already-in-use).') {
           ubicacionModalError.innerHTML = modalMensaje.modalCorreoExistente();
+          setTimeout(() => {
+            const modalError = document.getElementById('modalContraseñaDebil');
+            modalError.classList.toggle('fade');
+          },
+          3000);
         }
-        setTimeout(() => {
-          const modalError = document.querySelector('.modalError');
-          modalError.classList.toggle('fade');
-        },
-        3000);
       });
   });
 };
