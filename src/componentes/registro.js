@@ -32,7 +32,7 @@ export const registroCorreo = (nombre, selectorForm, containerError) => {
           ubicacionModal.innerHTML = modalRegistro.contraseñaDebil();
         } else if (error.message === 'Firebase: Error (auth/email-already-in-use).') {
           ubicacionModal.innerHTML = modalRegistro.correoExistente();
-        } else{
+        } else {
           ubicacionModal.textContent = error.message;
         }
       });
@@ -40,7 +40,7 @@ export const registroCorreo = (nombre, selectorForm, containerError) => {
 };
 
 // Creacion de formulario de registro de forma dinámica
-export const formRegistro = () => {
+export const formRegistros = () => {
   const formRegistro = `
         <div id='registro' class='cajaInterna2'>
             <form id="formRegistro">

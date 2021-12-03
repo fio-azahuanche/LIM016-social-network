@@ -5,7 +5,6 @@ import { modalInicioSesion } from './errores.js';
 
 // Objeto que crea de forma dinámica los modales
 
-
 // Función que se encarga del inicio de Sesión por correo
 export const inicioSesion = (selectorForm, containerError) => {
   const iniciarCon = document.getElementById(selectorForm);

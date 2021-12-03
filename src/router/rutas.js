@@ -1,5 +1,5 @@
 import { componentes } from '../lib/index.js';
-import { formRegistro, registroCorreo } from '../componentes/registro.js';
+import { formRegistros, registroCorreo } from '../componentes/registro.js';
 import { formInicioSesion, inicioSesion } from '../componentes/inicioSesion.js';
 import { divMuro } from '../componentes/muro.js';
 
@@ -12,7 +12,7 @@ export const vistasPantalla = () => {
       inicioSesion('formIngreso', 'ubicacionModal');
       break;
     case '#/registro':
-      main.appendChild(componentes.fondoHome(formRegistro()));
+      main.appendChild(componentes.fondoHome(formRegistros()));
       registroCorreo('usuarioRegistro', 'formRegistro', 'ubicacionModal');
       break;
     case '#/artmuro':
