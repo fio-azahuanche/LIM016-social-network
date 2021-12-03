@@ -1,94 +1,47 @@
 // Render del formulario de registro que se imprimen en la vista de Home
 
 import { registroUsuario, envioCorreoVerificacion } from '../firebase/funcionesAuth.js';
-
+import { modalRegistro } from './errores.js';
 // Objeto que crea de forma dinámica los modales
-const modalMensaje = {
-  modalCorreoInvalido: () => {
-    const errorMensaje = `
-      <div class= "modalError" id="modalCorreoInvalido">
-        <i class="fas fa-exclamation-triangle"></i>
-        <p>Ingresaste un correo inválido.</p>
-      </div>
-    `;
-    return errorMensaje;
-  },
-  modalCorreoExistente: () => {
-    const exitoMensaje = `
-      <div class= "modalError" id="modalCorreoExistente">
-        <i class="fas fa-check-circle"></i>
-        <p>Ya tienes un cuenta existente.</p>
-      </div>
-    `;
-    return exitoMensaje;
-  },
-  modalContraseñaDebil: () => {
-    const exitoMensaje = `
-      <div class= "modalError" id="modalContraseñaDebil">
-        <i class="fas fa-check-circle"></i>
-        <p>La contraseña debe contener al menos 6 carácteres.</p>
-      </div>
-    `;
-    return exitoMensaje;
-  },
-  modalExito: () => {
-    const exitoMensaje = `
-      <div class= "modalExito" id="modalExito">
-        <i class="fas fa-check-circle"></i>
-        <p>Revisa tu correo elétronico para confirmar registro.</p>
-      </div>
-    `;
-    return exitoMensaje;
-  },
-};
 
 // Función que se encarga del registro por correo
-export const registroCorreo = (nombre, correo, contraseña, selector) => {
-  const registrarCon = document.getElementById(selector);
+export const registroCorreo = (nombre, selectorForm, containerError) => {
+  const registrarCon = document.getElementById(selectorForm);
   registrarCon.addEventListener('submit', (e) => {
     e.preventDefault();
     // const usuarioRegistro = document.getElementById(nombre).value;
-    const correoRegistro = document.getElementById(correo).value;
-    const claveRegistro = document.getElementById(contraseña).value;
+    const correoRegistro = document.getElementById('correoRegistro').value;
+    const claveRegistro = document.getElementById('claveRegistro').value;
+    const ubicacionModal = document.getElementById(containerError);
+
     registroUsuario(correoRegistro, claveRegistro)
       .then((userCredential) => {
-        const ubicacionModalExito = document.getElementById('ubicacionModal');
-        ubicacionModalExito.innerHTML = modalMensaje.modalExito();
+        ubicacionModal.style.background = 'green';
         const user = userCredential.user;
         if (!user.emailVerified) {
           envioCorreoVerificacion().then(() => {
-            setTimeout(() => {
-              const modalExito = document.getElementById('modalExito');
-              modalExito.classList.toggle('fade');
-            },
-            3000);
+            ubicacionModal.innerHTML = modalRegistro.exito();
           });
         }
       })
       .catch((error) => {
-        const ubicacionModalError = document.getElementById('ubicacionModal');
+        ubicacionModal.style.background = 'red';
         if (error.message === 'Firebase: Error (auth/invalid-email).') {
-          ubicacionModalError.innerHTML = modalMensaje.modalCorreoInvalido();
+          ubicacionModal.innerHTML = modalRegistro.correoInvalido();
+        } else if (error.message === 'Firebase: Password should be at least 6 characters (auth/weak-password).') {
+          ubicacionModal.innerHTML = modalRegistro.contraseñaDebil();
+        } else if (error.message === 'Firebase: Error (auth/email-already-in-use).') {
+          ubicacionModal.innerHTML = modalRegistro.correoExistente();
+        } else{
+          ubicacionModal.textContent = error.message;
         }
-        if (error.message === 'Firebase: Password should be at least 6 characters (auth/weak-password).') {
-          ubicacionModalError.innerHTML = modalMensaje.modalContraseñaDebil();
-        }
-        if (error.message === 'Firebase: Error (auth/email-already-in-use).') {
-          ubicacionModalError.innerHTML = modalMensaje.modalCorreoExistente();
-        }
-        setTimeout(() => {
-          const modalError = document.querySelector('.modalError');
-          modalError.classList.toggle('fade');
-        },
-        3000);
       });
   });
 };
 
 // Creacion de formulario de registro de forma dinámica
-export const forms1 = {
-  registro: () => {
-    const formRegistro = `
+export const formRegistro = () => {
+  const formRegistro = `
         <div id='registro' class='cajaInterna2'>
             <form id="formRegistro">
                 <div class="seccionIngreso">
@@ -107,10 +60,8 @@ export const forms1 = {
 
                 <button type="submit" class="iniciarSesion">Registrate</button>
                 <p class="texto">¿Ya tienes una cuenta? <a id="registrate" href="#/inicio"> Iniciar Sesión</a></p> 
-            </form> 
-            <div id= "ubicacionModal"></div>
+            </form>
 
         </div>`;
-    return formRegistro;
-  },
+  return formRegistro;
 };
