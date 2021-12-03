@@ -3,8 +3,6 @@ import { GoogleAuthProvider } from 'https://www.gstatic.com/firebasejs/9.5.0/fir
 import { inicioSesionUsuario, googleInicioSesion } from '../firebase/funcionesAuth.js';
 import { modalInicioSesion } from './errores.js';
 
-// Objeto que crea de forma dinámica los modales
-
 // Función que se encarga del inicio de Sesión por correo
 export const inicioSesion = (selectorForm, containerError) => {
   const iniciarCon = document.getElementById(selectorForm);
@@ -19,11 +17,12 @@ export const inicioSesion = (selectorForm, containerError) => {
         if (user.emailVerified === true) {
           window.location.hash = '#/artmuro';
         } else {
+          // eslint-disable-next-line no-alert
           alert('confirma tu cuenta');
         }
       })
       .catch((error) => {
-        ubicacionModal.style.background='red';
+        ubicacionModal.style.background = '#EA4335';
         if (error.message === 'Firebase: Error (auth/invalid-email).' || error.message === 'Firebase: Error (auth/wrong-password).') {
           ubicacionModal.innerHTML = modalInicioSesion.datosInvalidos();
         } else if (error.message === 'Firebase: Error (auth/user-not-found).') {
@@ -38,6 +37,7 @@ export const inicioSesion = (selectorForm, containerError) => {
   botongoogle.addEventListener('click', () => {
     const proveedor = new GoogleAuthProvider();
     googleInicioSesion(proveedor)
+      // eslint-disable-next-line no-unused-vars
       .then((result) => {
         window.location.hash = '#/artmuro';
         // This gives you a Google Access Token. You can use it to access the Google API.
@@ -46,6 +46,7 @@ export const inicioSesion = (selectorForm, containerError) => {
         // The signed-in user info.
         // const user = result.user;
         // ...
+      // eslint-disable-next-line no-unused-vars
       }).catch((error) => {
         // Handle Errors here.
         // const errorCode = error.code;

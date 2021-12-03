@@ -1,8 +1,6 @@
 // Render del formulario de registro que se imprimen en la vista de Home
-
 import { registroUsuario, envioCorreoVerificacion } from '../firebase/funcionesAuth.js';
 import { modalRegistro } from './errores.js';
-// Objeto que crea de forma dinámica los modales
 
 // Función que se encarga del registro por correo
 export const registroCorreo = (nombre, selectorForm, containerError) => {
@@ -16,7 +14,7 @@ export const registroCorreo = (nombre, selectorForm, containerError) => {
 
     registroUsuario(correoRegistro, claveRegistro)
       .then((userCredential) => {
-        ubicacionModal.style.background = 'green';
+        ubicacionModal.style.background = '#34A853';
         const user = userCredential.user;
         if (!user.emailVerified) {
           envioCorreoVerificacion().then(() => {
@@ -25,7 +23,7 @@ export const registroCorreo = (nombre, selectorForm, containerError) => {
         }
       })
       .catch((error) => {
-        ubicacionModal.style.background = 'red';
+        ubicacionModal.style.background = '#EA4335';
         if (error.message === 'Firebase: Error (auth/invalid-email).') {
           ubicacionModal.innerHTML = modalRegistro.correoInvalido();
         } else if (error.message === 'Firebase: Password should be at least 6 characters (auth/weak-password).') {
