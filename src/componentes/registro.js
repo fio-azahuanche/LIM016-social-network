@@ -1,13 +1,16 @@
 // Render del formulario de registro que se imprimen en la vista de Home
+// eslint-disable-next-line import/no-unresolved
+import { addDoc } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js';
 import { registroUsuario, envioCorreoVerificacion } from '../firebase/funcionesAuth.js';
 import { modalRegistro } from './errores.js';
+import { colRef } from '../firebase/funcionesFirestore.js';
 
 // Función que se encarga del registro por correo
 export const registroCorreo = (nombre, selectorForm, containerError) => {
   const registrarCon = document.getElementById(selectorForm);
   registrarCon.addEventListener('submit', (e) => {
     e.preventDefault();
-    // const usuarioRegistro = document.getElementById(nombre).value;
+    const usuarioRegistro = document.getElementById(nombre).value;
     const correoRegistro = document.getElementById('correoRegistro').value;
     const claveRegistro = document.getElementById('claveRegistro').value;
     const ubicacionModal = document.getElementById(containerError);
@@ -21,6 +24,14 @@ export const registroCorreo = (nombre, selectorForm, containerError) => {
             ubicacionModal.innerHTML = modalRegistro.exito();
           });
         }
+        addDoc(colRef, {
+          username: usuarioRegistro,
+          correo: correoRegistro,
+          clave: claveRegistro,
+        })
+          .then(() => {
+            registrarCon.reset();
+          });
       })
       .catch((error) => {
         ubicacionModal.style.background = '#EA4335';
@@ -52,7 +63,7 @@ export const formRegistros = () => {
                 </div>
 
                 <div class="seccionIngreso">
-                    <input type="text" id="claveRegistro" class="datosIngreso" placeholder="Contraseña" required>
+                    <input type="password" name="password" id="claveRegistro" class="datosIngreso" placeholder="Contraseña" required>
                     <img src="imagenes/eye-closed.png">
                 </div>
 

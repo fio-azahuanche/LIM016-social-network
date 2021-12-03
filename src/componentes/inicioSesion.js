@@ -49,13 +49,16 @@ export const inicioSesion = (selectorForm, containerError) => {
       // eslint-disable-next-line no-unused-vars
       }).catch((error) => {
         // Handle Errors here.
-        // const errorCode = error.code;
-        // const errorMessage = error.message;
+        const errorCode = error.code;
+        console.log(errorCode);
+        const errorMessage = error.message;
+        console.log((errorMessage));
         // The email of the user's account used.
-        // const email = error.email;
+        const email = error.email;
+        console.log(email);
         // The AuthCredential type that was used.
-        // const credential = GoogleAuthProvider.credentialFromError(error);
-        // ...
+        const credential = GoogleAuthProvider.credentialFromError(error);
+        console.log(credential);
       });
   });
 };
