@@ -1,57 +1,36 @@
 // eslint-disable-next-line import/no-unresolved
 import { GoogleAuthProvider } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js';
 import { inicioSesionUsuario, googleInicioSesion } from '../firebase/funcionesAuth.js';
+import { modalInicioSesion } from './errores.js';
 
 // Objeto que crea de forma dinámica los modales
-const modalErrorMensaje = {
-  modalDatosInvalidos: () => {
-    const errorMensaje = `
-      <div class= "modalError" id="modalDatosInvalidos">
-        <i class="fas fa-exclamation-triangle"></i>
-        <p>Ingresaste correo o contraseña inválidos.</p>
-      </div>
-    `;
-    return errorMensaje;
-  },
-  modalUsuarioInvalido: () => {
-    const errorMensaje = `
-      <div class= "modalError" id="modalUsuarioInvalido">
-        <i class="fas fa-exclamation-triangle"></i>
-        <p>Aún no estas registrado.</p>
-      </div>
-    `;
-    return errorMensaje;
-  },
-};
+
 
 // Función que se encarga del inicio de Sesión por correo
-export const inicioSesion = (correo, contraseña, selector) => {
-  const iniciarCon = document.getElementById(selector);
+export const inicioSesion = (selectorForm, containerError) => {
+  const iniciarCon = document.getElementById(selectorForm);
   iniciarCon.addEventListener('submit', (e) => {
     e.preventDefault();
-    const correoIngreso = document.getElementById(correo).value;
-    const claveIngreso = document.getElementById(contraseña).value;
+    const correoIngreso = document.getElementById('correoIngreso').value;
+    const claveIngreso = document.getElementById('claveIngreso').value;
+    const ubicacionModal = document.getElementById(containerError);
     inicioSesionUsuario(correoIngreso, claveIngreso)
-      .then(() => {
-        window.location.hash = '#/artmuro';
+      .then((userCredential) => {
+        const user = userCredential.user;
+        if (user.emailVerified === true) {
+          window.location.hash = '#/artmuro';
+        } else {
+          alert('confirma tu cuenta');
+        }
       })
       .catch((error) => {
-        const ubicacionModalError = document.getElementById('ubicacionModalError');
+        ubicacionModal.style.background='red';
         if (error.message === 'Firebase: Error (auth/invalid-email).' || error.message === 'Firebase: Error (auth/wrong-password).') {
-          ubicacionModalError.innerHTML = modalErrorMensaje.modalDatosInvalidos();
-          setTimeout(() => {
-            const modalError = document.getElementById('modalDatosInvalidos');
-            modalError.classList.toggle('fade');
-          },
-          3000);
-        }
-        if (error.message === 'Firebase: Error (auth/user-not-found).') {
-          ubicacionModalError.innerHTML = modalErrorMensaje.modalUsuarioInvalido();
-          setTimeout(() => {
-            const modalError = document.getElementById('modalUsuarioInvalido');
-            modalError.classList.toggle('fade');
-          },
-          3000);
+          ubicacionModal.innerHTML = modalInicioSesion.datosInvalidos();
+        } else if (error.message === 'Firebase: Error (auth/user-not-found).') {
+          ubicacionModal.innerHTML = modalInicioSesion.usuarioInvalido();
+        } else {
+          ubicacionModal.textContent = error.message;
         }
       });
   });
@@ -62,14 +41,14 @@ export const inicioSesion = (correo, contraseña, selector) => {
     googleInicioSesion(proveedor)
       .then((result) => {
         window.location.hash = '#/artmuro';
-      // This gives you a Google Access Token. You can use it to access the Google API.
+        // This gives you a Google Access Token. You can use it to access the Google API.
         // const credential = GoogleAuthProvider.credentialFromResult(result);
         // const token = credential.accessToken;
         // The signed-in user info.
         // const user = result.user;
         // ...
       }).catch((error) => {
-      // Handle Errors here.
+        // Handle Errors here.
         // const errorCode = error.code;
         // const errorMessage = error.message;
         // The email of the user's account used.
@@ -82,9 +61,8 @@ export const inicioSesion = (correo, contraseña, selector) => {
 };
 
 // Creacion de formulario de inicio de Sesión de forma dinámica
-export const forms2 = {
-  inicioSesion: () => {
-    const formIngreso = `
+export const formInicioSesion = () => {
+  const formIngreso = `
         <div id="inicio" class="cajaInterna2">
             <form id="formIngreso">
                 <div class="seccionIngreso">
@@ -108,8 +86,6 @@ export const forms2 = {
                 
                 <p class="texto">¿No tienes una cuenta? <a id="registrate" href="#/registro"> Regístrate</a></p> 
             </form> 
-            <div id= "ubicacionModalError"></div>
         </div>`;
-    return formIngreso;
-  },
+  return formIngreso;
 };

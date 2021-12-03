@@ -9,6 +9,7 @@ export const fondoHome = (divFormulario) => {
         </div>
         ${divFormulario}
       </section>
+      <div id= "ubicacionModal"></div>
       <section class="borde"><img src="imagenes/bordeInferior.png"></section>
     `;
   const divFondo = document.createElement('article');

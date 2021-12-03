@@ -1,6 +1,6 @@
 import { componentes } from '../lib/index.js';
-import { forms1, registroCorreo } from '../componentes/registro.js';
-import { forms2, inicioSesion } from '../componentes/inicioSesion.js';
+import { formRegistro, registroCorreo } from '../componentes/registro.js';
+import { formInicioSesion, inicioSesion } from '../componentes/inicioSesion.js';
 import { divMuro } from '../componentes/muro.js';
 
 export const vistasPantalla = () => {
@@ -8,12 +8,12 @@ export const vistasPantalla = () => {
   main.innerHTML = '';
   switch (window.location.hash.toLowerCase()) {
     case '': case '#/': case '#/inicio':
-      main.appendChild(componentes.fondoHome(forms2.inicioSesion()));
-      inicioSesion('correoIngreso', 'claveIngreso', 'formIngreso');
+      main.appendChild(componentes.fondoHome(formInicioSesion()));
+      inicioSesion('formIngreso', 'ubicacionModal');
       break;
     case '#/registro':
-      main.appendChild(componentes.fondoHome(forms1.registro()));
-      registroCorreo('usuarioRegistro', 'correoRegistro', 'claveRegistro', 'formRegistro');
+      main.appendChild(componentes.fondoHome(formRegistro()));
+      registroCorreo('usuarioRegistro', 'formRegistro', 'ubicacionModal');
       break;
     case '#/artmuro':
       main.innerHTML = divMuro;
