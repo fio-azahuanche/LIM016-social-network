@@ -10,6 +10,7 @@ export const vistasPantalla = () => {
     case '': case '#/': case '#/inicio':
       main.appendChild(componentes.fondoHome(formInicioSesion()));
       inicioSesion('formIngreso', 'ubicacionModal');
+      document.getElementById('ubicacionModal').style.transition='1s';
       break;
     case '#/registro':
       main.appendChild(componentes.fondoHome(formRegistro()));

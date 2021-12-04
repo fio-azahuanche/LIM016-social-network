@@ -13,7 +13,8 @@ export const registroCorreo = (nombre, selectorForm, containerError) => {
     const correoRegistro = document.getElementById('correoRegistro').value;
     const claveRegistro = document.getElementById('claveRegistro').value;
     const ubicacionModal = document.getElementById(containerError);
-
+    //ubicacionModal.classList.remove('noVisible');
+    ubicacionModal.style.display='block'
     registroUsuario(correoRegistro, claveRegistro)
       .then((userCredential) => {
         ubicacionModal.style.background = 'green';
@@ -35,6 +36,10 @@ export const registroCorreo = (nombre, selectorForm, containerError) => {
         } else{
           ubicacionModal.textContent = error.message;
         }
+        setTimeout(function hide() {
+          ubicacionModal.style.display='none';
+          //ubicacionModal.classList.add('noVisible');
+        }, 3000);
       });
   });
 };

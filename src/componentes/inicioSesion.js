@@ -14,6 +14,7 @@ export const inicioSesion = (selectorForm, containerError) => {
     const correoIngreso = document.getElementById('correoIngreso').value;
     const claveIngreso = document.getElementById('claveIngreso').value;
     const ubicacionModal = document.getElementById(containerError);
+    
     inicioSesionUsuario(correoIngreso, claveIngreso)
       .then((userCredential) => {
         const user = userCredential.user;
@@ -24,14 +25,19 @@ export const inicioSesion = (selectorForm, containerError) => {
         }
       })
       .catch((error) => {
+        ubicacionModal.style.display='block';
+        ubicacionModal.style.transition='all 1s';
         ubicacionModal.style.background='red';
         if (error.message === 'Firebase: Error (auth/invalid-email).' || error.message === 'Firebase: Error (auth/wrong-password).') {
           ubicacionModal.innerHTML = modalInicioSesion.datosInvalidos();
         } else if (error.message === 'Firebase: Error (auth/user-not-found).') {
           ubicacionModal.innerHTML = modalInicioSesion.usuarioInvalido();
         } else {
-          ubicacionModal.textContent = error.message;
+          ubicacionModal.textContent='Ocurrió un error';
         }
+        setTimeout(function hide() {
+          ubicacionModal.style.display='none';
+        }, 2000);
       });
   });
 
@@ -40,7 +46,8 @@ export const inicioSesion = (selectorForm, containerError) => {
     const proveedor = new GoogleAuthProvider();
     googleInicioSesion(proveedor)
       .then((result) => {
-        window.location.hash = '#/artmuro';
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        console.log(credential);
         // This gives you a Google Access Token. You can use it to access the Google API.
         // const credential = GoogleAuthProvider.credentialFromResult(result);
         // const token = credential.accessToken;

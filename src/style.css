@@ -295,16 +295,25 @@ form{
     position: relative;
 }
 #ubicacionModal{
+    width: 35%;
+    border-radius: 20px;
+    height: 5vh;
     position: absolute;
-    right: 0;
+    right: 8%;
+    bottom: 10vh;
 }
 .modalExito, .modalError{
+    padding-top: 1vh;
     display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .modalExito p, .modalError p{
     color:#FFFF;
+    margin-left: 3%;
     font-size: 16px;
 }
+
 
 /*  .modalError{
     width: 100%;
