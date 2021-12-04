@@ -1,4 +1,4 @@
-// Creacion de la estructura y diseño del Home
+// Creación de la estructura y diseño del Home
 export const fondoHome = (divFormulario) => {
   const fondo = `
       <section class="borde"><img src="imagenes/bordeSuperior.png"></section>
@@ -9,6 +9,7 @@ export const fondoHome = (divFormulario) => {
         </div>
         ${divFormulario}
       </section>
+      <div id= "ubicacionModal"></div>
       <section class="borde"><img src="imagenes/bordeInferior.png"></section>
     `;
   const divFondo = document.createElement('article');

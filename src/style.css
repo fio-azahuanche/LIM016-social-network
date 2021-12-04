@@ -206,331 +206,107 @@ form{
      height: 100vh; 
 } */
 
+.artMuro header{
+    display: flex;
+    justify-content: space-between;
+    height: 12vh;
+    background-color: #F0AA70;
+    align-items: center;
+}
 .grid-container{
     display: grid;
     background-color: #F2EEE3;
-    grid-template-areas: 'header header header' 
-    'menu main main' 'footer footer footer';
-    border:transparent;
-      
+    grid-template-columns: 3fr 4fr;
+    border:transparent;  
 }
-
-.grid-container div{
-    text-align: center;
-    color: #000;
+.secUsuario, .secCategorias{
+    margin: 3vh 7.5%;
 }
-
-.item1{
-    /* display: grid; */
-    /* text-align: center; */
-    /* display: grid; */
-    grid-column: 1/ 4;
-    /* grid-row: 1/-1; */
-    /* grid-area: header;  */ 
+.contenedorPortada{
+    height: 20vh;
 }
-
-.item2{
-    /* display: grid; */
-    grid-area: menu;
-    background-color: #F2EEE3;
-    padding: 20px;   
+.contenedorPortada img{
     width: 100%;
-    min-width: 500px;
-    max-width: 581px;
+    height: 100%;
 }
-
-.item3{
-    grid-area: main;
-    background-color: #F2EEE3;
-    padding: 20px;  
-}
-
-.item4{
-    grid-area: footer;
-    background-color: #F0AA70;
-}
-
-/*------------header--------------*/
-header{
-    width: 100%;
-    height: auto;
-    background-color: #F0AA70;
-    display: flex;    
-    justify-content: space-between;
-    padding: 1%;
+.contenedorPerfil{
+    height: 20vh;
+    background-color: #F2E0AA;
+    display: flex;
+    justify-content: center;
     align-items: center;
 }
-
-header p{
-    font-family: 'Open Sans', sans-serif;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 75px;
-    line-height: 117px;
-    text-align: center;
-    color: #844124;
-    -webkit-text-stroke: 2px #844124;
-}
-
-/*-------------caja grande------------*/
-
-/*---------------sección del menu----------*/
-.contenedorImgUsuario{
-    width: 100%;
-    height: auto;
-    display: flex;
-    background-repeat: no-repeat;
-    background-size: cover;    
-    justify-content: center;
-    border-radius: 19px 19px 0 0;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
-}
-
-.contenedorImgUsuario img{
-    /*border-radius: 2px 2px 0 0;*/
-    width: 100%;
-    height: 223px;
-    border-radius: 19px 19px 0 0;
-    
-}
-
-.secUsuario{
-    width: 100%;
-    height: 452px;
-    background-color: #F2E0AA;
-    border-radius: 19px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.30);
-    
-}
-
 .ImgCentralUsuario{
-    display: flex;
-    vertical-align: middle;
-    z-index: 20;
-    justify-content: center;
-    position: relative;
-    align-items: center;
-    transform: translate(0, -50%);
-   
-}
-
-.ImgCentralUsuario img{
     width: 30%;
-    height: 30%;
 }
-
-.nombreUsuario{
-    display: flex;
-    font-size: 30px;
-    transform: translate(0, -90%);
-    justify-content: center;
+.datosUsuario{
+    width: 70%;
 }
-
-.estadoUsuario{
-    display: flex;
-    font-size: 24px;
-    transform: translate(0, -80%);
-    justify-content: center;
-}
-
-.tituloCategorias{
-    background-color: #9C5D47;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    padding: 1%;
-    margin-top: 10px;
-    height: 75px;
-    border-radius: 19px 19px 0 0;
-    align-items: center;
-    font-size: 30px;
-    color: #F1E8E4;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.30);
-}
-
-.tituloCategorias p{
-    color: #F1E8E4;
-    font-weight: 600;
-}
-
-
 .secCategorias{
-    width: 100%;
-    background-color: #F2E0AA;
-    height: auto;
-    padding: 20px;
-    border-radius: 0 0 19px 19px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.30);
+    background-color: #E5DCC3;
 }
-
 .categoriaUnica{
     display: flex;
-    flex-direction: row;
-    margin: 2% 0;
+    padding: 1% 5%;
+    justify-content: space-between;
     align-items: center;
 }
-
-.secCategorias img{
-    width: 50px;
-    height: 50px;
-    margin-right: 3%;
-    cursor: pointer;
+.tableroCompartir, .tableroPost{
+    margin: 3vh 5.5% 3vh 0;
 }
-
-.secCategorias p{
-    font-family: 'Open Sans', sans-serif;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 30px;
-    text-align: center;
-    color: #6A6060;
-    -webkit-text-stroke: 1px #6A6060;
-    cursor: pointer;
-}
-
-/*-----------------sección del contenido "comentarios" y "compartir" */
-/*compartir*/
-/* .tableroCompartir{
-    min-width: 795px;
-} */
-
 .tableroCompartir{
-    background-color: #FAD4AE;
-    width: 100%;
-    height: auto;
-    border-radius: 19px;
-    padding: 2% 3.5% 0% 3.5%;
-    border: 2.5px solid #CE7338;
-    margin-bottom: 2%;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
+    padding: 2.5vh 3%;
+    background-color: #E5DCC3;
+    height: 28vh;
 }
-
 .tableroCompartir input{
-    display: flex;
     width: 100%;
-    height: 155px;
-    border-radius: 19px;
-    padding: 2%;
-    font-size: 24px;
-    border: 2.5px solid #CE7338;
-    
+    height: 15vh;
 }
-
-.botones{
+.tableroCompartir .botones{
+    padding: 2vh 0;
     display: flex;
-    padding: 1% 0;
-    align-items: center;
     justify-content: space-between;
-    
-}
 
+}
 .botonCompartir{
-    background-color: #CE7338;
-    height: 45px;
-    width: 199px;
-    border-radius: 11px;
-    border: #EA7311;
-    cursor: pointer;
-    color:white;
-    font-size: 30px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-
-.botonCompartirImagen{
-    display: flex;
+    width: 20%;
+    height: 6vh;
     background-color: #F0AA70;
-    height: 62px;
-    width: 73px;
-    border-radius: 17px;
-    border: #F0AA70;
-    cursor: pointer;    
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
-
-.botones img{
-    width: 53px;
-    height: 40px;
-    border-radius: 10px;
+.tableroPost{
+    height: 30vh;
+    background-color: white;
 }
-
-/*comentar*/
-.secComentar{
-    min-width: 795px;
-}
-
-.tableroComentar{
-    background-color: #FAD4AE;
-    width: 100%;
-    height: auto;
-    border-radius: 19px;  
-    align-items: flex-start;
-    margin-bottom: 2%;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-
-.tableroComentarTop{
-    display: flex;
-    width: 100%;
-    height: 66px;
-    align-items: flex-start;
-    font-size: 30px;
-    padding: 2%;
-    border-radius: 19px 19px 0 0 ;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-
-.tableroComentar input{
-    display: flex;
-    width: 100%;
-    height: 155px;
-    border-color: transparent;
-    padding: 2%;
-    font-size: 24px;
-}
-
-.tableroComentarBotton{
-    display: flex;
-    width: 100%;
-    height: 66px;
-    flex-direction: row;
-    font-size: 30px;
-    padding: 2%;
-}
-
-.tableroComentarBotton img{
-    margin: 0 2% 0 0;
-    width: 5%;
-    height: 100%;
-    cursor: pointer;
-}
-/*-------------footer----------------*/
-footer{
-    width: 100%;
-    height: 106px;
-    background-color: #F0AA70;
-    display: flex;
+.infoUsuarioPost, .usuarioPost{
     justify-content: space-between;
-    padding: 1%;
-    align-items: center;
+    display: flex;
 }
-/* 
-@media screen and (max-width: 768px) {
-    .item1{
-        text-align: center;
-        grid-column: 1/-1;
-    }
-
-    .item2{
-        grid-column: 1/4;
-    }
-} 
- */
+.usuarioPost{
+    height: 8vh;
+}
+.botonesReaccion{
+    background-color: #E5DCC3;
+    display: flex;
+}
 
  /*---------------------modal error de la sección de ingreso------------*/
+.cajaGrande{
+    position: relative;
+}
+#ubicacionModal{
+    position: absolute;
+    right: 0;
+}
+.modalExito, .modalError{
+    display: flex;
+}
+.modalExito p, .modalError p{
+    color:#FFFF;
+    font-size: 16px;
+}
 
- .modalError{
+/*  .modalError{
     width: 100%;
     height: 40px;
     display: flex;
@@ -538,12 +314,16 @@ footer{
     background-color: #EA4335;
     border-radius: 3px;
     z-index: 25;
-    position: relative;
+    position: absolute;
     align-items: center;
     padding: 10px;
     margin-top: 10px;
+    opacity: 1;
+    transition: opacity 1s; 
+}
+  
+.modalError.fade {
     opacity: 0;
-    visibility: hidden;
 }
 
 .modalExito{
@@ -554,12 +334,18 @@ footer{
     background-color: #34A853;
     border-radius: 3px;    
     z-index: 25;
-    position: relative;
+    position: absolute;
     align-items: center;
     padding: auto;
     margin: 10px 0 0 0;  
     justify-content: center; 
     padding: 0 10px;
+    opacity: 1;
+    transition: opacity 1s; 
+}
+  
+#modalExito.fade {
+    opacity: 0;
 }
 
 .modalError i {
@@ -590,6 +376,6 @@ footer{
     justify-self: center;
 }
 
-
+ */
 
 

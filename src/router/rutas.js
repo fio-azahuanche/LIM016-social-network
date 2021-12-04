@@ -1,6 +1,6 @@
 import { componentes } from '../lib/index.js';
-import { forms1, registroCorreo } from '../componentes/formulariosHome.js';
-import { forms2, inicioSesion } from '../componentes/inicioSesion.js';
+import { formRegistros, registroCorreo } from '../componentes/registro.js';
+import { formInicioSesion, inicioSesion } from '../componentes/inicioSesion.js';
 import { divMuro } from '../componentes/muro.js';
 import { googleInicioSesion } from '../firebase/funcionesAuth.js';
 
@@ -18,8 +18,8 @@ export const vistasPantalla = () => {
       iniciarSesionGoogle.addEventListener("click", googleInicioSesion);
       break;
     case '#/registro':
-      main.appendChild(componentes.fondoHome(forms1.registro()));
-      registroCorreo('usuarioRegistro', 'correoRegistro', 'claveRegistro', 'formRegistro');
+      main.appendChild(componentes.fondoHome(formRegistros()));
+      registroCorreo('usuarioRegistro', 'formRegistro', 'ubicacionModal');
       break;
     case '#/artmuro':
       main.innerHTML = divMuro;

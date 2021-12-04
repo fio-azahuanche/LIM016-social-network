@@ -4,8 +4,8 @@ import {
   signInWithPopup,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  GoogleAuthProvider,
-  sendPasswordResetEmail,
+  sendEmailVerification,
+  signInWithPopup,
 } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js';
 import { app } from './config.js';
 
@@ -27,8 +27,7 @@ export const inicioSesionUsuario = (correo, contraseña) => {
 };
 
 // Ingreso del usuario con cuenta de Google
-export const googleInicioSesion = () => {
-  const proveedorGoogle = new GoogleAuthProvider();
+export const googleInicioSesion = (proveedor) => {
   const auth = getAuth(app);
   signInWithPopup(auth, proveedorGoogle)
     .then((result) => {
@@ -59,14 +58,17 @@ const modalExitoMensaje = {
 };
 
 //
-export const envioClaveRecuperacion = (correo) => {
+/* export const envioClaveRecuperacion = (correo) => {
   const auth = getAuth(app);
   return sendPasswordResetEmail(auth, correo);
 };
+ */
+//
+export const envioCorreoVerificacion = () => {
+  const auth = getAuth(app);
+  return sendEmailVerification(auth.currentUser);
+};
 
 //
-/* export const envioCorreoVerificacion= () => firebase.auth().currentUser.sendEmailVerification();
-
-//
-export const onAuthStateChanged = (callback) => firebase.auth().onAuthStateChanged(callback);
+/* export const onAuthStateChanged = (callback) => firebase.auth().onAuthStateChanged(callback);
 export const signOut = () => firebase.auth().signOut(); */
