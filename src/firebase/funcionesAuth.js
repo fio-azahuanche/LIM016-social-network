@@ -43,8 +43,6 @@ export const googleInicioSesion = (proveedor) => {
   });
 };
 
-
-
 const modalExitoMensaje = {
   modalExito: () => {
     const exitoMensaje = `
