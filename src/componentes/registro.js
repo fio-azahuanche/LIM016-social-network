@@ -1,15 +1,16 @@
 // Render del formulario de registro que se imprimen en la vista de Home
-
+// eslint-disable-next-line import/no-unresolved
+import { addDoc } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js';
 import { registroUsuario, envioCorreoVerificacion } from '../firebase/funcionesAuth.js';
 import { modalRegistro } from './errores.js';
-// Objeto que crea de forma dinámica los modales
+import { colRef } from '../firebase/funcionesFirestore.js';
 
 // Función que se encarga del registro por correo
 export const registroCorreo = (nombre, selectorForm, containerError) => {
   const registrarCon = document.getElementById(selectorForm);
   registrarCon.addEventListener('submit', (e) => {
     e.preventDefault();
-    // const usuarioRegistro = document.getElementById(nombre).value;
+    const usuarioRegistro = document.getElementById(nombre).value;
     const correoRegistro = document.getElementById('correoRegistro').value;
     const claveRegistro = document.getElementById('claveRegistro').value;
     const ubicacionModal = document.getElementById(containerError);
@@ -17,23 +18,31 @@ export const registroCorreo = (nombre, selectorForm, containerError) => {
     ubicacionModal.style.display='block'
     registroUsuario(correoRegistro, claveRegistro)
       .then((userCredential) => {
-        ubicacionModal.style.background = 'green';
+        ubicacionModal.style.background = '#34A853';
         const user = userCredential.user;
         if (!user.emailVerified) {
           envioCorreoVerificacion().then(() => {
             ubicacionModal.innerHTML = modalRegistro.exito();
           });
         }
+        addDoc(colRef, {
+          username: usuarioRegistro,
+          correo: correoRegistro,
+          clave: claveRegistro,
+        })
+          .then(() => {
+            registrarCon.reset();
+          });
       })
       .catch((error) => {
-        ubicacionModal.style.background = 'red';
+        ubicacionModal.style.background = '#EA4335';
         if (error.message === 'Firebase: Error (auth/invalid-email).') {
           ubicacionModal.innerHTML = modalRegistro.correoInvalido();
         } else if (error.message === 'Firebase: Password should be at least 6 characters (auth/weak-password).') {
           ubicacionModal.innerHTML = modalRegistro.contraseñaDebil();
         } else if (error.message === 'Firebase: Error (auth/email-already-in-use).') {
           ubicacionModal.innerHTML = modalRegistro.correoExistente();
-        } else{
+        } else {
           ubicacionModal.textContent = error.message;
         }
         setTimeout(function hide() {
@@ -45,7 +54,7 @@ export const registroCorreo = (nombre, selectorForm, containerError) => {
 };
 
 // Creacion de formulario de registro de forma dinámica
-export const formRegistro = () => {
+export const formRegistros = () => {
   const formRegistro = `
         <div id='registro' class='cajaInterna2'>
             <form id="formRegistro">
@@ -59,7 +68,7 @@ export const formRegistro = () => {
                 </div>
 
                 <div class="seccionIngreso">
-                    <input type="text" id="claveRegistro" class="datosIngreso" placeholder="Contraseña" required>
+                    <input type="password" name="password" id="claveRegistro" class="datosIngreso" placeholder="Contraseña" required>
                     <img src="imagenes/eye-closed.png">
                 </div>
 
