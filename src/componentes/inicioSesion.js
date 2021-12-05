@@ -2,9 +2,11 @@
 import { GoogleAuthProvider } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js';
 import { inicioSesionUsuario, googleInicioSesion } from '../firebase/funcionesAuth.js';
 import { modalInicioSesion } from './errores.js';
+import { mostrarYocultarClave } from './home.js';
 
 // Función que se encarga del inicio de Sesión por correo
 export const inicioSesion = (selectorForm, containerError) => {
+  mostrarYocultarClave('botonContraseña', 'claveIngreso');
   const iniciarCon = document.getElementById(selectorForm);
   iniciarCon.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -75,7 +77,7 @@ export const formInicioSesion = () => {
                 
                 <div class="seccionIngreso">
                     <input type="password" id="claveIngreso" class="datosIngreso" placeholder="Contraseña" required>
-                    <img src="imagenes/eye-closed.png">
+                    <i id="botonContraseña" class="ph-eye-closed"></i>
                 </div>
                 
                 <button type="submit" id="botonIngresar" class="iniciarSesion">Ingresar</button>

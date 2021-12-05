@@ -19,3 +19,15 @@ export const fondoHome = (divFormulario) => {
 
   return divFondo;
 };
+
+// Mostrar y ocultar contraseña
+export const mostrarYocultarClave = (boton, idInput) => {
+  const botonContraseña = document.getElementById(boton);
+  const clave = document.querySelector(`input[id=${idInput}]`);
+  botonContraseña.addEventListener('click', () => {
+    const type = clave.getAttribute('type') === 'password' ? 'text' : 'password';
+    clave.setAttribute('type', type);
+    botonContraseña.classList.toggle('ph-eye');
+    botonContraseña.classList.toggle('ph-eye-closed');
+  });
+};
