@@ -1,11 +1,13 @@
 // eslint-disable-next-line import/no-unresolved
 import { GoogleAuthProvider } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js';
-import { inicioSesionUsuario, googleInicioSesion } from '../firebase/funcionesAuth.js';
+import { inicioSesionUsuario, googleInicioSesion, cerrarActividadUsuario } from '../firebase/funcionesAuth.js';
 import { modalInicioSesion } from './errores.js';
-
+import { mostrarYocultarClave } from './home.js';
 
 // Función que se encarga del inicio de Sesión por correo
 export const inicioSesion = (selectorForm, containerError) => {
+  mostrarYocultarClave('botonContraseña', 'claveIngreso');
+
   const iniciarCon = document.getElementById(selectorForm);
   iniciarCon.addEventListener('submit', (e) => {
 
@@ -13,16 +15,16 @@ export const inicioSesion = (selectorForm, containerError) => {
     const correoIngreso = document.getElementById('correoIngreso').value;
     const claveIngreso = document.getElementById('claveIngreso').value;
     const ubicacionModal = document.getElementById(containerError);
-    
+
     inicioSesionUsuario(correoIngreso, claveIngreso)
       .then((userCredential) => {
         const user = userCredential.user;
         console.log(userCredential);
-        console.log(user);
 
          if (user.emailVerified === true) {
           window.location.hash = '#/artmuro';
         } else {
+          cerrarActividadUsuario();
           // eslint-disable-next-line no-alert
           alert('confirma tu cuenta');
         }
@@ -87,7 +89,7 @@ export const formInicioSesion = () => {
                 
                 <div class="seccionIngreso">
                     <input type="password" id="claveIngreso" class="datosIngreso" placeholder="Contraseña" required>
-                    <img src="imagenes/eye-closed.png">
+                    <i id="botonContraseña" class="ph-eye-closed"></i>
                 </div>
                 
                 <button type="submit" id="botonIngresar" class="iniciarSesion">Ingresar</button>
