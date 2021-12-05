@@ -1,7 +1,8 @@
 // eslint-disable-next-line import/no-unresolved
 import { GoogleAuthProvider } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js';
 import { inicioSesionUsuario, googleInicioSesion } from '../firebase/funcionesAuth.js';
-import { modalInicioSesion } from './errores.js';
+import {  modalInicioSesion } from './errores.js';
+
 
 // Función que se encarga del inicio de Sesión por correo
 export const inicioSesion = (selectorForm, containerError) => {
@@ -13,16 +14,17 @@ export const inicioSesion = (selectorForm, containerError) => {
     const ubicacionModal = document.getElementById(containerError);
     inicioSesionUsuario(correoIngreso, claveIngreso)
       .then((userCredential) => {
+        console.log(userCredential);
         const user = userCredential.user;
         if (user.emailVerified === true) {
           window.location.hash = '#/artmuro';
-        } else {
+        } else {  // ESTO NO ESTA BIEN!!! 
           // eslint-disable-next-line no-alert
           alert('confirma tu cuenta');
         }
       })
       .catch((error) => {
-        ubicacionModal.style.background = '#EA4335';
+        ubicacionModal.style.background = '#EA4335'; // ESTO NO ESTA BIEN!!! 
         if (error.message === 'Firebase: Error (auth/invalid-email).' || error.message === 'Firebase: Error (auth/wrong-password).') {
           ubicacionModal.innerHTML = modalInicioSesion.datosInvalidos();
         } else if (error.message === 'Firebase: Error (auth/user-not-found).') {
@@ -39,6 +41,7 @@ export const inicioSesion = (selectorForm, containerError) => {
     googleInicioSesion(proveedor)
       // eslint-disable-next-line no-unused-vars
       .then((result) => {
+        console.log(result);
         window.location.hash = '#/artmuro';
         // This gives you a Google Access Token. You can use it to access the Google API.
         // const credential = GoogleAuthProvider.credentialFromResult(result);
@@ -66,29 +69,30 @@ export const inicioSesion = (selectorForm, containerError) => {
 // Creacion de formulario de inicio de Sesión de forma dinámica
 export const formInicioSesion = () => {
   const formIngreso = `
-        <div id="inicio" class="cajaInterna2">
-            <form id="formIngreso">
-                <div class="seccionIngreso">
-                    <input type="text" id="correoIngreso" class="datosIngreso" placeholder="Correo electrónico" required>
-                        <img src="imagenes/envelope.png">
-                </div>
-                
-                <div class="seccionIngreso">
-                    <input type="password" id="claveIngreso" class="datosIngreso" placeholder="Contraseña" required>
-                    <img src="imagenes/eye-closed.png">
-                </div>
-                
-                <button type="submit" id="botonIngresar" class="iniciarSesion">Ingresar</button>
-                            
-                <p class="texto">O bien ingresa con</p>
-                
-                <div class="logosInicio">
-                    <img src="imagenes/FacebookOriginal.png">
-                    <img id="imgGoogle" src="imagenes/GoogleOriginal.png">
-                </div>
-                
-                <p class="texto">¿No tienes una cuenta? <a id="registrate" href="#/registro"> Regístrate</a></p> 
-            </form> 
-        </div>`;
+    <div id="inicio" class="cajaInterna2">
+      <form id="formIngreso">
+
+        <div class="seccionIngreso">
+          <input type="text" id="correoIngreso" class="datosIngreso" placeholder="Correo electrónico" required>
+          <img src="imagenes/envelope.png">
+        </div>
+          
+        <div class="seccionIngreso">
+          <input type="password" id="claveIngreso" class="datosIngreso" placeholder="Contraseña" required>
+          <img src="imagenes/eye-closed.png">
+        </div>
+          
+        <button type="submit" id="botonIngresar" class="iniciarSesion">Ingresar</button>
+                      
+        <p class="texto">O bien ingresa con</p>
+          
+        <div class="logosInicio">
+          <img src="imagenes/FacebookOriginal.png">
+          <img id="imgGoogle" src="imagenes/GoogleOriginal.png">
+        </div>
+          
+        <p class="texto">¿No tienes una cuenta? <a id="registrate" href="#/registro"> Regístrate</a></p> 
+      </form> 
+    </div>`;
   return formIngreso;
 };
