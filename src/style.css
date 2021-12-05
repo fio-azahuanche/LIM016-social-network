@@ -60,6 +60,7 @@ form{
 
 .seccionIngreso{
     width: 52%;
+    height: 6vh;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -295,25 +296,37 @@ form{
     position: relative;
 }
 #ubicacionModal{
-    width: 35%;
+    width: 50%;
     border-radius: 20px;
     height: 5vh;
     position: absolute;
-    right: 8%;
     bottom: 10vh;
+    right: 0;
 }
 .modalExito, .modalError{
-    padding-top: 1vh;
     display: flex;
+    width: 80%;
+    margin: 0 10%;
     justify-content: center;
     align-items: center;
+    opacity: 1;
+    transition:opacity 1s;
+    height: 100%;
+    border-radius: 15px;
+    transition: 1s;
+
 }
 .modalExito p, .modalError p{
     color:#FFFF;
     margin-left: 3%;
     font-size: 16px;
 }
-
+.modalError{
+    background-color: red;
+}
+.modalExito{
+    background-color: green;
+}
 
 /*  .modalError{
     width: 100%;

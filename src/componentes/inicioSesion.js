@@ -3,10 +3,12 @@ import { GoogleAuthProvider } from 'https://www.gstatic.com/firebasejs/9.5.0/fir
 import { inicioSesionUsuario, googleInicioSesion } from '../firebase/funcionesAuth.js';
 import { modalInicioSesion } from './errores.js';
 
+
 // Función que se encarga del inicio de Sesión por correo
 export const inicioSesion = (selectorForm, containerError) => {
   const iniciarCon = document.getElementById(selectorForm);
   iniciarCon.addEventListener('submit', (e) => {
+
     e.preventDefault();
     const correoIngreso = document.getElementById('correoIngreso').value;
     const claveIngreso = document.getElementById('claveIngreso').value;
@@ -15,17 +17,18 @@ export const inicioSesion = (selectorForm, containerError) => {
     inicioSesionUsuario(correoIngreso, claveIngreso)
       .then((userCredential) => {
         const user = userCredential.user;
-        if (user.emailVerified === true) {
+        console.log(userCredential);
+        console.log(user);
+
+         if (user.emailVerified === true) {
           window.location.hash = '#/artmuro';
         } else {
           // eslint-disable-next-line no-alert
           alert('confirma tu cuenta');
         }
+        
       })
       .catch((error) => {
-        ubicacionModal.style.display='block';
-        ubicacionModal.style.transition='all 1s';
-        ubicacionModal.style.background='#EA4335';
         if (error.message === 'Firebase: Error (auth/invalid-email).' || error.message === 'Firebase: Error (auth/wrong-password).') {
           ubicacionModal.innerHTML = modalInicioSesion.datosInvalidos();
         } else if (error.message === 'Firebase: Error (auth/user-not-found).') {
@@ -34,8 +37,8 @@ export const inicioSesion = (selectorForm, containerError) => {
           ubicacionModal.textContent='Ocurrió un error';
         }
         setTimeout(function hide() {
-          ubicacionModal.style.display='none';
-        }, 2000);
+          ubicacionModal.innerHTML='';
+        }, 1500);
       });
   });
 
@@ -46,7 +49,9 @@ export const inicioSesion = (selectorForm, containerError) => {
       // eslint-disable-next-line no-unused-vars
       .then((result) => {
         const credential = GoogleAuthProvider.credentialFromResult(result);
-        console.log(credential);
+        window.location.hash='#/artmuro'
+        //console.log(credential);
+        console.log(result);
         // This gives you a Google Access Token. You can use it to access the Google API.
         // const credential = GoogleAuthProvider.credentialFromResult(result);
         // const token = credential.accessToken;
