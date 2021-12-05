@@ -17,7 +17,7 @@ export const registroCorreo = (nombre, selectorForm, containerError) => {
 
     registroUsuario(correoRegistro, claveRegistro)
       .then((userCredential) => {
-        ubicacionModal.style.background = '#34A853';
+        console.log(userCredential);
         const user = userCredential.user;
         if (!user.emailVerified) {
           envioCorreoVerificacion().then(() => {
@@ -34,7 +34,6 @@ export const registroCorreo = (nombre, selectorForm, containerError) => {
           });
       })
       .catch((error) => {
-        ubicacionModal.style.background = '#EA4335';
         if (error.message === 'Firebase: Error (auth/invalid-email).') {
           ubicacionModal.innerHTML = modalRegistro.correoInvalido();
         } else if (error.message === 'Firebase: Password should be at least 6 characters (auth/weak-password).') {
@@ -51,26 +50,28 @@ export const registroCorreo = (nombre, selectorForm, containerError) => {
 // Creacion de formulario de registro de forma dinámica
 export const formRegistros = () => {
   const formRegistro = `
-        <div id='registro' class='cajaInterna2'>
-            <form id="formRegistro">
-                <div class="seccionIngreso">
-                    <input type="text" id="usuarioRegistro" class="datosIngreso" placeholder="Nombre de usuario" required>
-                    <img src="imagenes/user.png">
-                </div>
-                <div class="seccionIngreso">
-                    <input type="text" id="correoRegistro" class="datosIngreso" placeholder="Correo electrónico" required>
-                    <img src="imagenes/envelope.png">
-                </div>
+    <div id='registro' class='cajaInterna2'>
+      <form id="formRegistro">
 
-                <div class="seccionIngreso">
-                    <input type="password" name="password" id="claveRegistro" class="datosIngreso" placeholder="Contraseña" required>
-                    <img src="imagenes/eye-closed.png">
-                </div>
+        <div class="seccionIngreso">
+          <input type="text" id="usuarioRegistro" class="datosIngreso" placeholder="Nombre de usuario" required>
+          <img src="imagenes/user.png">
+        </div>
 
-                <button type="submit" class="iniciarSesion">Registrate</button>
-                <p class="texto">¿Ya tienes una cuenta? <a id="registrate" href="#/inicio"> Iniciar Sesión</a></p> 
-            </form>
+        <div class="seccionIngreso">
+          <input type="text" id="correoRegistro" class="datosIngreso" placeholder="Correo electrónico" required>
+          <img src="imagenes/envelope.png">
+        </div>
 
-        </div>`;
+        <div class="seccionIngreso">
+          <input type="password" name="password" id="claveRegistro" class="datosIngreso" placeholder="Contraseña" required>
+          <img src="imagenes/eye-closed.png">
+        </div>
+
+        <button type="submit" class="iniciarSesion">Registrate</button>
+        
+        <p class="texto">¿Ya tienes una cuenta? <a id="registrate" href="#/inicio"> Iniciar Sesión</a></p> 
+      </form>
+    </div>`;
   return formRegistro;
 };

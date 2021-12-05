@@ -294,36 +294,37 @@ form{
 .cajaGrande{
     position: relative;
 }
+
 #ubicacionModal{
+    display: flex;
+    width: auto;
+    height: auto;
     position: absolute;
     right: 0;
 }
-.modalExito, .modalError{
-    display: flex;
-}
-.modalExito p, .modalError p{
-    color:#FFFF;
-    font-size: 16px;
+
+.modalError i{
+    color: #FFFF;
+    margin-right: 20px;
+    left: 0;
 }
 
-/*  .modalError{
+.modalError{
     width: 100%;
     height: 40px;
     display: flex;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     background-color: #EA4335;
     border-radius: 10px;
-    z-index: 25;
-    position: absolute;
     align-items: center;
     padding: 10px;
     margin-top: 10px;
-    opacity: 1;
-    transition: opacity 1s; 
 }
-  
-.modalError.fade {
-    opacity: 0;
+
+.modalExito i{
+    color: #FFFF;
+    margin-right: 20px;
+    left: 0;
 }
 
 .modalExito{
@@ -333,47 +334,22 @@ form{
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     background-color: #34A853;
     border-radius: 3px;    
-    z-index: 25;
-    position: absolute;
     align-items: center;
     padding: auto;
     margin: 10px 0 0 0;  
     justify-content: center; 
     padding: 0 10px;
-    opacity: 1;
-    transition: opacity 1s; 
-}
-  
-#modalExito.fade {
-    opacity: 0;
 }
 
-.modalError i {
-    color: #FFFF;
-    margin-right: 20px;
-    left: 0;
-}
 
-.modalExito i {
-    color: #FFFF;
-    margin-right: 20px;
-    left: 0;
-}
-
-.modalError p {
+.modalExito p, .modalError p {
     color:#FFFF;
     font-size: 16px;
-    margin-left: 3x;
+    margin-left: 3xp;
     justify-self: center;
 }
 
-.modalExito p {
-    color:#FFFF;
-    font-size: 16px;
-    margin-left: 3px;
-    justify-self: center;
-}
 
- */
+
 
 

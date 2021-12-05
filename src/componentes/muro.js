@@ -1,12 +1,12 @@
 export const divMuro = `
 <article class="artMuro"  id="artmuro">   
-    <header class="item1"> <!-- header -->
+    <header class="item1"> 
         <img src="imagenes/ImgUsuario.png" >
-        <p>HelpPets</p>
-        <img src="imagenes/sign-out 1.png"  >
+        <p>CarePets</p>
+        <img id="cerrar-sesion" src="imagenes/sign-out 1.png">
     </header>
     <div class="grid-container">
-        <section class="item2"> <!-- menu -->
+        <section class="item2"> 
             <section class="secUsuario">
                 <div class="contenedorPortada">
                     <img src="imagenes/ImgDelUsuario.png">
