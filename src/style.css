@@ -301,16 +301,6 @@ form{
     height: auto;
     position: absolute;
     right: 0;
-    /* background-color: #EA4335; */
-}
-
-.modalExito, .modalError{
-    display: flex;
-}
-
-.modalExito p, .modalError p{
-    color:#FFFF;
-    font-size: 16px;
 }
 
 .modalError i{
@@ -326,13 +316,17 @@ form{
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     background-color: #EA4335;
     border-radius: 10px;
-    z-index: 25;
-    position: absolute;
     align-items: center;
     padding: 10px;
     margin-top: 10px;
 }
-/* 
+
+.modalExito i{
+    color: #FFFF;
+    margin-right: 20px;
+    left: 0;
+}
+
 .modalExito{
     width: 100%;
     height: 40px;
@@ -340,8 +334,6 @@ form{
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     background-color: #34A853;
     border-radius: 3px;    
-    z-index: 25;
-    position: absolute;
     align-items: center;
     padding: auto;
     margin: 10px 0 0 0;  
@@ -349,19 +341,13 @@ form{
     padding: 0 10px;
 }
 
-.modalExito i, .modalError i {
-    color: #FFFF;
-    margin-right: 20px;
-    left: 0;
-}
 
 .modalExito p, .modalError p {
     color:#FFFF;
     font-size: 16px;
     margin-left: 3xp;
     justify-self: center;
-} */
-
+}
 
 
 

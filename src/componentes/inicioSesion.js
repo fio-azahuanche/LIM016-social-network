@@ -24,7 +24,7 @@ export const inicioSesion = (selectorForm, containerError) => {
         }
       })
       .catch((error) => {
-        ubicacionModal.style.background = '#EA4335'; // ESTO NO ESTA BIEN!!! 
+        //ubicacionModal.style.background = '#EA4335'; // ESTO NO ESTA BIEN!!! 
         if (error.message === 'Firebase: Error (auth/invalid-email).' || error.message === 'Firebase: Error (auth/wrong-password).') {
           ubicacionModal.innerHTML = modalInicioSesion.datosInvalidos();
         } else if (error.message === 'Firebase: Error (auth/user-not-found).') {
