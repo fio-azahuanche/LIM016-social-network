@@ -4,9 +4,11 @@ import { addDoc } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-firest
 import { registroUsuario, envioCorreoVerificacion } from '../firebase/funcionesAuth.js';
 import { modalRegistro } from './errores.js';
 import { colRef } from '../firebase/funcionesFirestore.js';
+import { mostrarYocultarClave } from './home.js';
 
 // Función que se encarga del registro por correo
 export const registroCorreo = (nombre, selectorForm, containerError) => {
+  mostrarYocultarClave('botonClave', 'claveRegistro');
   const registrarCon = document.getElementById(selectorForm);
   registrarCon.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -53,10 +55,10 @@ export const formRegistros = () => {
     <div id='registro' class='cajaInterna2'>
       <form id="formRegistro">
 
-        <div class="seccionIngreso">
-          <input type="text" id="usuarioRegistro" class="datosIngreso" placeholder="Nombre de usuario" required>
-          <img src="imagenes/user.png">
-        </div>
+                <div class="seccionIngreso">
+                    <input type="password" id="claveRegistro" class="datosIngreso" placeholder="Contraseña" required>
+                    <i id="botonClave" class="ph-eye-closed"></i>
+                </div>
 
         <div class="seccionIngreso">
           <input type="text" id="correoRegistro" class="datosIngreso" placeholder="Correo electrónico" required>

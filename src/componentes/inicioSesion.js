@@ -1,11 +1,12 @@
 // eslint-disable-next-line import/no-unresolved
 import { GoogleAuthProvider } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js';
 import { inicioSesionUsuario, googleInicioSesion } from '../firebase/funcionesAuth.js';
-import {  modalInicioSesion } from './errores.js';
-
+import { modalInicioSesion } from './errores.js';
+import { mostrarYocultarClave } from './home.js';
 
 // Función que se encarga del inicio de Sesión por correo
 export const inicioSesion = (selectorForm, containerError) => {
+  mostrarYocultarClave('botonContraseña', 'claveIngreso');
   const iniciarCon = document.getElementById(selectorForm);
   iniciarCon.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -69,30 +70,29 @@ export const inicioSesion = (selectorForm, containerError) => {
 // Creacion de formulario de inicio de Sesión de forma dinámica
 export const formInicioSesion = () => {
   const formIngreso = `
-    <div id="inicio" class="cajaInterna2">
-      <form id="formIngreso">
-
-        <div class="seccionIngreso">
-          <input type="text" id="correoIngreso" class="datosIngreso" placeholder="Correo electrónico" required>
-          <img src="imagenes/envelope.png">
-        </div>
-          
-        <div class="seccionIngreso">
-          <input type="password" id="claveIngreso" class="datosIngreso" placeholder="Contraseña" required>
-          <img src="imagenes/eye-closed.png">
-        </div>
-          
-        <button type="submit" id="botonIngresar" class="iniciarSesion">Ingresar</button>
-                      
-        <p class="texto">O bien ingresa con</p>
-          
-        <div class="logosInicio">
-          <img src="imagenes/FacebookOriginal.png">
-          <img id="imgGoogle" src="imagenes/GoogleOriginal.png">
-        </div>
-          
-        <p class="texto">¿No tienes una cuenta? <a id="registrate" href="#/registro"> Regístrate</a></p> 
-      </form> 
-    </div>`;
+        <div id="inicio" class="cajaInterna2">
+            <form id="formIngreso">
+                <div class="seccionIngreso">
+                    <input type="text" id="correoIngreso" class="datosIngreso" placeholder="Correo electrónico" required>
+                        <img src="imagenes/envelope.png">
+                </div>
+                
+                <div class="seccionIngreso">
+                    <input type="password" id="claveIngreso" class="datosIngreso" placeholder="Contraseña" required>
+                    <i id="botonContraseña" class="ph-eye-closed"></i>
+                </div>
+                
+                <button type="submit" id="botonIngresar" class="iniciarSesion">Ingresar</button>
+                            
+                <p class="texto">O bien ingresa con</p>
+                
+                <div class="logosInicio">
+                    <img src="imagenes/FacebookOriginal.png">
+                    <img id="imgGoogle" src="imagenes/GoogleOriginal.png">
+                </div>
+                
+                <p class="texto">¿No tienes una cuenta? <a id="registrate" href="#/registro"> Regístrate</a></p> 
+            </form> 
+        </div>`;
   return formIngreso;
 };
