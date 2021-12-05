@@ -19,8 +19,7 @@ export const inicioSesion = (selectorForm, containerError) => {
         if (user.emailVerified === true) {
           window.location.hash = '#/artmuro';
         } else {
-          // eslint-disable-next-line no-alert
-          alert('confirma tu cuenta');
+          ubicacionModal.innerHTML = modalInicioSesion.confirmar();
         }
       })
       .catch((error) => {

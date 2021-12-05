@@ -40,6 +40,15 @@ export const modalRegistro = {
 
 // Objeto que crea de forma dinámica los modales parav Inicio de Sesión
 export const modalInicioSesion = {
+  confirmar: () => {
+    const errorMensaje = `
+      <div class= "modalError" id="modalConfirmar">
+        <i class="fas fa-exclamation-triangle"></i>
+        <p>Revisa tu bandeja de entrada y confirma tu cuenta porfavor.</p>
+      </div>
+    `;
+    return errorMensaje;
+  },
   datosInvalidos: () => {
     const errorMensaje = `
       <div class= "modalError" id="modalDatosInvalidos">

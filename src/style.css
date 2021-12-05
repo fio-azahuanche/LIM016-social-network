@@ -306,14 +306,23 @@ form{
     position: absolute;
     right: 0;
 }
-.modalExito, .modalError{
+.modalExito{
     display: flex;
+    background: #34A853;
+}
+.modalError{
+    display: flex;
+    background: #EA4335;
 }
 .modalExito p, .modalError p{
     color:#FFFF;
     font-size: 16px;
 }
-
+.modalError i, .modalExito i  {
+    color: #FFFF;
+    margin-right: 20px;
+    left: 0;
+}
 /*  .modalError{
     width: 100%;
     height: 40px;

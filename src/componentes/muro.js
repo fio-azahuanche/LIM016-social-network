@@ -2,7 +2,7 @@ export const divMuro = `
 <article class="artMuro"  id="artmuro">   
     <header class="item1"> <!-- header -->
         <img src="imagenes/ImgUsuario.png" >
-        <p>HelpPets</p>
+        <img src="imagenes/CarePets.png" >
         <img src="imagenes/sign-out 1.png"  >
     </header>
     <div class="grid-container">
