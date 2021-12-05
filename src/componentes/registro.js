@@ -19,7 +19,6 @@ export const registroCorreo = (nombre, selectorForm, containerError) => {
 
     registroUsuario(correoRegistro, claveRegistro)
       .then((userCredential) => {
-        console.log(userCredential);
         const user = userCredential.user;
         if (!user.emailVerified) {
           envioCorreoVerificacion().then(() => {

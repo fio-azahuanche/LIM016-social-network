@@ -19,13 +19,11 @@ export const inicioSesion = (selectorForm, containerError) => {
         const user = userCredential.user;
         if (user.emailVerified === true) {
           window.location.hash = '#/artmuro';
-        } else {  // ESTO NO ESTA BIEN!!! 
-          // eslint-disable-next-line no-alert
-          alert('confirma tu cuenta');
+        } else {
+          ubicacionModal.innerHTML = modalInicioSesion.confirmar();
         }
       })
       .catch((error) => {
-        //ubicacionModal.style.background = '#EA4335'; // ESTO NO ESTA BIEN!!! 
         if (error.message === 'Firebase: Error (auth/invalid-email).' || error.message === 'Firebase: Error (auth/wrong-password).') {
           ubicacionModal.innerHTML = modalInicioSesion.datosInvalidos();
         } else if (error.message === 'Firebase: Error (auth/user-not-found).') {

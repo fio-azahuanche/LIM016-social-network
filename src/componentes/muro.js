@@ -2,8 +2,8 @@ export const divMuro = `
 <article class="artMuro"  id="artmuro">   
     <header class="item1"> 
         <img src="imagenes/ImgUsuario.png" >
-        <p>CarePets</p>
-        <img id="cerrar-sesion" src="imagenes/sign-out 1.png">
+        <img src="imagenes/CarePets.png" >
+        <img src="imagenes/sign-out 1.png"  >
     </header>
     <div class="grid-container">
         <section class="item2"> 
