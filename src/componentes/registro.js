@@ -23,6 +23,10 @@ export const registroCorreo = (nombre, selectorForm, containerError) => {
         if (!user.emailVerified) {
           envioCorreoVerificacion().then(() => {
             ubicacionModal.innerHTML = modalRegistro.exito();
+            setTimeout(() => {
+              const modalExito = document.getElementById("modalExito");   
+              modalExito.style.display = "none";            
+            }, 4000);   
           });
         }
         addDoc(colRef, {
@@ -37,10 +41,22 @@ export const registroCorreo = (nombre, selectorForm, containerError) => {
       .catch((error) => {
         if (error.message === 'Firebase: Error (auth/invalid-email).') {
           ubicacionModal.innerHTML = modalRegistro.correoInvalido();
+          setTimeout(() => {
+            const modalCorreoInvalido = document.getElementById("modalCorreoInvalido");   
+            modalCorreoInvalido.style.display = "none";            
+          }, 4000);   
         } else if (error.message === 'Firebase: Password should be at least 6 characters (auth/weak-password).') {
           ubicacionModal.innerHTML = modalRegistro.contraseñaDebil();
+          setTimeout(() => {
+            const modalContraseñaDebil = document.getElementById("modalContraseñaDebil");   
+            modalContraseñaDebil.style.display = "none";            
+          }, 4000);  
         } else if (error.message === 'Firebase: Error (auth/email-already-in-use).') {
           ubicacionModal.innerHTML = modalRegistro.correoExistente();
+          setTimeout(() => {
+            const modalCorreoExistente = document.getElementById("modalCorreoExistente");   
+            modalCorreoExistente.style.display = "none";            
+          }, 4000);  
         } else {
           ubicacionModal.textContent = error.message;
         }

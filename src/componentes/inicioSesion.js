@@ -21,13 +21,25 @@ export const inicioSesion = (selectorForm, containerError) => {
           window.location.hash = '#/artmuro';
         } else {
           ubicacionModal.innerHTML = modalInicioSesion.confirmar();
+          setTimeout(() => {
+            const modalConfirmar = document.getElementById("modalConfirmar");   
+            modalConfirmar.style.display = "none";            
+          }, 4000);          
         }
       })
       .catch((error) => {
         if (error.message === 'Firebase: Error (auth/invalid-email).' || error.message === 'Firebase: Error (auth/wrong-password).') {
           ubicacionModal.innerHTML = modalInicioSesion.datosInvalidos();
+          setTimeout(() => {
+            const modalDatosInvalidos = document.getElementById("modalDatosInvalidos");   
+            modalDatosInvalidos.style.display = "none";            
+          }, 4000);   
         } else if (error.message === 'Firebase: Error (auth/user-not-found).') {
           ubicacionModal.innerHTML = modalInicioSesion.usuarioInvalido();
+          setTimeout(() => {
+            const modalUsuarioInvalido = document.getElementById("modalUsuarioInvalido");   
+            modalUsuarioInvalido.style.display = "none";            
+          }, 4000);   
         } else {
           ubicacionModal.textContent = error.message;
         }
