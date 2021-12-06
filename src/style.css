@@ -23,6 +23,7 @@ main{
 
 .cajaGrande{
     display: flex;
+    position: relative;
     height: 70vh;
     flex-wrap: wrap;
     margin: 3vh 1.5%;
@@ -73,6 +74,15 @@ form{
 
 }
 
+.ph-eye-closed{
+    cursor: pointer;
+}
+
+.ph-eye{
+    cursor: pointer;
+}
+
+
 .datosIngreso{
     margin: 1% 5%;
     width: 70%;
@@ -85,7 +95,6 @@ form{
 .seccionIngreso img{
     width: 12%;
     margin: 1% 4%;
-    height: 98%;
 }
 
 .seccionIngreso i{
@@ -113,6 +122,7 @@ form{
     text-decoration: none;
     
 }
+
 .logosInicio{
     width: 20%;
     display: flex;
@@ -142,6 +152,7 @@ form{
     width: 80%;
 }
 
+/*---------------responsive de la primera vista-----------------*/
 @media (max-width: 1024px){
     .seccionIngreso i{
         font-size: 30px;
@@ -159,7 +170,7 @@ form{
     .slogan{
         font-size: 25px;
     }
-     #huellaLogo{
+    #huellaLogo{
         width: 60%;
     } 
     .seccionIngreso{
@@ -168,7 +179,7 @@ form{
     .seccionIngreso i{
         font-size: 36px;
     }
-     .iniciarSesion{
+    .iniciarSesion{
         width: 25%;
     }
 }
@@ -210,186 +221,58 @@ form{
     }
 }
 
-/*----------------------------características de la sección del muro-----------------------------*/
-/* .artMuro{
-     height: 100vh; 
-} */
-
-.artMuro header{
-    display: flex;
-    justify-content: space-between;
-    height: 12vh;
-    background-color: #F0AA70;
-    align-items: center;
-}
-.grid-container{
-    display: grid;
-    background-color: #F2EEE3;
-    grid-template-columns: 3fr 4fr;
-    border:transparent;  
-}
-.secUsuario, .secCategorias{
-    margin: 3vh 7.5%;
-}
-.contenedorPortada{
-    height: 20vh;
-}
-.contenedorPortada img{
-    width: 100%;
-    height: 100%;
-}
-.contenedorPerfil{
-    height: 20vh;
-    background-color: #F2E0AA;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.ImgCentralUsuario{
-    width: 30%;
-}
-.datosUsuario{
-    width: 70%;
-}
-.secCategorias{
-    background-color: #E5DCC3;
-}
-.categoriaUnica{
-    display: flex;
-    padding: 1% 5%;
-    justify-content: space-between;
-    align-items: center;
-}
-.tableroCompartir, .tableroPost{
-    margin: 3vh 5.5% 3vh 0;
-}
-.tableroCompartir{
-    padding: 2.5vh 3%;
-    background-color: #E5DCC3;
-    height: 28vh;
-}
-.tableroCompartir input{
-    width: 100%;
-    height: 15vh;
-}
-.tableroCompartir .botones{
-    padding: 2vh 0;
-    display: flex;
-    justify-content: space-between;
-
-}
-.botonCompartir{
-    width: 20%;
-    height: 6vh;
-    background-color: #F0AA70;
-}
-.tableroPost{
-    height: 30vh;
-    background-color: white;
-}
-.infoUsuarioPost, .usuarioPost{
-    justify-content: space-between;
-    display: flex;
-}
-.usuarioPost{
-    height: 8vh;
-}
-.botonesReaccion{
-    background-color: #E5DCC3;
-    display: flex;
-}
-
- /*---------------------modal error de la sección de ingreso------------*/
- .cajaGrande{
-    position: relative;
-}
+/*---------------------Características de los Modales-------------*/
 #ubicacionModal{
-    width: 50%;
-    border-radius: 20px;
-    height: 5vh;
     position: absolute;
-    bottom: 10vh;
     right: 0;
+    padding: 10px;
+    justify-content: center; 
 }
-.modalExito, .modalError{
-    display: flex;
-    width: 80%;
-    margin: 0 10%;
-    justify-content: center;
-    align-items: center;
-    opacity: 1;
-    transition:opacity 1s;
-    height: 100%;
-    border-radius: 15px;
-    transition: 1s;
 
-}
-.modalExito p, .modalError p{
-    color:#FFFF;
-    margin-left: 3%;
-    font-size: 16px;
-}
 .modalError{
-    background-color: red;
-}
-.modalExito{
-    background-color: green;
-}
-/*  .modalError{
-    width: 100%;
-    height: 40px;
+    width: auto;
+    height: auto;
     display: flex;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.35);
     background-color: #EA4335;
     border-radius: 10px;
-    z-index: 25;
-    position: absolute;
     align-items: center;
-    padding: 10px;
-    margin-top: 10px;
-    opacity: 1;
-    transition: opacity 1s; 
-}
-  
-.modalError.fade {
-    opacity: 0;
-}
-.modalExito{
-    width: 100%;
-    height: 40px;
-    display: flex;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    background-color: #34A853;
-    border-radius: 3px;    
-    z-index: 25;
-    position: absolute;
-    align-items: center;
-    padding: auto;
-    margin: 10px 0 0 0;  
+    padding: 10px 10px 10px 0;
     justify-content: center; 
-    padding: 0 10px;
-    opacity: 1;
-    transition: opacity 1s; 
+    animation: slideUpLarge 4s;
 }
-  
-#modalExito.fade {
-    opacity: 0;
+
+.modalExito{
+    width: auto;
+    height: auto;
+    display: flex;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.35);
+    background-color: #34A853;
+    border-radius: 10px;    
+    align-items: center;
+    padding: 10px 10px 10px 0;
+    justify-content: center; 
+    animation: slideUpLarge 4s;
 }
+
 .modalError i {
     color: #FFFF;
-    margin-right: 20px;
-    left: 0;
+    margin: 0 15px 0 10px;
+    
 }
+
 .modalExito i {
     color: #FFFF;
     margin-right: 20px;
-    left: 0;
+    margin: 0 15px 0 10px;
 }
+
 .modalError p {
     color:#FFFF;
     font-size: 16px;
     margin-left: 3x;
     justify-self: center;
+   
 }
 .modalExito p {
     color:#FFFF;
@@ -397,4 +280,140 @@ form{
     margin-left: 3px;
     justify-self: center;
 }
- */
+
+@keyframes slideUpLarge {
+    0% {
+      transform: translateX(0%);
+    }
+    50% {
+      transform: translateX(-10%);
+    }
+    100% {
+        transform: translateX(0%);
+    }
+}
+  
+
+/*----------------------------características de la sección del muro-----------------------------*/
+.artMuro{
+    height: 100vh; 
+}
+
+header{
+    display: flex;
+    width: 100%; 
+    justify-content: space-between;
+    height: 10vh;
+    background-color: #F0AA70;
+    align-items: center;
+    padding: 0 20px;
+}
+
+#cerrar-sesion{
+    cursor: pointer;
+}
+
+footer{
+    display: flex;
+    width: 100%; 
+    justify-content: space-between;
+    height: 10vh;
+    background-color: #F0AA70;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.grid-container{
+    display: grid;
+    background-color: #F2EEE3;
+    grid-template-columns: 3fr 4fr;
+    border:transparent;  
+}
+
+.secUsuario, .secCategorias{
+    margin: 3vh 7.5%;
+}
+
+.contenedorPortada{
+    height: 20vh;
+}
+
+.contenedorPortada img{
+    width: 100%;
+    height: 100%;
+}
+
+.contenedorPerfil{
+    height: 20vh;
+    background-color: #F2E0AA;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ImgCentralUsuario{
+    width: 30%;
+}
+
+.datosUsuario{
+    width: 70%;
+}
+
+.secCategorias{
+    background-color: #E5DCC3;
+}
+
+.categoriaUnica{
+    display: flex;
+    padding: 1% 5%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tableroCompartir, .tableroPost{
+    margin: 3vh 5.5% 3vh 0;
+}
+
+.tableroCompartir{
+    padding: 2.5vh 3%;
+    background-color: #E5DCC3;
+    height: 28vh;
+}
+
+.tableroCompartir input{
+    width: 100%;
+    height: 15vh;
+}
+
+.tableroCompartir .botones{
+    padding: 2vh 0;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.botonCompartir{
+    width: 20%;
+    height: 6vh;
+    background-color: #F0AA70;
+}
+
+.tableroPost{
+    height: 30vh;
+    background-color: white;
+}
+
+.infoUsuarioPost, .usuarioPost{
+    justify-content: space-between;
+    display: flex;
+}
+
+.usuarioPost{
+    height: 8vh;
+}
+
+.botonesReaccion{
+    background-color: #E5DCC3;
+    display: flex;
+}
+

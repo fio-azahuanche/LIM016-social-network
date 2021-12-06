@@ -10,6 +10,7 @@ import {
 } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js';
 import { app } from './config.js';
 export const auth = getAuth(app);
+
 // Crea un usuario con correo y contraseña
 export const registroUsuario = (correo, contraseña) => {
   const auth = getAuth(app);
@@ -25,6 +26,12 @@ export const inicioSesionUsuario = (correo, contraseña) => {
 
 // Ingreso del usuario con cuenta de Google
 export const googleInicioSesion = (proveedor) => {
+  const auth = getAuth(app);
+  return signInWithPopup(auth, proveedor);
+};
+
+// Ingreso del usuario con cuenta de Facebook
+export const facebookInicioSesion = (proveedor) => {
   const auth = getAuth(app);
   return signInWithPopup(auth, proveedor);
 };
