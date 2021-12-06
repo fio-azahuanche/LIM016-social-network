@@ -1,7 +1,7 @@
 export const seccionMuro2 = () => {
-    const segundaSeccion = document.createElement('section');
-    segundaSeccion.classList.add('item3');
-    segundaSeccion.innerHTML = `
+  const segundaSeccion = document.createElement('section');
+  segundaSeccion.classList.add('item3');
+  segundaSeccion.innerHTML = `
         <div class="tableroCompartir">
             <input type="text" placeholder="¿Qué quieres reportar?">
             <div class="botones">
@@ -26,5 +26,5 @@ export const seccionMuro2 = () => {
             </div>
         </div>
    `;
-   return segundaSeccion;
+  return segundaSeccion;
 };

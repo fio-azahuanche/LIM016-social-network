@@ -2,7 +2,7 @@
 import { registroUsuario, envioCorreoVerificacion, cierreActividadUsuario } from '../firebase/funcionesAuth.js';
 import { modalRegistro } from './errores.js';
 import { mostrarYocultarClave } from './home.js';
-import { agregarUsuario } from '../firebase/funcionesFirestore.js'
+import { agregarUsuario } from '../firebase/funcionesFirestore.js';
 
 // Creacion de formulario de registro de forma dinámica
 export const formRegistros = () => {
@@ -33,10 +33,9 @@ export const formRegistros = () => {
   return formRegistro;
 };
 
-
 // Función que se encarga del registro por correo
 export const registroCorreo = (nombre, selectorForm, containerError) => {
-  mostrarYocultarClave('botonClave', 'claveRegistro');  // porque esta aca?
+  mostrarYocultarClave('botonClave', 'claveRegistro');
 
   const registrarCon = document.getElementById(selectorForm);
   registrarCon.addEventListener('submit', (e) => {
@@ -49,48 +48,48 @@ export const registroCorreo = (nombre, selectorForm, containerError) => {
     registroUsuario(correoRegistro, claveRegistro)
       .then((userCredential) => {
         const user = userCredential.user;
-        if(!user.emailVerified){
+        if (!user.emailVerified) {
           envioCorreoVerificacion().then(() => {
             ubicacionModal.innerHTML = modalRegistro.exito();
             setTimeout(() => {
-              const modalExito = document.getElementById("modalExito");   
-              modalExito.style.display = "none";            
-            }, 4000);   
+              const modalExito = document.getElementById('modalExito');
+              modalExito.style.display = 'none';
+            }, 4000);
           });
         }
-        agregarUsuario(usuarioRegistro, correoRegistro, claveRegistro );
+        agregarUsuario(usuarioRegistro, correoRegistro, claveRegistro);
         cierreActividadUsuario();
         /* .then(() => {
           registrarCon.reset();
         }); */
-        setTimeout(function hide() {
-          ubicacionModal.innerHTML='';
+        setTimeout(() => {
+          ubicacionModal.innerHTML = '';
         }, 1500);
       })
       .catch((error) => {
         if (error.message === 'Firebase: Error (auth/invalid-email).') {
           ubicacionModal.innerHTML = modalRegistro.correoInvalido();
           setTimeout(() => {
-            const modalCorreoInvalido = document.getElementById("modalCorreoInvalido");   
-            modalCorreoInvalido.style.display = "none";            
-          }, 4000);   
+            const modalCorreoInvalido = document.getElementById('modalCorreoInvalido');
+            modalCorreoInvalido.style.display = 'none';
+          }, 4000);
         } else if (error.message === 'Firebase: Password should be at least 6 characters (auth/weak-password).') {
           ubicacionModal.innerHTML = modalRegistro.contraseñaDebil();
           setTimeout(() => {
-            const modalContraseñaDebil = document.getElementById("modalContraseñaDebil");   
-            modalContraseñaDebil.style.display = "none";            
-          }, 4000);  
+            const modalContraseñaDebil = document.getElementById('modalContraseñaDebil');
+            modalContraseñaDebil.style.display = 'none';
+          }, 4000);
         } else if (error.message === 'Firebase: Error (auth/email-already-in-use).') {
           ubicacionModal.innerHTML = modalRegistro.correoExistente();
           setTimeout(() => {
-            const modalCorreoExistente = document.getElementById("modalCorreoExistente");   
-            modalCorreoExistente.style.display = "none";            
-          }, 4000);  
+            const modalCorreoExistente = document.getElementById('modalCorreoExistente');
+            modalCorreoExistente.style.display = 'none';
+          }, 4000);
         } else {
-          ubicacionModal.textContent =error.message;
+          ubicacionModal.textContent = error.message;
         }
-        setTimeout(function hide() {
-          ubicacionModal.innerHTML='';
+        setTimeout(() => {
+          ubicacionModal.innerHTML = '';
         }, 1500);
       });
   });
