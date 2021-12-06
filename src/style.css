@@ -308,6 +308,10 @@ header{
     padding: 0 20px;
 }
 
+#cerrar-sesion{
+    cursor: pointer;
+}
+
 footer{
     display: flex;
     width: 100%; 
