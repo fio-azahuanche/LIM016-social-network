@@ -10,7 +10,7 @@ export const vistasPantalla = () => {
   main.innerHTML = '';
   switch (window.location.hash.toLowerCase()) {
     case '': case '#/': case '#/inicio':
-      console.log(auth);
+      //console.log(auth);
       main.appendChild(componentes.fondoHome(formInicioSesion()));
       inicioSesion('formIngreso', 'ubicacionModal');
       break;

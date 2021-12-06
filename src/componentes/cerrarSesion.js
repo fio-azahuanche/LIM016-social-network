@@ -1,5 +1,4 @@
 // eslint-disable-next-line import/no-unresolved
-import { GoogleAuthProvider } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js';
 import { cierreSesionUsuario } from '../firebase/funcionesAuth.js';
 
 export const cerrarSesion = () => {

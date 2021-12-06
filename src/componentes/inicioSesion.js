@@ -1,12 +1,44 @@
 // eslint-disable-next-line import/no-unresolved
-import { GoogleAuthProvider } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js';
-import { inicioSesionUsuario, googleInicioSesion } from '../firebase/funcionesAuth.js';
+import { GoogleAuthProvider, FacebookAuthProvider } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js';
+import { inicioSesionUsuario, googleInicioSesion, facebookInicioSesion } from '../firebase/funcionesAuth.js';
 import { modalInicioSesion } from './errores.js';
 import { mostrarYocultarClave } from './home.js';
 
+// Creacion de formulario de inicio de Sesión de forma dinámica
+export const formInicioSesion = () => {
+  const formIngreso = `
+        <div id="inicio" class="cajaInterna2">
+            <form id="formIngreso">
+                <div class="seccionIngreso">
+                    <input type="text" id="correoIngreso" class="datosIngreso" placeholder="Correo electrónico" required>
+                        <img src="imagenes/envelope.png">
+                </div>
+                
+                <div class="seccionIngreso">
+                    <input type="password" id="claveIngreso" class="datosIngreso" placeholder="Contraseña" required>
+                    <i id="botonContraseña" class="ph-eye-closed"></i>
+                </div>
+                
+                <button type="submit" id="botonIngresar" class="iniciarSesion">Ingresar</button>
+                            
+                <p class="texto">O bien ingresa con</p>
+                
+                <div class="logosInicio">
+                    <img id="imgFacebook" src="imagenes/FacebookOriginal.png">
+                    <img id="imgGoogle" src="imagenes/GoogleOriginal.png">
+                </div>
+                
+                <p class="texto">¿No tienes una cuenta? <a id="registrate" href="#/registro"> Regístrate</a></p> 
+            </form> 
+        </div>`;
+  return formIngreso;
+};
+
+
 // Función que se encarga del inicio de Sesión por correo
 export const inicioSesion = (selectorForm, containerError) => {
-  mostrarYocultarClave('botonContraseña', 'claveIngreso');
+  mostrarYocultarClave('botonContraseña', 'claveIngreso');  // por que esta aca? 
+
   const iniciarCon = document.getElementById(selectorForm);
   iniciarCon.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -15,8 +47,8 @@ export const inicioSesion = (selectorForm, containerError) => {
     const ubicacionModal = document.getElementById(containerError);
     inicioSesionUsuario(correoIngreso, claveIngreso)
       .then((userCredential) => {
-        console.log(userCredential);
         const user = userCredential.user;
+        console.log(user);
         if (user.emailVerified === true) {
           window.location.hash = '#/artmuro';
         } else {
@@ -52,16 +84,15 @@ export const inicioSesion = (selectorForm, containerError) => {
     googleInicioSesion(proveedor)
       // eslint-disable-next-line no-unused-vars
       .then((result) => {
-        console.log(result);
+        //console.log(result);
         window.location.hash = '#/artmuro';
         // This gives you a Google Access Token. You can use it to access the Google API.
         // const credential = GoogleAuthProvider.credentialFromResult(result);
-        // const token = credential.accessToken;
-        // The signed-in user info.
-        // const user = result.user;
-        // ...
-      // eslint-disable-next-line no-unused-vars
-      }).catch((error) => {
+        // const token = credential.accessToken;        
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => {
         // Handle Errors here.
         const errorCode = error.code;
         console.log(errorCode);
@@ -75,34 +106,30 @@ export const inicioSesion = (selectorForm, containerError) => {
         console.log(credential);
       });
   });
+
+  const botonFacebook = document.getElementById('imgFacebook');
+  botonFacebook.addEventListener('click', () => {
+    const proveedor = new FacebookAuthProvider();
+    facebookInicioSesion(proveedor)
+      // eslint-disable-next-line no-unused-vars
+      .then((result) => {
+        console.log(result);
+        window.location.hash = '#/artmuro';
+        // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+        //const credential = FacebookAuthProvider.credentialFromResult(result);
+        //const token = credential.accessToken;
+        const user = result.user;
+        console.log(user);        
+      })
+      .catch((error) => {
+        // Handle Errors here.
+        //const errorCode = error.code;
+        //const errorMessage = error.message;
+        // The email of the user's account used.
+        const email = error.email;
+        // The AuthCredential type that was used.
+        const credential = FacebookAuthProvider.credentialFromError(error);
+      });
+  });
 };
 
-// Creacion de formulario de inicio de Sesión de forma dinámica
-export const formInicioSesion = () => {
-  const formIngreso = `
-        <div id="inicio" class="cajaInterna2">
-            <form id="formIngreso">
-                <div class="seccionIngreso">
-                    <input type="text" id="correoIngreso" class="datosIngreso" placeholder="Correo electrónico" required>
-                        <img src="imagenes/envelope.png">
-                </div>
-                
-                <div class="seccionIngreso">
-                    <input type="password" id="claveIngreso" class="datosIngreso" placeholder="Contraseña" required>
-                    <i id="botonContraseña" class="ph-eye-closed"></i>
-                </div>
-                
-                <button type="submit" id="botonIngresar" class="iniciarSesion">Ingresar</button>
-                            
-                <p class="texto">O bien ingresa con</p>
-                
-                <div class="logosInicio">
-                    <img src="imagenes/FacebookOriginal.png">
-                    <img id="imgGoogle" src="imagenes/GoogleOriginal.png">
-                </div>
-                
-                <p class="texto">¿No tienes una cuenta? <a id="registrate" href="#/registro"> Regístrate</a></p> 
-            </form> 
-        </div>`;
-  return formIngreso;
-};
