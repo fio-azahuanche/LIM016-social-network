@@ -1,12 +1,14 @@
 // eslint-disable-next-line import/no-unresolved
 import { GoogleAuthProvider } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js';
-import { inicioSesionUsuario, googleInicioSesion, cerrarActividadUsuario } from '../firebase/funcionesAuth.js';
+import { inicioSesionUsuario, googleInicioSesion, cierreActividadUsuario } from '../firebase/funcionesAuth.js';
 import { modalInicioSesion } from './errores.js';
 import { mostrarYocultarClave } from './home.js';
 
 // Función que se encarga del inicio de Sesión por correo
 export const inicioSesion = (selectorForm, containerError) => {
+  
   mostrarYocultarClave('botonContraseña', 'claveIngreso');
+  
   const iniciarCon = document.getElementById(selectorForm);
   iniciarCon.addEventListener('submit', (e) => {
 
@@ -24,8 +26,12 @@ export const inicioSesion = (selectorForm, containerError) => {
          if (user.emailVerified === true) {
           window.location.hash = '#/artmuro';
         } else {
+          cierreActividadUsuario();
           ubicacionModal.innerHTML = modalInicioSesion.confirmar();
         }
+        setTimeout(() => {
+          ubicacionModal.innerHTML='';
+        }, 1500);
         
       })
       .catch((error) => {
@@ -36,7 +42,7 @@ export const inicioSesion = (selectorForm, containerError) => {
         } else {
           ubicacionModal.textContent='Ocurrió un error';
         }
-        setTimeout(function hide() {
+        setTimeout(() => {
           ubicacionModal.innerHTML='';
         }, 1500);
       });

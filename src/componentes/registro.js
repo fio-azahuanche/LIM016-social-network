@@ -1,10 +1,8 @@
 // Render del formulario de registro que se imprimen en la vista de Home
-// eslint-disable-next-line import/no-unresolved
-import { addDoc } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js';
-import { registroUsuario, envioCorreoVerificacion, cerrarActividadUsuario } from '../firebase/funcionesAuth.js';
+import { registroUsuario, envioCorreoVerificacion, cierreActividadUsuario } from '../firebase/funcionesAuth.js';
 import { modalRegistro } from './errores.js';
-import { colRef } from '../firebase/funcionesFirestore.js';
 import { mostrarYocultarClave } from './home.js';
+import { agregarUsuario } from '../firebase/funcionesFirestore.js'
 
 // Función que se encarga del registro por correo
 export const registroCorreo = (nombre, selectorForm, containerError) => {
@@ -25,16 +23,11 @@ export const registroCorreo = (nombre, selectorForm, containerError) => {
             ubicacionModal.innerHTML = modalRegistro.exito();
           });
         }
-        
-        addDoc(colRef, {
-          username: usuarioRegistro,
-          correo: correoRegistro,
-          clave: claveRegistro,
-        })
+        agregarUsuario(usuarioRegistro, correoRegistro, claveRegistro );
+        cierreActividadUsuario();
         /* .then(() => {
           registrarCon.reset();
         }); */
-        cerrarActividadUsuario();
         setTimeout(function hide() {
           ubicacionModal.innerHTML='';
         }, 1500);
@@ -47,7 +40,7 @@ export const registroCorreo = (nombre, selectorForm, containerError) => {
         } else if (error.message === 'Firebase: Error (auth/email-already-in-use).') {
           ubicacionModal.innerHTML = modalRegistro.correoExistente();
         } else {
-          ubicacionModal.textContent = 'ocurrio un error';
+          ubicacionModal.textContent =error.message;
         }
         setTimeout(function hide() {
           ubicacionModal.innerHTML='';
