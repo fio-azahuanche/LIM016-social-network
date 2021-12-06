@@ -1,5 +1,5 @@
 import { componentes } from '../lib/index.js';
-import { formRegistro, registroCorreo } from '../componentes/registro.js';
+import { formRegistros, registroCorreo } from '../componentes/registro.js';
 import { formInicioSesion, inicioSesion } from '../componentes/inicioSesion.js';
 import { muro } from '../componentes/muro.js';
 import { auth } from '../firebase/funcionesAuth.js';
@@ -17,7 +17,7 @@ export const vistasPantalla = () => {
       break;
     
     case '#/registro':
-      main.appendChild(componentes.fondoHome(formRegistro()));
+      main.appendChild(componentes.fondoHome(formRegistros()));
       registroCorreo('usuarioRegistro', 'formRegistro', 'ubicacionModal');
       break;
 
