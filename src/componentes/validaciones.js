@@ -1,9 +1,9 @@
 import { estadoAuthUsuario } from '../firebase/funcionesAuth.js';
 
 export const userState = () => {
+
     estadoAuthUsuario((user) => {
       if (user === null || user === undefined ) window.location.hash = '#/inicio';
-      console.log(user);
     });
   };
 // Verificacion el estado del usuario en Firebase (Si esta activo o no)

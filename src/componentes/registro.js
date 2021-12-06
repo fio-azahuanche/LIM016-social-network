@@ -5,6 +5,7 @@ import { registroUsuario, envioCorreoVerificacion, cerrarActividadUsuario } from
 import { modalRegistro } from './errores.js';
 import { colRef } from '../firebase/funcionesFirestore.js';
 import { mostrarYocultarClave } from './home.js';
+import { userState } from './validaciones.js';
 
 // Función que se encarga del registro por correo
 export const registroCorreo = (nombre, selectorForm, containerError) => {
@@ -21,9 +22,12 @@ export const registroCorreo = (nombre, selectorForm, containerError) => {
     registroUsuario(correoRegistro, claveRegistro)
       .then((userCredential) => {
         const user = userCredential.user;
-        envioCorreoVerificacion().then(() => {
-          ubicacionModal.innerHTML = modalRegistro.exito();
-        });
+        if(!user.emailVerified){
+          envioCorreoVerificacion().then(() => {
+            ubicacionModal.innerHTML = modalRegistro.exito();
+          });
+        }
+        
         addDoc(colRef, {
           username: usuarioRegistro,
           correo: correoRegistro,
