@@ -19,7 +19,6 @@ export const fondoHome = (divFormulario) => {
   return divFondo;
 };
 
-
 // Mostrar y ocultar contraseña
 export const mostrarYocultarClave = (boton, idInput) => {
   const botonContraseña = document.getElementById(boton);

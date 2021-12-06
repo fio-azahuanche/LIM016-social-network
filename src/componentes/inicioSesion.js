@@ -7,7 +7,6 @@ import { mostrarYocultarClave } from './home.js';
 // Función que se encarga del inicio de Sesión por correo
 export const inicioSesion = (selectorForm, containerError) => {
   mostrarYocultarClave('botonContraseña', 'claveIngreso');
-
   const iniciarCon = document.getElementById(selectorForm);
   iniciarCon.addEventListener('submit', (e) => {
 
@@ -18,15 +17,14 @@ export const inicioSesion = (selectorForm, containerError) => {
 
     inicioSesionUsuario(correoIngreso, claveIngreso)
       .then((userCredential) => {
+        console.log(userCredential);
         const user = userCredential.user;
         console.log(userCredential);
 
          if (user.emailVerified === true) {
           window.location.hash = '#/artmuro';
         } else {
-          cerrarActividadUsuario();
-          // eslint-disable-next-line no-alert
-          alert('confirma tu cuenta');
+          ubicacionModal.innerHTML = modalInicioSesion.confirmar();
         }
         
       })
@@ -50,10 +48,8 @@ export const inicioSesion = (selectorForm, containerError) => {
     googleInicioSesion(proveedor)
       // eslint-disable-next-line no-unused-vars
       .then((result) => {
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        window.location.hash='#/artmuro'
-        //console.log(credential);
         console.log(result);
+        window.location.hash = '#/artmuro';
         // This gives you a Google Access Token. You can use it to access the Google API.
         // const credential = GoogleAuthProvider.credentialFromResult(result);
         // const token = credential.accessToken;

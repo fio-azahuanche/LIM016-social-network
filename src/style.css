@@ -62,7 +62,7 @@ form{
     width: 52%;
     height: 6vh;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     background-color: white;
     margin: 1%;
@@ -91,11 +91,10 @@ form{
 .seccionIngreso i{
     width: 12%;
     margin: 1% 4%;
-    font-size: 1rem;
+    font-size: 39px;
     font-weight: bold;
     color: #F0AA70;
 }
-
 
 .iniciarSesion{
     margin: 2%;
@@ -143,14 +142,11 @@ form{
     width: 80%;
 }
 
-/* @media (max-width: 1024px){
-    .seccionIngreso{
-        width: 80%;
+@media (max-width: 1024px){
+    .seccionIngreso i{
+        font-size: 30px;
     }
-    .iniciarSesion{
-        width: 30%;
-    }
-} */
+}
 
 @media (max-width: 768px){
     .cajaInterna1{
@@ -168,20 +164,21 @@ form{
     } 
     .seccionIngreso{
         width: 70%;
-        /* padding: 0;
-        margin: 0.2rem; */
+    }
+    .seccionIngreso i{
+        font-size: 36px;
     }
      .iniciarSesion{
         width: 25%;
     }
-    /* .logosInicio{
-        width: 30%;
-    }  */
 }
 
 @media (max-width: 640px){
     .slogan{
         font-size: 21px;
+    }
+    .seccionIngreso i{
+        font-size: 30px;
     }
 } 
 
@@ -200,8 +197,10 @@ form{
     }
     .seccionIngreso{
         width: 65%;
-        /* height: 45px; */
         margin: 2%;
+    }
+    .seccionIngreso i{
+        font-size: 22px;
     }
     .iniciarSesion{
         margin: 2%;
@@ -312,31 +311,24 @@ form{
     bottom: 10vh;
     right: 0;
 }
-.modalExito, .modalError{
+.modalExito{
     display: flex;
-    width: 80%;
-    margin: 0 10%;
-    justify-content: center;
-    align-items: center;
-    opacity: 1;
-    transition:opacity 1s;
-    height: 100%;
-    border-radius: 15px;
-    transition: 1s;
-
+    background: #34A853;
+}
+.modalError{
+    display: flex;
+    background: #EA4335;
 }
 .modalExito p, .modalError p{
     color:#FFFF;
     margin-left: 3%;
     font-size: 16px;
 }
-.modalError{
-    background-color: red;
+.modalError i, .modalExito i  {
+    color: #FFFF;
+    margin-right: 20px;
+    left: 0;
 }
-.modalExito{
-    background-color: green;
-}
-
 /*  .modalError{
     width: 100%;
     height: 40px;
@@ -356,7 +348,6 @@ form{
 .modalError.fade {
     opacity: 0;
 }
-
 .modalExito{
     width: 100%;
     height: 40px;
@@ -378,33 +369,26 @@ form{
 #modalExito.fade {
     opacity: 0;
 }
-
 .modalError i {
     color: #FFFF;
     margin-right: 20px;
     left: 0;
 }
-
 .modalExito i {
     color: #FFFF;
     margin-right: 20px;
     left: 0;
 }
-
 .modalError p {
     color:#FFFF;
     font-size: 16px;
     margin-left: 3x;
     justify-self: center;
 }
-
 .modalExito p {
     color:#FFFF;
     font-size: 16px;
     margin-left: 3px;
     justify-self: center;
 }
-
  */
-
-

@@ -2,8 +2,8 @@ import { componentes } from '../lib/index.js';
 import { formRegistro, registroCorreo } from '../componentes/registro.js';
 import { formInicioSesion, inicioSesion } from '../componentes/inicioSesion.js';
 import { divMuro } from '../componentes/muro.js';
+import { cerrarSesion } from '../componentes/cerrarSesion.js';
 import { auth } from '../firebase/funcionesAuth.js';
-import { userState } from '../componentes/validaciones.js';
 
 export const vistasPantalla = () => {
   const main = document.getElementById('main');
@@ -21,8 +21,8 @@ export const vistasPantalla = () => {
       break;
 
     case '#/artmuro':
-      userState();
       main.innerHTML = divMuro;
+      cerrarSesion();
       break;
 
     default:
