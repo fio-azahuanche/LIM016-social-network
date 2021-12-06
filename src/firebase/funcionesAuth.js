@@ -6,10 +6,9 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   sendEmailVerification,
-  signInWithPopup
+  signInWithPopup,
 } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js';
 import { app } from './config.js';
-export const auth = getAuth(app);
 
 // Crea un usuario con correo y contraseña
 export const registroUsuario = (correo, contraseña) => {
@@ -20,7 +19,6 @@ export const registroUsuario = (correo, contraseña) => {
 // Ingreso de usuario con  correo y contraseña
 export const inicioSesionUsuario = (correo, contraseña) => {
   const auth = getAuth(app);
-  console.log(auth);
   return signInWithEmailAndPassword(auth, correo, contraseña);
 };
 
@@ -56,7 +54,5 @@ export const envioCorreoVerificacion = () => {
 
 export const estadoAuthUsuario = (callback) => {
   const auth = getAuth(app);
-  return onAuthStateChanged(auth, callback)
-}
-
-
+  return onAuthStateChanged(auth, callback);
+};

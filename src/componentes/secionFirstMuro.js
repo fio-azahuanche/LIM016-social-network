@@ -1,7 +1,7 @@
 export const seccionMuro1 = () => {
-    const primeraSeccion = document.createElement('section');
-    primeraSeccion.classList.add('item2');
-     primeraSeccion.innerHTML= `
+  const primeraSeccion = document.createElement('section');
+  primeraSeccion.classList.add('item2');
+  primeraSeccion.innerHTML = `
         <section class="secUsuario">
             <div class="contenedorPortada">
                 <img src="imagenes/ImgDelUsuario.png">
@@ -42,5 +42,5 @@ export const seccionMuro1 = () => {
             </div> 
         </section>
     `;
-    return primeraSeccion;
+  return primeraSeccion;
 };
