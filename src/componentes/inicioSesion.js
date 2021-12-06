@@ -1,6 +1,6 @@
 // eslint-disable-next-line import/no-unresolved
 import { GoogleAuthProvider, FacebookAuthProvider } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js';
-import { inicioSesionUsuario, googleInicioSesion, facebookInicioSesion } from '../firebase/funcionesAuth.js';
+import { inicioSesionUsuario, googleInicioSesion, facebookInicioSesion, cierreActividadUsuario } from '../firebase/funcionesAuth.js';
 import { modalInicioSesion } from './errores.js';
 import { mostrarYocultarClave } from './home.js';
 
@@ -37,27 +37,36 @@ export const formInicioSesion = () => {
 
 // Función que se encarga del inicio de Sesión por correo
 export const inicioSesion = (selectorForm, containerError) => {
-  mostrarYocultarClave('botonContraseña', 'claveIngreso');  // por que esta aca? 
-
+  
+  mostrarYocultarClave('botonContraseña', 'claveIngreso');
+  
   const iniciarCon = document.getElementById(selectorForm);
   iniciarCon.addEventListener('submit', (e) => {
+
     e.preventDefault();
     const correoIngreso = document.getElementById('correoIngreso').value;
     const claveIngreso = document.getElementById('claveIngreso').value;
     const ubicacionModal = document.getElementById(containerError);
+
     inicioSesionUsuario(correoIngreso, claveIngreso)
       .then((userCredential) => {
         const user = userCredential.user;
-        console.log(user);
-        if (user.emailVerified === true) {
+        console.log(userCredential);
+
+         if (user.emailVerified === true) {
           window.location.hash = '#/artmuro';
         } else {
+          cierreActividadUsuario();
           ubicacionModal.innerHTML = modalInicioSesion.confirmar();
           setTimeout(() => {
             const modalConfirmar = document.getElementById("modalConfirmar");   
             modalConfirmar.style.display = "none";            
           }, 4000);          
         }
+        setTimeout(() => {
+          ubicacionModal.innerHTML='';
+        }, 1500);
+        
       })
       .catch((error) => {
         if (error.message === 'Firebase: Error (auth/invalid-email).' || error.message === 'Firebase: Error (auth/wrong-password).') {
@@ -73,8 +82,11 @@ export const inicioSesion = (selectorForm, containerError) => {
             modalUsuarioInvalido.style.display = "none";            
           }, 4000);   
         } else {
-          ubicacionModal.textContent = error.message;
+          ubicacionModal.textContent='Ocurrió un error';
         }
+        setTimeout(() => {
+          ubicacionModal.innerHTML='';
+        }, 1500);
       });
   });
 

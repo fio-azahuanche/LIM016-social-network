@@ -1,10 +1,8 @@
 // Render del formulario de registro que se imprimen en la vista de Home
-// eslint-disable-next-line import/no-unresolved
-import { addDoc } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js';
-import { registroUsuario, envioCorreoVerificacion } from '../firebase/funcionesAuth.js';
+import { registroUsuario, envioCorreoVerificacion, cierreActividadUsuario } from '../firebase/funcionesAuth.js';
 import { modalRegistro } from './errores.js';
-import { colRef } from '../firebase/funcionesFirestore.js';
 import { mostrarYocultarClave } from './home.js';
+import { agregarUsuario } from '../firebase/funcionesFirestore.js'
 
 // Creacion de formulario de registro de forma dinámica
 export const formRegistros = () => {
@@ -51,7 +49,7 @@ export const registroCorreo = (nombre, selectorForm, containerError) => {
     registroUsuario(correoRegistro, claveRegistro)
       .then((userCredential) => {
         const user = userCredential.user;
-        if (!user.emailVerified) {
+        if(!user.emailVerified){
           envioCorreoVerificacion().then(() => {
             ubicacionModal.innerHTML = modalRegistro.exito();
             setTimeout(() => {
@@ -60,14 +58,14 @@ export const registroCorreo = (nombre, selectorForm, containerError) => {
             }, 4000);   
           });
         }
-        addDoc(colRef, {
-          username: usuarioRegistro,
-          correo: correoRegistro,
-          clave: claveRegistro,
-        })
-          .then(() => {
-            registrarCon.reset();
-          });
+        agregarUsuario(usuarioRegistro, correoRegistro, claveRegistro );
+        cierreActividadUsuario();
+        /* .then(() => {
+          registrarCon.reset();
+        }); */
+        setTimeout(function hide() {
+          ubicacionModal.innerHTML='';
+        }, 1500);
       })
       .catch((error) => {
         if (error.message === 'Firebase: Error (auth/invalid-email).') {
@@ -89,8 +87,11 @@ export const registroCorreo = (nombre, selectorForm, containerError) => {
             modalCorreoExistente.style.display = "none";            
           }, 4000);  
         } else {
-          ubicacionModal.textContent = error.message;
+          ubicacionModal.textContent =error.message;
         }
+        setTimeout(function hide() {
+          ubicacionModal.innerHTML='';
+        }, 1500);
       });
   });
 };
