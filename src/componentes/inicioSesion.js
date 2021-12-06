@@ -1,27 +1,38 @@
 // eslint-disable-next-line import/no-unresolved
 import { GoogleAuthProvider } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js';
-import { inicioSesionUsuario, googleInicioSesion } from '../firebase/funcionesAuth.js';
+import { inicioSesionUsuario, googleInicioSesion, cierreActividadUsuario } from '../firebase/funcionesAuth.js';
 import { modalInicioSesion } from './errores.js';
 import { mostrarYocultarClave } from './home.js';
 
 // Función que se encarga del inicio de Sesión por correo
 export const inicioSesion = (selectorForm, containerError) => {
+  
   mostrarYocultarClave('botonContraseña', 'claveIngreso');
+  
   const iniciarCon = document.getElementById(selectorForm);
   iniciarCon.addEventListener('submit', (e) => {
+
     e.preventDefault();
     const correoIngreso = document.getElementById('correoIngreso').value;
     const claveIngreso = document.getElementById('claveIngreso').value;
     const ubicacionModal = document.getElementById(containerError);
+
     inicioSesionUsuario(correoIngreso, claveIngreso)
       .then((userCredential) => {
         console.log(userCredential);
         const user = userCredential.user;
-        if (user.emailVerified === true) {
+        console.log(userCredential);
+
+         if (user.emailVerified === true) {
           window.location.hash = '#/artmuro';
         } else {
+          cierreActividadUsuario();
           ubicacionModal.innerHTML = modalInicioSesion.confirmar();
         }
+        setTimeout(() => {
+          ubicacionModal.innerHTML='';
+        }, 1500);
+        
       })
       .catch((error) => {
         if (error.message === 'Firebase: Error (auth/invalid-email).' || error.message === 'Firebase: Error (auth/wrong-password).') {
@@ -29,8 +40,11 @@ export const inicioSesion = (selectorForm, containerError) => {
         } else if (error.message === 'Firebase: Error (auth/user-not-found).') {
           ubicacionModal.innerHTML = modalInicioSesion.usuarioInvalido();
         } else {
-          ubicacionModal.textContent = error.message;
+          ubicacionModal.textContent='Ocurrió un error';
         }
+        setTimeout(() => {
+          ubicacionModal.innerHTML='';
+        }, 1500);
       });
   });
 

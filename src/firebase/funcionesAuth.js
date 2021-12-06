@@ -1,11 +1,12 @@
 /* eslint-disable import/no-unresolved */
 import {
+  onAuthStateChanged,
   getAuth,
   signOut,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   sendEmailVerification,
-  signInWithPopup,
+  signInWithPopup
 } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js';
 import { app } from './config.js';
 export const auth = getAuth(app);
@@ -18,6 +19,7 @@ export const registroUsuario = (correo, contraseña) => {
 // Ingreso de usuario con  correo y contraseña
 export const inicioSesionUsuario = (correo, contraseña) => {
   const auth = getAuth(app);
+  console.log(auth);
   return signInWithEmailAndPassword(auth, correo, contraseña);
 };
 
@@ -28,7 +30,7 @@ export const googleInicioSesion = (proveedor) => {
 };
 
 // Cerrar Sesion del usuario
-export const cierreSesionUsuario = () => {
+export const cierreActividadUsuario = () => {
   const auth = getAuth(app);
   return signOut(auth);
 };
@@ -45,7 +47,9 @@ export const envioCorreoVerificacion = () => {
   return sendEmailVerification(auth.currentUser);
 };
 
-//
-/* export const onAuthStateChanged = (callback) => firebase.auth().onAuthStateChanged(callback);
-export const signOut = () => firebase.auth().signOut(); */
+export const estadoAuthUsuario = (callback) => {
+  const auth = getAuth(app);
+  return onAuthStateChanged(auth, callback)
+}
+
 

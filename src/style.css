@@ -60,6 +60,7 @@ form{
 
 .seccionIngreso{
     width: 52%;
+    height: 6vh;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -136,7 +137,7 @@ form{
 }
 
 .slogan{
-    font-size: 1.75rem;
+    font-size: 2.5rem;
     text-align: center;
     width: 80%;
 }
@@ -299,29 +300,40 @@ form{
 }
 
  /*---------------------modal error de la sección de ingreso------------*/
-.cajaGrande{
+ .cajaGrande{
     position: relative;
 }
 #ubicacionModal{
+    width: 50%;
+    border-radius: 20px;
+    height: 5vh;
     position: absolute;
+    bottom: 10vh;
     right: 0;
 }
-.modalExito{
+.modalExito, .modalError{
     display: flex;
-    background: #34A853;
-}
-.modalError{
-    display: flex;
-    background: #EA4335;
+    width: 80%;
+    margin: 0 10%;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    transition:opacity 1s;
+    height: 100%;
+    border-radius: 15px;
+    transition: 1s;
+
 }
 .modalExito p, .modalError p{
     color:#FFFF;
+    margin-left: 3%;
     font-size: 16px;
 }
-.modalError i, .modalExito i  {
-    color: #FFFF;
-    margin-right: 20px;
-    left: 0;
+.modalError{
+    background-color: red;
+}
+.modalExito{
+    background-color: green;
 }
 /*  .modalError{
     width: 100%;
