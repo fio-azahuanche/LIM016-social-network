@@ -369,18 +369,19 @@ footer{
     border-radius: 0 0 10px 10px;
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.35);
     padding: 0.4%;
+    border-color: #844124;
 }
 
 .ImgCentralUsuario{
     width: auto; 
     justify-content: center;
     align-items: center;   
-    padding: auto;
+    padding: auto;   
 }
 
 .ImgCentralUsuario img{
     width: 130px;
-    height: 130px;    
+    height: 130px;
 }
 
 .botonAgregar{
@@ -392,7 +393,9 @@ footer{
     color: white;
     overflow: hidden;
     font-weight: 600;
-    width: auto;
+    justify-content: center;
+    width: 70%;
+    min-width: 85px;
     height: 4vh;
     cursor: pointer;
     align-items: center;
@@ -506,6 +509,7 @@ footer{
     overflow: hidden;
     font-weight: 600;
     width: 25%;
+    min-width: 95px;
     height: 4vh;
     cursor: pointer;
 }
@@ -519,20 +523,42 @@ footer{
     width: 100%;
     display: flex;
     padding: 0 3%;
-    height: 8vh;
+    height: auto;
+}
+
+.imgUsuarioPost{
+    display: flex;
+    width: 18%; 
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+}
+
+.imgPost{
+    width: 80px;  
+    height: 80px;  
 }
 
 .infoUsuarioPost{
     justify-content: space-between;
     display: block;
-    width: 65%;
-    
+    width: 65%;   
+    padding: 0 3%; 
 }
 
 .nombreUsuarioPost{
+    display: flex;
     color: #515151;
     font-size: 25px;
     font-weight: bold;
+}
+
+.nombreUsuarioPost img{
+    width: 30px;
+    height: 30px;
+    margin: 0 10px;
+    align-items: center;
+    cursor: pointer;
 }
 
 .descripcionUsuarioPost{
@@ -540,15 +566,28 @@ footer{
     font-size: 15px;
 }
 
-.imgPost{
-    width: 82%;    
+.botonGlobo{
+    display: flex;
+    cursor: pointer;
+    width: 15%;
+    align-items: flex-start;
+    justify-content: flex-end;
 }
 
 .estadoCompartido{
+    display: flex;
     width: auto;
     height: auto;
     padding: 3%;
     justify-content: center;
+}
+
+.contenidoCompartido{
+    width: auto;
+}
+
+.contenidoCompartido img{
+    width: 100%;
 }
 
 .botonesReaccion{
