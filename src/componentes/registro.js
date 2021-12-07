@@ -56,14 +56,14 @@ export const registroCorreo = (selectorForm, containerError) => {
         if (!user.emailVerified) {
           envioCorreoVerificacion().then(() => {
             agregarUsuarioConId(usuarioRegistro, correoRegistro, claveRegistro, user.uid);
+            cierreActividadUsuario();
             ubicacionModal.innerHTML = modalRegistro.exito();
             setTimeout(() => {
               const modalExito = document.getElementById('modalExito');
               modalExito.style.display = 'none';
             }, 5000);
           });
-        };
-        cierreActividadUsuario();
+        }
       })
       .catch((error) => {
         if (error.message === 'Firebase: Error (auth/invalid-email).') {

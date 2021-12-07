@@ -16,7 +16,7 @@ export const vistasPantalla = () => {
 
     case '#/registro':
       main.appendChild(componentes.fondoHome(formRegistros()));
-      registroCorreo( 'formRegistro', 'ubicacionModal');
+      registroCorreo('formRegistro', 'ubicacionModal');
       break;
 
     case '#/artmuro':
