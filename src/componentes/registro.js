@@ -88,9 +88,9 @@ export const registroCorreo = (nombre, selectorForm, containerError) => {
         } else {
           ubicacionModal.textContent = error.message;
         }
-        setTimeout(() => {
+        /* setTimeout(() => {
           ubicacionModal.innerHTML = '';
-        }, 1500);
+        }, 1500); */
       });
   });
 };

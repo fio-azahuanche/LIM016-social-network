@@ -374,6 +374,7 @@ footer{
 
 .ImgCentralUsuario{
     width: auto; 
+    min-width: 120px;
     justify-content: center;
     align-items: center;   
     padding: auto;   
@@ -412,7 +413,19 @@ footer{
 
 .datosUsuario{
     width: 60%;
-    padding: 5%;
+    padding: 2%;
+}
+
+.nombreUsuario{
+    font-weight: 35px;
+    color: #000000;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.estadoUsuario{
+    font-weight: 20px;
+    color: #605D5D;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .secCategorias{
