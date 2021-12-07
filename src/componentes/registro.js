@@ -1,8 +1,8 @@
 // Render del formulario de registro que se imprimen en la vista de Home
 import { registroUsuario, envioCorreoVerificacion, cierreActividadUsuario } from '../firebase/funcionesAuth.js';
-import { modalRegistro } from './errores.js';
+import { modalRegistro, setTimeOutFunction } from './errores.js';
 import { mostrarYocultarClave } from './home.js';
-import { agregarUsuario } from '../firebase/funcionesFirestore.js';
+import { agregarUsuarioConId } from '../firebase/funcionesFirestore.js';
 
 // Creacion de formulario de registro de forma dinámica
 export const formRegistros = () => {
@@ -25,7 +25,7 @@ export const formRegistros = () => {
         <i id="botonClave" class="ph-eye-closed"></i>
       </div>
 
-      <button type="submit" class="iniciarSesion">Registrate</button>
+      <button type="submit" class="iniciarSesion" id='bttnRegistro'>Registrate</button>
         
         <p class="texto">¿Ya tienes una cuenta? <a id="registrate" href="#/inicio"> Iniciar Sesión</a></p> 
       </form>
@@ -34,63 +34,42 @@ export const formRegistros = () => {
 };
 
 // Función que se encarga del registro por correo
-export const registroCorreo = (nombre, selectorForm, containerError) => {
+export const registroCorreo = ( selectorForm, containerError) => {
   mostrarYocultarClave('botonClave', 'claveRegistro');
 
   const registrarCon = document.getElementById(selectorForm);
   registrarCon.addEventListener('submit', (e) => {
     e.preventDefault();
-    const usuarioRegistro = document.getElementById(nombre).value;
-    const correoRegistro = document.getElementById('correoRegistro').value;
-    const claveRegistro = document.getElementById('claveRegistro').value;
+    let usuarioRegistro = document.getElementById('usuarioRegistro').value;
+    let correoRegistro = document.getElementById('correoRegistro').value;
+    let claveRegistro = document.getElementById('claveRegistro').value; 
     const ubicacionModal = document.getElementById(containerError);
-
+    
+    
     registroUsuario(correoRegistro, claveRegistro)
       .then((userCredential) => {
         const user = userCredential.user;
-        if (!user.emailVerified) {
           envioCorreoVerificacion().then(() => {
+            agregarUsuarioConId(usuarioRegistro, correoRegistro, claveRegistro,user.uid);
             ubicacionModal.innerHTML = modalRegistro.exito();
-            setTimeout(() => {
-              const modalExito = document.getElementById('modalExito');
-              modalExito.style.display = 'none';
-            }, 4000);
+            setTimeOutFunction('modalExito');
           });
-        }
-        agregarUsuario(usuarioRegistro, correoRegistro, claveRegistro);
         cierreActividadUsuario();
-        /* .then(() => {
-          registrarCon.reset();
-        }); */
-        setTimeout(() => {
-          ubicacionModal.innerHTML = '';
-        }, 1500);
+        
       })
       .catch((error) => {
         if (error.message === 'Firebase: Error (auth/invalid-email).') {
           ubicacionModal.innerHTML = modalRegistro.correoInvalido();
-          setTimeout(() => {
-            const modalCorreoInvalido = document.getElementById('modalCorreoInvalido');
-            modalCorreoInvalido.style.display = 'none';
-          }, 4000);
+          setTimeOutFunction('modalCorreoInvalido');
         } else if (error.message === 'Firebase: Password should be at least 6 characters (auth/weak-password).') {
           ubicacionModal.innerHTML = modalRegistro.contraseñaDebil();
-          setTimeout(() => {
-            const modalContraseñaDebil = document.getElementById('modalContraseñaDebil');
-            modalContraseñaDebil.style.display = 'none';
-          }, 4000);
+          setTimeOutFunction('modalContraseñaDebil');
         } else if (error.message === 'Firebase: Error (auth/email-already-in-use).') {
           ubicacionModal.innerHTML = modalRegistro.correoExistente();
-          setTimeout(() => {
-            const modalCorreoExistente = document.getElementById('modalCorreoExistente');
-            modalCorreoExistente.style.display = 'none';
-          }, 4000);
+          setTimeOutFunction('modalCorreoExistente');
         } else {
           ubicacionModal.textContent = error.message;
-        }
-        setTimeout(() => {
-          ubicacionModal.innerHTML = '';
-        }, 1500);
+        };
       });
   });
 };

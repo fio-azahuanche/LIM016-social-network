@@ -75,3 +75,10 @@ export const modalInicioSesion = {
     return errorMensaje;
   },
 };
+
+export const setTimeOutFunction = (mensajeModal) =>{
+  setTimeout(() => {
+    const modal = document.getElementById(mensajeModal);
+    modal.style.display = 'none';
+  }, 5000);
+};
