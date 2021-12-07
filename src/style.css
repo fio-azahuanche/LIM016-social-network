@@ -328,6 +328,22 @@ header{
     padding: 0 20px;
 }
 
+.enlacePerfil{
+    display: flex;
+    width: auto;
+    height: auto;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.enlacePerfil p{
+    color: #844124;
+    font-size: 25px;
+    text-align: center;
+    font-weight: bold;
+}
+
 #cerrar-sesion{
     cursor: pointer;
     width: 33px;
@@ -340,7 +356,7 @@ header{
 }
 
 .titulo-header{
-    width: 30%;
+    width: 35%;
     height: 60px;
 }
 
