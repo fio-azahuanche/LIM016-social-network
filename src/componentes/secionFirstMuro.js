@@ -11,14 +11,15 @@ export const seccionMuro1 = () => {
                     <img src="imagenes/ImgUsuario.png">
                 </div>
                 <div class="datosUsuario">
-                    <h2 class="nombreUsuario">Usuario</h2>
-                    <h3 class="estadoUsuario">Amante de los animales</h3>
+                    <h2 class="nombreUsuario">Lucía Lopez</h2>
+                    <p class="estadoUsuario">Amante de los animales</p>
+                    <button class="botonAgregar"><img src="imagenes/pencil.png">Editar Prefil</button>
                 </div>
             </div>
         </section>         
         <section class="secCategorias">
-            <h1>Explorar</h1>
-            <div>            
+            <h1>Explorar</h1>            
+            <div>         
                 <div class="categoriaUnica">
                     <img src="imagenes/refugioIcono.png" >
                     <p>Refugio</p>
