@@ -2,7 +2,7 @@
 import { registroUsuario, envioCorreoVerificacion, cierreActividadUsuario } from '../firebase/funcionesAuth.js';
 import { modalRegistro } from './errores.js';
 import { mostrarYocultarClave } from './home.js';
-import { agregarUsuario } from '../firebase/funcionesFirestore.js';
+import { agregarUsuarioConId } from '../firebase/funcionesFirestore.js';
 
 // Creacion de formulario de registro de forma dinámica
 export const formRegistros = () => {
@@ -39,13 +39,13 @@ export const formRegistros = () => {
 };
 
 // Función que se encarga del registro por correo
-export const registroCorreo = (nombre, selectorForm, containerError) => {
+export const registroCorreo = (selectorForm, containerError) => {
   mostrarYocultarClave('botonClave', 'claveRegistro');
 
   const registrarCon = document.getElementById(selectorForm);
   registrarCon.addEventListener('submit', (e) => {
     e.preventDefault();
-    const usuarioRegistro = document.getElementById(nombre).value;
+    const usuarioRegistro = document.getElementById('usuarioRegistro').value;
     const correoRegistro = document.getElementById('correoRegistro').value;
     const claveRegistro = document.getElementById('claveRegistro').value;
     const ubicacionModal = document.getElementById(containerError);
@@ -55,21 +55,15 @@ export const registroCorreo = (nombre, selectorForm, containerError) => {
         const user = userCredential.user;
         if (!user.emailVerified) {
           envioCorreoVerificacion().then(() => {
+            agregarUsuarioConId(usuarioRegistro, correoRegistro, claveRegistro, user.uid);
             ubicacionModal.innerHTML = modalRegistro.exito();
             setTimeout(() => {
               const modalExito = document.getElementById('modalExito');
               modalExito.style.display = 'none';
-            }, 4000);
+            }, 5000);
           });
-        }
-        agregarUsuario(usuarioRegistro, correoRegistro, claveRegistro);
+        };
         cierreActividadUsuario();
-        /* .then(() => {
-          registrarCon.reset();
-        }); */
-        setTimeout(() => {
-          ubicacionModal.innerHTML = '';
-        }, 1500);
       })
       .catch((error) => {
         if (error.message === 'Firebase: Error (auth/invalid-email).') {
@@ -77,19 +71,19 @@ export const registroCorreo = (nombre, selectorForm, containerError) => {
           setTimeout(() => {
             const modalCorreoInvalido = document.getElementById('modalCorreoInvalido');
             modalCorreoInvalido.style.display = 'none';
-          }, 4000);
+          }, 5000);
         } else if (error.message === 'Firebase: Password should be at least 6 characters (auth/weak-password).') {
           ubicacionModal.innerHTML = modalRegistro.contraseñaDebil();
           setTimeout(() => {
             const modalContraseñaDebil = document.getElementById('modalContraseñaDebil');
             modalContraseñaDebil.style.display = 'none';
-          }, 4000);
+          }, 5000);
         } else if (error.message === 'Firebase: Error (auth/email-already-in-use).') {
           ubicacionModal.innerHTML = modalRegistro.correoExistente();
           setTimeout(() => {
             const modalCorreoExistente = document.getElementById('modalCorreoExistente');
             modalCorreoExistente.style.display = 'none';
-          }, 4000);
+          }, 5000);
         } else {
           ubicacionModal.textContent = error.message;
         }
