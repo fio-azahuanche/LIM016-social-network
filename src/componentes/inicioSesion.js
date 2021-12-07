@@ -6,7 +6,7 @@ import {
   facebookInicioSesion,
   cierreActividadUsuario,
 } from '../firebase/funcionesAuth.js';
-import { modalInicioSesion, setTimeOutFunction } from './errores.js';
+import { modalInicioSesion } from './errores.js';
 import { mostrarYocultarClave } from './home.js';
 
 // Creacion de formulario de inicio de Sesión de forma dinámica
@@ -41,7 +41,6 @@ export const formInicioSesion = () => {
 
 // Función que se encarga del inicio de Sesión por correo
 export const inicioSesion = (selectorForm, containerError) => {
-  cierreActividadUsuario();
   mostrarYocultarClave('botonContraseña', 'claveIngreso');
   const iniciarCon = document.getElementById(selectorForm);
   iniciarCon.addEventListener('submit', (e) => {
@@ -59,24 +58,31 @@ export const inicioSesion = (selectorForm, containerError) => {
           window.location.hash = '#/artmuro';
         } else {
           cierreActividadUsuario();
-           ubicacionModal.innerHTML = modalInicioSesion.confirmar();
-           setTimeOutFunction('modalConfirmar');
+          ubicacionModal.innerHTML = modalInicioSesion.confirmar();
+          setTimeout(() => {
+            const modalConfirmar = document.getElementById('modalConfirmar');
+            modalConfirmar.style.display = 'none';
+          }, 5000);
         }
       })
       .catch((error) => {
         if (error.message === 'Firebase: Error (auth/invalid-email).' || error.message === 'Firebase: Error (auth/wrong-password).') {
           ubicacionModal.innerHTML = modalInicioSesion.datosInvalidos();
-          setTimeOutFunction('modalDatosInvalidos');
+          setTimeout(() => {
+            const modalDatosInvalidos = document.getElementById('modalDatosInvalidos');
+            modalDatosInvalidos.style.display = 'none';
+          }, 5000);
         } else if (error.message === 'Firebase: Error (auth/user-not-found).') {
           ubicacionModal.innerHTML = modalInicioSesion.usuarioInvalido();
-          setTimeOutFunction('modalUsuarioInvalido');
+          setTimeout(() => {
+            const modalUsuarioInvalido = document.getElementById('modalUsuarioInvalido');
+            modalUsuarioInvalido.style.display = 'none';
+          }, 5000);
         } else {
           ubicacionModal.textContent = 'Ocurrió un error';
         }
       });
   });
-
-
 
   const botongoogle = document.getElementById('imgGoogle');
   botongoogle.addEventListener('click', () => {
