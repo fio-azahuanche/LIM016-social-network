@@ -53,17 +53,15 @@ export const registroCorreo = (selectorForm, containerError) => {
     registroUsuario(correoRegistro, claveRegistro)
       .then((userCredential) => {
         const user = userCredential.user;
-        if (!user.emailVerified) {
-          envioCorreoVerificacion().then(() => {
-            agregarUsuarioConId(usuarioRegistro, correoRegistro, claveRegistro, user.uid);
-            cierreActividadUsuario();
-            ubicacionModal.innerHTML = modalRegistro.exito();
-            setTimeout(() => {
-              const modalExito = document.getElementById('modalExito');
-              modalExito.style.display = 'none';
-            }, 5000);
-          });
-        }
+        envioCorreoVerificacion().then(() => {
+          agregarUsuarioConId(usuarioRegistro, correoRegistro, claveRegistro, user.uid);
+        });
+        ubicacionModal.innerHTML = modalRegistro.exito();
+        setTimeout(() => {
+          const modalExito = document.getElementById('modalExito');
+          modalExito.style.display = 'none';
+        }, 5000);
+        cierreActividadUsuario();
       })
       .catch((error) => {
         if (error.message === 'Firebase: Error (auth/invalid-email).') {
@@ -87,9 +85,6 @@ export const registroCorreo = (selectorForm, containerError) => {
         } else {
           ubicacionModal.textContent = error.message;
         }
-        /* setTimeout(() => {
-          ubicacionModal.innerHTML = '';
-        }, 1500); */
       });
   });
 };

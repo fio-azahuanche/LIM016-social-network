@@ -26,7 +26,7 @@ export const vistasPantalla = () => {
       break;
 
     default:
-      main.innerHTML = 'paginaNo encontrada';
+      main.innerHTML = 'Página No Encontrada';
       break;
   }
 };
