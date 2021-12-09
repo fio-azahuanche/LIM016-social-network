@@ -327,8 +327,8 @@ header{
 
 #cerrar-sesion{
     cursor: pointer;
-    width: 33px;
-    height: 33px;
+    width: 28px;
+    height: 28px;
 }
 
 .imagenUsuario{
@@ -337,8 +337,8 @@ header{
 }
 
 .titulo-header{
-    width: 35%;
-    height: 60%;
+    width: 25%;
+    height: 50%;
 }
 
 /*------------------------------------------------------*/
@@ -723,7 +723,11 @@ footer{
 @media screen and (max-width:768px){
     .titulo-header{
         width: 25%;
-        height: 60%;
+        height: 40%;
+    }
+    #cerrar-sesion{
+        width: 28px;
+        height: 28px;
     }
     .enlacePerfil{
         display: none;
