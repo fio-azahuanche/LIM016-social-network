@@ -5,6 +5,7 @@
     font-family: 'Open Sans', sans-serif;
 }
 
+/*---------------------------------------------------PRIMERA VISTA----------------------------------------------*/
 main{
     background-color: #F2EEE3;
     width: 100%;    
@@ -47,6 +48,12 @@ main{
     margin: 5%;
 }
 
+.slogan{
+    font-size: 2.5rem;
+    text-align: center;
+    width: 80%;
+}
+
 .cajaInterna2{
     justify-content: space-evenly;
 }
@@ -72,6 +79,14 @@ form{
     border-radius: 20px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
 
+}
+
+.seccionIngreso i{
+    width: 12%;
+    margin: 1% 4%;
+    font-size: 39px;
+    font-weight: bold;
+    color: #F0AA70;
 }
 
 .ph-eye-closed, .ph-eye{
@@ -101,17 +116,6 @@ form{
     text-align: center;
 }
 
-.seccionIngreso img, .seccionIngreso i{
-    width: 12%;
-    margin: 1% 4%;
-}
-
-.seccionIngreso i{
-    font-size: 39px;
-    font-weight: bold;
-    color: #F0AA70;
-}
-
 .iniciarSesion{
     margin: 2%;
     width: 20%;
@@ -122,12 +126,6 @@ form{
     font-size: 18px;
     color: #FFFF;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-
-.iniciarSesion A{
-    color: #FFFF;
-    text-decoration: none;
-    
 }
 
 .logosInicio{
@@ -151,81 +149,6 @@ form{
     cursor: pointer;
     font-weight: 600;
     text-decoration: none;
-}
-
-.slogan{
-    font-size: 2.5rem;
-    text-align: center;
-    width: 80%;
-}
-
-/*---------------responsive de la primera vista-----------------*/
-@media (max-width: 1024px){
-    .seccionIngreso i{
-        font-size: 30px;
-    }
-}
-
-@media (max-width: 768px){
-    .cajaInterna1{
-        width: 40%;
-        padding: 2%;
-    }
-    .cajaInterna2{
-        width: 60%;
-    }
-    .slogan{
-        font-size: 25px;
-    }
-    #huellaLogo{
-        width: 60%;
-    } 
-    .seccionIngreso{
-        width: 70%;
-    }
-    .seccionIngreso i{
-        font-size: 36px;
-    }
-    .iniciarSesion{
-        width: 25%;
-    }
-}
-
-@media (max-width: 640px){
-    .slogan{
-        font-size: 21px;
-    }
-    .seccionIngreso i{
-        font-size: 30px;
-    }
-} 
-
-@media (max-width: 425px){ 
-    #huellaLogo{
-        width: 35%;
-    } 
-    .cajaInterna1, .cajaInterna2{
-        width: 100%;
-        height: auto;
-    }
-    .slogan{
-        width: 90%;
-        font-size: 20px;
-        margin: 0;
-    }
-    .seccionIngreso{
-        width: 65%;
-        margin: 2%;
-    }
-    .seccionIngreso i{
-        font-size: 22px;
-    }
-    .iniciarSesion{
-        margin: 2%;
-    }
-    .logosInicio{
-        margin: 0;
-    }
 }
 
 /*---------------------Características de los Modales-------------*/
@@ -264,7 +187,7 @@ form{
 .modalError p, .modalExito p {
     color:#FFFF;
     font-size: 16px;
-    margin-left: 3x;
+    margin-left: 3px;
     justify-self: center;
    
 }
@@ -281,6 +204,7 @@ form{
     }
 }
 
+/*--------------------------------------------SEGUNDA VISTA------------------------------------------------*/
 /* ------------características del header-----------------*/
 header{
     display: flex;
@@ -307,93 +231,6 @@ header{
     font-weight: bold;
 }
 
-/*--MENU PUNTOS VERTICALES(KEBAB MENU) & HORIZONTALES--*/
-.puntosVerticales, .puntosHorizontales {
-    cursor: pointer;
-    position: relative;
-    display: inline-block;
-    box-sizing: border-box;
-    padding: 0 16px;
-}
-.puntosHorizontales {
-    display: flex;
-    flex-wrap: wrap;
-    width: 25%;
-}
-figure, .puntos {
-    width: 6px;
-    height: 6px;
-    border-radius: 5px;
-    background: #844124;
-}
-figure{
-    margin: 3px 0;
-}
-.puntos{
-    margin: 0 2px;
-}
-.middle, .middle2 {
-    transform: scale(1);
-    position: relative;
-    box-shadow: 0 0.1px 0.1px 0 rgba(0, 0, 0, 0.16), 0 0.1px 0.3px 0 rgba(0, 0, 0, 0.12);
-    -webkit-filter: blur(.1px);
-    filter: blur(.1px);
-}
-  
-.middle.active, .middle2.active {
-    transform: scale(4.5);
-    box-shadow: 0 0.1px 0.1px 0 rgba(0, 0, 0, 0.16), 0 0.1px 0.3px 0 rgba(0, 0, 0, 0.12);
-}
-.equis, .equis2 {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0);
-    margin-top: -1px;
-    color: #F0AA70;
-    font-size: 22px;
-    font-weight: bold;
-    user-select: none;
-}
-.equis2{
-    top: 5%;
-}
-.equis.active, .equis2.active {
-    transform: translate(-50%, -50%) scale(1);
-}
-#menuLista, #menuListaPost{
-    list-style: none;
-    width: 150px;
-    padding: 10px;
-    border-radius: 10px;
-    background: #E5DCC3;
-    margin-right: 10%;
-    text-decoration: none;
-}
-#menuLista a, #menuListaPost a{
-    display: flex;
-    align-items: center;
-    justify-content: left;
-    color: #844124;
-    font-weight: 600;
-}
-#menuLista img, #menuLista img{
-    margin-right: 5px;
-}
-.desplegable, .desplegable2{
-    position: absolute;
-    right: 0;
-    top: 2em;
-    transition: all 0.25s ease-out;
-    transform: scale(0);
-    transform-origin: 100% 0;
-}
-.desplegable.active, .desplegable2.active {
-    transform: scale(1);
-    transition: all 0.25s cubic-bezier(.5,1.8,.9,.8);
-}
-/*-------------------------*/
-
 .imagenUsuario{
     width: 60px;
     height: 60px;
@@ -403,21 +240,11 @@ figure{
     height: 70%;
 }
 
-/*------------------------------------------------------*/
-footer{
-    display: flex;
-    width: 100%; 
-    justify-content: space-between;
-    height: 10vh;
-    background-color: #F0AA70;
-    align-items: center;
-    padding: 0 20px;
-}
-
+/* ------------características del muro-----------------*/
 .grid-container{
     display: grid;
     background-color: #F2EEE3;
-    grid-template-columns: 3fr 4fr;
+    grid-template-columns: 2fr 3fr;
     border:transparent;  
 }
 
@@ -448,43 +275,9 @@ footer{
     border-color: #844124;
 }
 
-.ImgCentralUsuario{
-    width: auto; 
-    min-width: 120px;
-    justify-content: center;
-    align-items: center;   
-    padding: auto;   
-}
-
-.ImgCentralUsuario img{
+.contenedorPerfil img{
     width: 130px;
     height: 130px;
-}
-
-.botonAgregar{
-    display: flex;
-    background-color: #F0AA70;
-    border-radius: 10px;
-    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.35);
-    border-color:transparent;
-    color: white;
-    overflow: hidden;
-    font-weight: 600;
-    font-size: 14px;
-    justify-content: center;
-    width: 70%;
-    min-width: 85px;
-    height: 4vh;
-    cursor: pointer;
-    align-items: center;
-    padding: 3px;
-    margin-top: 15px;
-}
-
-.botonAgregar img{
-    width: 20px;
-    height: 20px;
-    margin-right: 5px;
 }
 
 .datosUsuario{
@@ -495,13 +288,12 @@ footer{
 .nombreUsuario{
     font-weight: 35px;
     color: #000000;
-    font-family: 'Open Sans', sans-serif;
+    
 }
 
 .estadoUsuario{
     font-weight: 20px;
     color: #605D5D;
-    font-family: 'Open Sans', sans-serif;
 }
 
 .secCategorias{
@@ -515,48 +307,175 @@ footer{
     display: flex;
     color:#844124;
     font-size: 27px;
-    font-family: 'Open Sans', sans-serif;
     font-weight: bold;
     justify-content: left;
     padding-bottom: 5% ;
 }
 
-.secCategorias h2{
-    display: flex;
-    color:#844124;
-    font-size: 20px;
-    font-family: 'Open Sans', sans-serif;
-    justify-content: left;
-    padding-bottom: 5%;
-}
-
-.links-categorias{
-    padding-bottom: 5%;
-    color: #CE7338;
-    cursor: pointer;
-}
 .categoriaUnica{
     display: flex;
     padding: 1% 0;
     align-items: center;
 }
 
-.contenedorCategorias a:active{
+.categoriaUnica img{
+    align-items: center;
+    padding: 2px;
+    width: 40px;
+    height: 40px;
+    margin-right: 5% ;
+    cursor: pointer;
+}
+ 
+ .categoriaUnica p{
+     justify-content: left;
+     cursor: pointer;
+     font-size: 20px;
+     font-weight: 700;
+     color: #8F7D7D;
+}
+
+/*--MENU PUNTOS VERTICALES & HORIZONTALES--*/
+.puntosVerticales, .puntosHorizontales {
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+    box-sizing: border-box;
+    padding: 0 16px;
+}
+
+figure, .puntos {
+    width: 6px;
+    height: 6px;
+    border-radius: 5px;
+    background: #844124;
+}
+
+figure{
+    margin: 3px 0;
+}
+
+.puntos{
+    margin: 0 2px;
+}
+
+.middle, .middle2 {
+    transform: scale(1);
+    position: relative;
+    box-shadow: 0 0.1px 0.1px 0 rgba(0, 0, 0, 0.16), 0 0.1px 0.3px 0 rgba(0, 0, 0, 0.12);
+    -webkit-filter: blur(.1px);
+    filter: blur(.1px);
+}
+  
+.middle.active, .middle2.active {
+    transform: scale(5);
+    box-shadow: 0 0.1px 0.1px 0 rgba(0, 0, 0, 0.16), 0 0.1px 0.3px 0 rgba(0, 0, 0, 0.12);
+}
+
+.equis, .equis2 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    margin-top: -1px;
+    color: #F0AA70;
+    font-size: 22px;
+    font-weight: bold;
+    user-select: none;
+}
+
+.equis2{
+    top: 5%;
+}
+
+.equis.active, .equis2.active {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.puntosHorizontales {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.puntosVerticales ul, .puntosHorizontales ul{
+    list-style: none;
+    width: 150px;
+    padding: 10px;
+    border-radius: 10px;
+    background: #E5DCC3;
+    margin-right: 10%;
+    text-decoration: none;
+}
+
+.nombreUsuarioPost img{
+    width: 30px;
+    height: 30px;
+    margin: 0 10px;
+    align-items: center;
+    cursor: pointer;
+}
+
+.contenidoCompartido{
+    width: auto;
+}
+
+.contenidoCompartido img{
+    width: 100%;
+}
+
+.botonesReaccion{
+    background-color: #E5DCC3;
+    display: flex;
+    bottom: 100%;
+    border-radius: 0 0 10px 10px;
+    padding: 2%;
+}
+
+.botonesReaccion img{
+    width: 30px;
+    height: 30px;
+    margin: 1%;
+    cursor: pointer;
+}
+
+.icon img{
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+}
+
+.desplegable li a, .desplegable2 li a{
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    color: #844124;
+    font-weight: 600;
+}
+
+.desplegable li a img, .desplegable2 li a img{
+    margin-right: 5px;
+}
+
+.desplegable, .desplegable2{
+    position: absolute;
+    right: 0;
+    top: 2em;
+    transition: all 0.25s ease-out;
+    transform: scale(0);
+    transform-origin: 100% 0;
+}
+
+.desplegable.active, .desplegable2.active {
+    transform: scale(1);
+    transition: all 0.25s cubic-bezier(.5,1.8,.9,.8);
+}
+
+.contenedorCategorias a:hover{
     background-color: #E3CF98;
 }
 
-.categoriaUnica img{
-   align-items: center;
-   padding: 2px;
-   width: 40px;
-   height: 40px;
-   margin-right: 5% ;
-   cursor: pointer;
-}
-
-.categoriaUnica p{
-    justify-content: left;
-    cursor: pointer;
+.contenedorCategorias a:active{
+    background-color: #E3CF98;
 }
 
 /* ---------------características de la sección de post-----------*/
@@ -667,14 +586,6 @@ footer{
     font-weight: bold;
 }
 
-.nombreUsuarioPost img{
-    width: 30px;
-    height: 30px;
-    margin: 0 10px;
-    align-items: center;
-    cursor: pointer;
-}
-
 .descripcionUsuarioPost{
     color: #515151;
     font-size: 15px;
@@ -688,28 +599,7 @@ footer{
     justify-content: center;
 }
 
-.contenidoCompartido{
-    width: auto;
-}
 
-.contenidoCompartido img{
-    width: 100%;
-}
-
-.botonesReaccion{
-    background-color: #E5DCC3;
-    display: flex;
-    bottom: 100%;
-    border-radius: 0 0 10px 10px;
-    padding: 2%;
-}
-
-.botonesReaccion img{
-    width: 30px;
-    height: 30px;
-    margin: 1%;
-    cursor: pointer;
-}
 
 /*--------------------barraNavegacionInferior------------------*/
 .barraNavegacionInferior{
@@ -744,12 +634,17 @@ footer{
     display: flex;
 }
 
-.icon img{
-    width: 50px;
-    height: 50px;
-    cursor: pointer;
+/*----------------------------------------------------MEDIA QUERIES---------------------------------------------*/
+/*---------------responsive de la primera vista-----------------*/
+@media (max-width: 1024px){
+    .seccionIngreso{
+        height: auto;
+    }
+    .seccionIngreso i{
+        font-size: 30px;
+    }
 }
-/*-------------------media query--------------------------------*/
+
 @media screen and (max-width:860px){
     .item3{
         padding-bottom: 60px;
@@ -771,13 +666,29 @@ footer{
     }
 }
 
-@media screen and (max-width:785px){
-    .estadoUsuario{
-        font-size: 13px;
+@media (max-width: 768px){
+    .cajaInterna1{
+        width: 40%;
+        padding: 2%;
     }
-}
-
-@media screen and (max-width:768px){
+    .cajaInterna2{
+        width: 60%;
+    }
+    .slogan{
+        font-size: 25px;
+    }
+    #huellaLogo{
+        width: 60%;
+    } 
+    .seccionIngreso{
+        width: 70%;
+    }
+    .seccionIngreso i{
+        font-size: 36px;
+    }
+    .iniciarSesion{
+        width: 25%;
+    }
     .enlacePerfil,.secUsuario, .secCategorias{
         display: none;
     }
@@ -797,4 +708,57 @@ footer{
         display: block;
     }
 }
- 
+
+@media (max-width: 640px){
+    .slogan{
+        font-size: 21px;
+    }
+    .seccionIngreso i{
+        font-size: 30px;
+    }
+} 
+
+@media (max-width: 425px){ 
+    #huellaLogo{
+        width: 35%;
+    } 
+    .cajaInterna1, .cajaInterna2{
+        width: 100%;
+        height: auto;
+    }
+    .slogan{
+        width: 90%;
+        font-size: 20px;
+        margin: 0;
+    }
+    .seccionIngreso{
+        width: 65%;
+        margin: 2%;
+    }
+    .seccionIngreso i{
+        font-size: 25px;
+    }
+    .iniciarSesion{
+        margin: 2%;
+    }
+    .logosInicio{
+        margin: 0;
+    }
+    .datosIngreso{
+        font-size: 16px;
+    }
+    /* .equis2 {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-70%, -100%) scale(0);
+        margin-top: -1px;
+        color: #F0AA70;
+        font-size: 22px;
+        font-weight: bold;
+        user-select: none;
+    }
+    .equis2.active {
+        transform: translate(-50%, -50%) scale(1);
+    } */
+}

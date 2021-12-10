@@ -57,7 +57,7 @@ export const seccionMuro2 = () => {
                         <figure class="puntos middle2"></figure>
                         <p class="equis2">x</p>
                         <figure class="puntos"></figure>
-                        <ul class="desplegable2" id="menuListaPost">
+                        <ul class="desplegable2">
                             <li><a id="editar"><img src="imagenes/edit.png"><span>Editar</span></a></li>
                             <li><a id="eliminar"><img src="imagenes/delete.png"><span>Eliminar</span></a></li>
                         </ul>

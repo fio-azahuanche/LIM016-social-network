@@ -12,12 +12,12 @@ export const formRegistros = () => {
 
       <div class="seccionIngreso">
         <input type="text" id="usuarioRegistro" class="datosIngreso" placeholder="Nombre de usuario" required>
-        <img src="imagenes/user.png">
+        <i class="ph-user"></i>
       </div>
 
       <div class="seccionIngreso">
         <input type="text" id="correoRegistro" class="datosIngreso" placeholder="Correo electrónico" required>
-        <img src="imagenes/envelope.png">
+        <i class="ph-envelope"></i>
       </div>
       
       <div class="seccionIngreso">
