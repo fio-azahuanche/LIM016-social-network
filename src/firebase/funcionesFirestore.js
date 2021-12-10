@@ -2,9 +2,8 @@ import {
   getFirestore,
   collection,
   getDocs,
-  addDoc,
   doc,
-  setDoc
+  setDoc,
 // eslint-disable-next-line import/no-unresolved
 } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js';
 import { app } from './config.js';
@@ -17,34 +16,23 @@ const colRef = collection(db, 'usuarios');
 getDocs(colRef)
   .then((snapshot) => {
     const usuarios = [];
-    snapshot.docs.forEach((doc) => {
-      usuarios.push({ ...doc.data(), id: doc.id });
+    snapshot.docs.forEach((docs) => {
+      usuarios.push({ ...docs.data(), id: docs.id });
     });
+    // eslint-disable-next-line no-console
     console.log(usuarios);
   });
 // agregar usuario a Firestore
 
-export const agregarUsuario = async (nuevoUsuario, nuevoCorreo, nuevaContraseña) => {
-  const docRef = await addDoc(colRef, {
-    username: nuevoUsuario,
-    correo: nuevoCorreo,
-    clave: nuevaContraseña,
-  }).then(() => {
-    alert ('agregado exito')
-  }).catch((error)=>{
-    console.log('ups salio algo mal');
-  })
-};
-
 export const agregarUsuarioConId = async (nuevoUsuario, nuevoCorreo, nuevaContraseña, id) => {
-  const colRefId= doc(db, 'usuarios',id)
+  const colRefId = doc(db, 'usuarios', id);
+  // eslint-disable-next-line no-unused-vars
   const docRef = await setDoc(colRefId, {
     username: nuevoUsuario,
     correo: nuevoCorreo,
     clave: nuevaContraseña,
   }).then(() => {
-    alert ('agregado exito')
-  }).catch((error)=>{
-    console.log('ups salio algo mal');
-  })
+    // eslint-disable-next-line no-alert
+    alert('agregado exito');
+  });
 };

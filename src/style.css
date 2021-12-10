@@ -74,11 +74,7 @@ form{
 
 }
 
-.ph-eye-closed{
-    cursor: pointer;
-}
-
-.ph-eye{
+.ph-eye-closed, .ph-eye{
     cursor: pointer;
 }
 
@@ -99,24 +95,18 @@ form{
     align-items: center;
 }
 
-.chequearRegistro{
-    border: 2px solid #F0AA70;
-}
-
 .seccionCheckbox label{
     font-size: 13px;
     margin-left: 5px;
     text-align: center;
 }
 
-.seccionIngreso img{
+.seccionIngreso img, .seccionIngreso i{
     width: 12%;
     margin: 1% 4%;
 }
 
 .seccionIngreso i{
-    width: 12%;
-    margin: 1% 4%;
     font-size: 39px;
     font-weight: bold;
     color: #F0AA70;
@@ -257,6 +247,7 @@ form{
     justify-content: center; 
     animation: slideUpLarge 5s;
 }
+
 .modalError{
     background-color: #EA4335;
 }
@@ -289,18 +280,10 @@ form{
         transform: translateX(0%);
     }
 }
-  
-
-/*----------------------------características de la sección del muro-----------------------------*/
-/* .artMuro{
-    height: 100vh; 
-}
- */
 
 /* ------------características del header-----------------*/
 header{
     display: flex;
-    width: 100%; 
     justify-content: space-between;
     height: 10vh;
     background-color: #F0AA70;
@@ -324,11 +307,92 @@ header{
     font-weight: bold;
 }
 
-#cerrar-sesion{
+/*--MENU PUNTOS VERTICALES(KEBAB MENU) & HORIZONTALES--*/
+.puntosVerticales, .puntosHorizontales {
     cursor: pointer;
-    width: 33px;
-    height: 33px;
+    position: relative;
+    display: inline-block;
+    box-sizing: border-box;
+    padding: 0 16px;
 }
+.puntosHorizontales {
+    display: flex;
+    flex-wrap: wrap;
+    width: 25%;
+}
+figure, .puntos {
+    width: 6px;
+    height: 6px;
+    border-radius: 5px;
+    background: #844124;
+}
+figure{
+    margin: 3px 0;
+}
+.puntos{
+    margin: 0 2px;
+}
+.middle, .middle2 {
+    transform: scale(1);
+    position: relative;
+    box-shadow: 0 0.1px 0.1px 0 rgba(0, 0, 0, 0.16), 0 0.1px 0.3px 0 rgba(0, 0, 0, 0.12);
+    -webkit-filter: blur(.1px);
+    filter: blur(.1px);
+}
+  
+.middle.active, .middle2.active {
+    transform: scale(4.5);
+    box-shadow: 0 0.1px 0.1px 0 rgba(0, 0, 0, 0.16), 0 0.1px 0.3px 0 rgba(0, 0, 0, 0.12);
+}
+.equis, .equis2 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    margin-top: -1px;
+    color: #F0AA70;
+    font-size: 22px;
+    font-weight: bold;
+    user-select: none;
+}
+.equis2{
+    top: 5%;
+}
+.equis.active, .equis2.active {
+    transform: translate(-50%, -50%) scale(1);
+}
+#menuLista, #menuListaPost{
+    list-style: none;
+    width: 150px;
+    padding: 10px;
+    border-radius: 10px;
+    background: #E5DCC3;
+    margin-right: 10%;
+    text-decoration: none;
+}
+#menuLista a, #menuListaPost a{
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    color: #844124;
+    font-weight: 600;
+}
+#menuLista img, #menuLista img{
+    margin-right: 5px;
+}
+.desplegable, .desplegable2{
+    position: absolute;
+    right: 0;
+    top: 2em;
+    transition: all 0.25s ease-out;
+    transform: scale(0);
+    transform-origin: 100% 0;
+}
+.desplegable.active, .desplegable2.active {
+    transform: scale(1);
+    transition: all 0.25s cubic-bezier(.5,1.8,.9,.8);
+}
+/*-------------------------*/
 
 .imagenUsuario{
     width: 60px;
@@ -336,8 +400,7 @@ header{
 }
 
 .titulo-header{
-    width: 35%;
-    height: 60px;
+    height: 70%;
 }
 
 /*------------------------------------------------------*/
@@ -407,6 +470,7 @@ footer{
     color: white;
     overflow: hidden;
     font-weight: 600;
+    font-size: 14px;
     justify-content: center;
     width: 70%;
     min-width: 85px;
@@ -415,7 +479,6 @@ footer{
     align-items: center;
     padding: 3px;
     margin-top: 15px;
-    right: 0%;
 }
 
 .botonAgregar img{
@@ -476,6 +539,10 @@ footer{
     display: flex;
     padding: 1% 0;
     align-items: center;
+}
+
+.contenedorCategorias a:active{
+    background-color: #E3CF98;
 }
 
 .categoriaUnica img{
@@ -540,6 +607,20 @@ footer{
     cursor: pointer;
 }
 
+.tableroCompartir select{
+    background-color: #F0AA70;
+    border-radius: 10px;
+    border-color:transparent;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.35);
+    color: white;
+    width: 25%;
+    font-weight: 600;
+    min-width: 95px;
+    height: 4vh;
+    cursor: pointer;
+    outline: none;
+}
+
 .container-post{
     width: auto;
     height: auto;
@@ -555,6 +636,8 @@ footer{
     display: flex;
     padding: 0 3%;
     height: auto;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .imgUsuarioPost{
@@ -597,14 +680,6 @@ footer{
     font-size: 15px;
 }
 
-.botonGlobo{
-    display: flex;
-    cursor: pointer;
-    width: 15%;
-    align-items: flex-start;
-    justify-content: flex-end;
-}
-
 .estadoCompartido{
     display: flex;
     width: auto;
@@ -636,3 +711,90 @@ footer{
     cursor: pointer;
 }
 
+/*--------------------barraNavegacionInferior------------------*/
+.barraNavegacionInferior{
+    display: none;
+    z-index: 50;
+    position:fixed;
+    bottom: 0;
+    background-color: #F2EEE3;
+    /* border: solid 1px #844124; */
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.35);
+    border-radius: 10px 10px 0 0;
+    width: 100%;    
+    height: 60px;
+    align-items: center;
+}
+
+.barraNavegacionInferior ul{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.barraNavegacionInferior ul li{
+    list-style: none;
+    height: 100%;
+    align-items: center;
+}
+
+.list{
+    display: flex;
+}
+
+.icon img{
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+}
+/*-------------------media query--------------------------------*/
+@media screen and (max-width:860px){
+    .item3{
+        padding-bottom: 60px;
+    }
+    .botonAgregar{
+        font-size: 12px;
+        font-weight: 600;
+    }
+    .botonCompartir{
+        font-size: 12px;
+        font-weight: 600;
+    }
+   .tableroCompartir select{
+        font-size: 12px;
+        font-weight: 600;
+    }
+    .estadoUsuario{
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width:785px){
+    .estadoUsuario{
+        font-size: 13px;
+    }
+}
+
+@media screen and (max-width:768px){
+    .enlacePerfil,.secUsuario, .secCategorias{
+        display: none;
+    }
+    .enlacePerfil{
+        display: none;
+    }
+    .item2 {
+        grid-column: 1/-1;
+    }
+    .item3 {
+        grid-column: 1/-1;
+    }
+    .tableroCompartir, .tableroPost{
+        margin: 3vh 7.5%;       
+    }
+    .barraNavegacionInferior{
+        display: block;
+    }
+}
+ 
