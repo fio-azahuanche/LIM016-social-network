@@ -74,11 +74,7 @@ form{
 
 }
 
-.ph-eye-closed{
-    cursor: pointer;
-}
-
-.ph-eye{
+.ph-eye-closed, .ph-eye{
     cursor: pointer;
 }
 
@@ -99,24 +95,18 @@ form{
     align-items: center;
 }
 
-.chequearRegistro{
-    border: 2px solid #F0AA70;
-}
-
 .seccionCheckbox label{
     font-size: 13px;
     margin-left: 5px;
     text-align: center;
 }
 
-.seccionIngreso img{
+.seccionIngreso img, .seccionIngreso i{
     width: 12%;
     margin: 1% 4%;
 }
 
 .seccionIngreso i{
-    width: 12%;
-    margin: 1% 4%;
     font-size: 39px;
     font-weight: bold;
     color: #F0AA70;
@@ -290,18 +280,10 @@ form{
         transform: translateX(0%);
     }
 }
-  
-
-/*----------------------------características de la sección del muro-----------------------------*/
-/* .artMuro{
-    height: 100vh; 
-}
- */
 
 /* ------------características del header-----------------*/
 header{
     display: flex;
-    width: 100%; 
     justify-content: space-between;
     height: 10vh;
     background-color: #F0AA70;
@@ -325,11 +307,92 @@ header{
     font-weight: bold;
 }
 
-#cerrar-sesion{
+/*--MENU PUNTOS VERTICALES(KEBAB MENU) & HORIZONTALES--*/
+.puntosVerticales, .puntosHorizontales {
     cursor: pointer;
-    width: 28px;
-    height: 28px;
+    position: relative;
+    display: inline-block;
+    box-sizing: border-box;
+    padding: 0 16px;
 }
+.puntosHorizontales {
+    display: flex;
+    flex-wrap: wrap;
+    width: 25%;
+}
+figure, .puntos {
+    width: 6px;
+    height: 6px;
+    border-radius: 5px;
+    background: #844124;
+}
+figure{
+    margin: 3px 0;
+}
+.puntos{
+    margin: 0 2px;
+}
+.middle, .middle2 {
+    transform: scale(1);
+    position: relative;
+    box-shadow: 0 0.1px 0.1px 0 rgba(0, 0, 0, 0.16), 0 0.1px 0.3px 0 rgba(0, 0, 0, 0.12);
+    -webkit-filter: blur(.1px);
+    filter: blur(.1px);
+}
+  
+.middle.active, .middle2.active {
+    transform: scale(4.5);
+    box-shadow: 0 0.1px 0.1px 0 rgba(0, 0, 0, 0.16), 0 0.1px 0.3px 0 rgba(0, 0, 0, 0.12);
+}
+.equis, .equis2 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    margin-top: -1px;
+    color: #F0AA70;
+    font-size: 22px;
+    font-weight: bold;
+    user-select: none;
+}
+.equis2{
+    top: 5%;
+}
+.equis.active, .equis2.active {
+    transform: translate(-50%, -50%) scale(1);
+}
+#menuLista, #menuListaPost{
+    list-style: none;
+    width: 150px;
+    padding: 10px;
+    border-radius: 10px;
+    background: #E5DCC3;
+    margin-right: 10%;
+    text-decoration: none;
+}
+#menuLista a, #menuListaPost a{
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    color: #844124;
+    font-weight: 600;
+}
+#menuLista img, #menuLista img{
+    margin-right: 5px;
+}
+.desplegable, .desplegable2{
+    position: absolute;
+    right: 0;
+    top: 2em;
+    transition: all 0.25s ease-out;
+    transform: scale(0);
+    transform-origin: 100% 0;
+}
+.desplegable.active, .desplegable2.active {
+    transform: scale(1);
+    transition: all 0.25s cubic-bezier(.5,1.8,.9,.8);
+}
+/*-------------------------*/
 
 .imagenUsuario{
     width: 60px;
@@ -337,8 +400,7 @@ header{
 }
 
 .titulo-header{
-    width: 25%;
-    height: 50%;
+    height: 70%;
 }
 
 /*------------------------------------------------------*/
@@ -556,6 +618,7 @@ footer{
     min-width: 95px;
     height: 4vh;
     cursor: pointer;
+    outline: none;
 }
 
 .container-post{
@@ -573,6 +636,8 @@ footer{
     display: flex;
     padding: 0 3%;
     height: auto;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .imgUsuarioPost{
@@ -613,14 +678,6 @@ footer{
 .descripcionUsuarioPost{
     color: #515151;
     font-size: 15px;
-}
-
-.botonPuntosHorizontales{
-    display: flex;
-    cursor: pointer;
-    width: 15%;
-    align-items: flex-start;
-    justify-content: flex-end;
 }
 
 .estadoCompartido{
@@ -721,25 +778,14 @@ footer{
 }
 
 @media screen and (max-width:768px){
-    .titulo-header{
-        width: 25%;
-        height: 40%;
-    }
-    #cerrar-sesion{
-        width: 28px;
-        height: 28px;
+    .enlacePerfil,.secUsuario, .secCategorias{
+        display: none;
     }
     .enlacePerfil{
         display: none;
     }
     .item2 {
         grid-column: 1/-1;
-    }
-    .secUsuario{
-        display: none;
-    }
-    .secCategorias{
-        display: none;
     }
     .item3 {
         grid-column: 1/-1;

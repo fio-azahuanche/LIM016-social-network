@@ -19,6 +19,7 @@ getDocs(colRef)
     snapshot.docs.forEach((docs) => {
       usuarios.push({ ...docs.data(), id: docs.id });
     });
+    // eslint-disable-next-line no-console
     console.log(usuarios);
   });
 // agregar usuario a Firestore
