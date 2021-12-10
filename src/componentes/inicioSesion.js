@@ -52,8 +52,6 @@ export const inicioSesion = (selectorForm, containerError) => {
     inicioSesionUsuario(correoIngreso, claveIngreso)
       .then((userCredential) => {
         const user = userCredential.user;
-        console.log(userCredential);
-
         if (user.emailVerified === true) {
           window.location.hash = '#/artmuro';
         } else {
@@ -90,24 +88,25 @@ export const inicioSesion = (selectorForm, containerError) => {
     googleInicioSesion(proveedor)
       // eslint-disable-next-line no-unused-vars
       .then((result) => {
-        // console.log(result);
+        console.log(result);
         window.location.hash = '#/artmuro';
         // This gives you a Google Access Token. You can use it to access the Google API.
         // const credential = GoogleAuthProvider.credentialFromResult(result);
         // const token = credential.accessToken;
-        const user = result.user;
-        console.log(user);
+        //const user = result.user;
+        //console.log(user);
       })
       .catch((error) => {
-        // Handle Errors here.
-        const errorCode = error.code;
-        console.log(errorCode);
-        const errorMessage = error.message;
-        console.log((errorMessage));
-        // The email of the user's account used.
-        const email = error.email;
-        console.log(email);
-        // The AuthCredential type that was used.
+        
+        //const errorCode = error.code;
+        //console.log(errorCode);
+
+        //const errorMessage = error.message;
+        //console.log((errorMessage));
+        
+        //const email = error.email;
+        //console.log(email);
+        
         const credential = GoogleAuthProvider.credentialFromError(error);
         console.log(credential);
       });
@@ -119,13 +118,13 @@ export const inicioSesion = (selectorForm, containerError) => {
     facebookInicioSesion(proveedor)
       // eslint-disable-next-line no-unused-vars
       .then((result) => {
-        console.log(result);
+        //console.log(result);
         window.location.hash = '#/artmuro';
         // This gives you a Facebook Access Token. You can use it to access the Facebook API.
         // const credential = FacebookAuthProvider.credentialFromResult(result);
         // const token = credential.accessToken;
-        const user = result.user;
-        console.log(user);
+        //const user = result.user;
+        //console.log(user);
       });
   });
 };
