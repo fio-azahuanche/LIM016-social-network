@@ -52,7 +52,16 @@ export const seccionMuro2 = () => {
                         <div class="nombreUsuarioPost"><p>María Casas</p><img src="imagenes/bxs-user-plus 2.png"></div>
                         <div class="descripcionUsuarioPost"><p>catlover</p></div>                                  
                     </div>
-                    <div class="botonPuntosHorizontales"><img src="imagenes/bx-borra-editar.png"></div>     
+                    <div class="puntosHorizontales">
+                        <figure class="puntos"></figure>
+                        <figure class="puntos middle2"></figure>
+                        <p class="equis2">x</p>
+                        <figure class="puntos"></figure>
+                        <ul class="desplegable2" id="menuListaPost">
+                            <li><a id="editar"><img src="imagenes/edit.png"><span>Editar</span></a></li>
+                            <li><a id="eliminar"><img src="imagenes/delete.png"><span>Eliminar</span></a></li>
+                        </ul>
+                    </div>    
                 </div>
                 <div class="estadoCompartido">
                     <div class="contenidoCompartido">
@@ -92,4 +101,17 @@ export const seccionMuro2 = () => {
         </div>  
     `;
   return segundaSeccion;
+};
+
+export const menuPuntosHorizontales = () => {
+  const puntosHorizontales = document.querySelector('.puntosHorizontales');
+  const middle2 = document.querySelector('.middle2');
+  const equis2 = document.querySelector('.equis2');
+  const desplegable2 = document.querySelector('.desplegable2');
+
+  puntosHorizontales.addEventListener('click', () => {
+    middle2.classList.toggle('active');
+    equis2.classList.toggle('active');
+    desplegable2.classList.toggle('active');
+  });
 };
