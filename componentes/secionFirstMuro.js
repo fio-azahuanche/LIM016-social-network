@@ -19,29 +19,33 @@ export const seccionMuro1 = () => {
         </section>         
         <section class="secCategorias">
             <h1>Explorar</h1>            
-            <div>         
-                <div class="categoriaUnica">
+            <div class= "contenedorCategorias">         
+                <a class="categoriaUnica">
                     <img src="imagenes/refugioIcono.png" >
+                    <p>Principal</p>
+                </a>
+                <a class="categoriaUnica">
+                    <img src="imagenes/iconoRefugioMascotas.png" >
                     <p>Refugio</p>
-                </div>
-                <div class="categoriaUnica">
+                <a>
+                <a class="categoriaUnica">
                     <img src="imagenes/reportarIcono.png" >
                     <p>Mascotas perdidas</p>
-                </div>
-                <div class="categoriaUnica">
+                </a>
+                <a class="categoriaUnica">
                     <img src="imagenes/adoptarIcono.png" >
                     <p>Adoptar</p>
-                </div>
-                <div class="categoriaUnica">
+                </a>
+                <a class="categoriaUnica">
                     <img src="imagenes/localizacionIcono.png" >
                     <p>Localización</p>
-                </div>
-                <div class="categoriaUnica">
+                </a>
+                <a class="categoriaUnica">
                     <img src="imagenes/medicinasIcono.png" >
-                    <p>Medicinas</p>
-                </div>           
+                    <p>Donaciones</p>
+                </a>           
             </div> 
-        </section>
+        </section>       
     `;
   return primeraSeccion;
 };
