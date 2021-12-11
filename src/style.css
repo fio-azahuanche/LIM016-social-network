@@ -300,12 +300,21 @@ header{
     cursor: pointer;
 }
 
-.enlacePerfil p{
+/* .enlacePerfil p{
+    color: #844124;
+    font-size: 25px;
+    text-align: center;
+    font-weight: bold;
+} */
+
+.enlacePerfil .nombreUsuario a{
+    text-decoration: none;
     color: #844124;
     font-size: 25px;
     text-align: center;
     font-weight: bold;
 }
+
 
 /*--MENU PUNTOS VERTICALES(KEBAB MENU) & HORIZONTALES--*/
 .puntosVerticales, .puntosHorizontales {
@@ -318,7 +327,9 @@ header{
 .puntosHorizontales {
     display: flex;
     flex-wrap: wrap;
+    justify-content: flex-end;
     width: 25%;
+    top: 0;
 }
 figure, .puntos {
     width: 6px;
@@ -341,7 +352,7 @@ figure{
 }
   
 .middle.active, .middle2.active {
-    transform: scale(4.5);
+    /* transform: scale(4.5); */
     box-shadow: 0 0.1px 0.1px 0 rgba(0, 0, 0, 0.16), 0 0.1px 0.3px 0 rgba(0, 0, 0, 0.12);
 }
 .equis, .equis2 {
@@ -355,8 +366,9 @@ figure{
     font-weight: bold;
     user-select: none;
 }
-.equis2{
-    top: 5%;
+.equis2 p{
+    width: 5px;
+    height: 5px;
 }
 .equis.active, .equis2.active {
     transform: translate(-50%, -50%) scale(1);
@@ -391,6 +403,16 @@ figure{
 .desplegable.active, .desplegable2.active {
     transform: scale(1);
     transition: all 0.25s cubic-bezier(.5,1.8,.9,.8);
+}
+
+#tema img{
+    width: 24px;
+    height: 22px;
+}
+
+#cerrar-sesion img{
+    width: 23px;
+    height: 21px;
 }
 /*-------------------------*/
 
@@ -797,4 +819,104 @@ footer{
         display: block;
     }
 }
- 
+
+/*--------------------características de la sección perfil de usuario----------------------*/
+.cuerpoPerfil{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.contenedor-perfil{
+    padding: 3%;
+}
+.fondo1{
+    display: flex;
+    overflow: hidden;
+    width: 85%;
+    height: 60vh;
+    max-height: 500px;
+    background-color: #F2E0AA;
+    border-radius: 25px 25px 20px 20px;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.35);
+}
+.fondoImagenPerfil{
+    width: 100%;
+    height: 40vh;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.35);
+}
+.fondoImagenPerfil img{
+    width: 100%;
+    height: 40vh;
+}
+.fondo2{
+    width: 100%;
+    height: 20vh;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    padding: 2% 7%;
+    
+}
+.imgPerfilUsuario{
+    display: flex;
+    align-items: center;
+    align-content: center;
+    width: 20%;
+    height: auto;
+}
+.imgPerfilUsuario img{
+    border-radius: 50%;
+    width: 90%;
+    height: 90%;
+}
+.contenidoTextPerfil{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    width: 50%;
+    height: auto;
+}
+.botonesDelPerfil{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30%;
+    height: auto;
+}
+.btnInicio a{
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+    font-size: 14px;
+}
+.botonesDelPerfil .btnInicio, .botonesDelPerfil .botonAgregar{
+    display: flex;
+    background-color: #F0AA70;
+    border-radius: 10px;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.35);
+    border-color:transparent;
+    overflow: hidden;
+    justify-content: center;
+    width: 70%;
+    min-width: 102px;
+    max-width: 160px;
+    height: 4vh;
+    cursor: pointer;
+    align-items: center;
+    padding: 3px;
+    margin-top: 15px;
+}
+.botonesDelPerfil .botonAgregar p{
+    display: inline-block;
+}
+.seccPostUsuario{
+    width: 70%;
+}
+.seccPostUsuario .tableroPost{
+    margin: 3vh 0;
+}
+/*--------------------características de la sección Editar - perfil de usuario----------------------*/
+

@@ -1,7 +1,7 @@
 import { componentes } from '../lib/index.js';
 import { formRegistros, registroCorreo } from '../componentes/registro.js';
 import { formInicioSesion, inicioSesion } from '../componentes/inicioSesion.js';
-import { muro } from '../componentes/muro.js';
+import { muro, muroPerfil } from '../componentes/muro.js';
 import { cerrarSesion, menuPuntosVerticales } from '../componentes/headerMuro.js';
 import { userState } from '../componentes/validaciones.js';
 import { menuPuntosHorizontales } from '../componentes/seccionSecMuro.js';
@@ -23,6 +23,14 @@ export const vistasPantalla = () => {
     case '#/artmuro':
       userState();
       main.appendChild(muro());
+      cerrarSesion();
+      menuPuntosVerticales();
+      menuPuntosHorizontales();
+      break;
+
+    case '#/artperfil':
+      userState();
+      main.appendChild(muroPerfil());
       cerrarSesion();
       menuPuntosVerticales();
       menuPuntosHorizontales();
