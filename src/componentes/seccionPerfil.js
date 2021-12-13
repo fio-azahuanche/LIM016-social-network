@@ -1,8 +1,33 @@
-
 export const contenidoPerfil = () => {
     const perfilSeccion = document.createElement('section');
     perfilSeccion.classList.add('cuerpoPerfil');
     perfilSeccion.innerHTML = `        
+        <nav class= "barraNavegacionInferior">         
+            <ul>
+                <li class="list">
+                    <a>
+                        <span class="icon">
+                            <img src="imagenes/users-three.png">
+                        </span>                        
+                    </a>
+                </li>
+                <li class="list">
+                    <a href="#/artmuro">
+                        <span class="icon">
+                            <img src="imagenes/house-fill.png">
+                        </span>                        
+                    </a>
+                </li>
+                <li class="list">
+                    <a>
+                        <span class="icon">
+                            <img src="imagenes/imgUsuario.png">
+                        </span>                        
+                    </a>
+                </li>
+            </ul>              
+        </nav> 
+    
         <div class="fondo1">
             <div class="fondoImagenPerfil">
                 <img src="imagenes/imgDelUsuario.png">
@@ -19,13 +44,11 @@ export const contenidoPerfil = () => {
                 </div>
 
                 <div class="botonesDelPerfil">
-                    <button class="botonAgregar"><img src="imagenes/pencil.png"><p>Editar Prefil</p></button>
+                    <button class="botonAgregar"><img src="imagenes/pencil.png"><a href='#/arteditarperfil'>Editar Perfil</a></button>
                     <button class="btnInicio"><a href="#/artmuro">Volver a Inicio</a></button>
                 </div>
             </div>        
-        </div>
-
-       
+        </div>       
 
         <div class="seccPostUsuario">
             <div class="tableroPost">            
@@ -97,20 +120,8 @@ export const contenidoPerfil = () => {
                     <img src="imagenes/compartirIcono.png">
                 </div>
             </div>
-
         </div>`
     ;
     return perfilSeccion;
 };
-      
 
-export const menuPuntosHorizontales = () => {
-    const puntosHorizontales = document.querySelector('.puntosHorizontales');
-    const middle2 = document.querySelector('.middle2');
-    const desplegable2 = document.querySelector('.desplegable2');
-    
-    puntosHorizontales.addEventListener('click', () => {
-        middle2.classList.toggle('active');
-        desplegable2.classList.toggle('active');
-    });
-};

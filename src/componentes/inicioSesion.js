@@ -8,6 +8,7 @@ import {
 } from '../firebase/funcionesAuth.js';
 import { modalInicioSesion } from './errores.js';
 import { mostrarYocultarClave } from './home.js';
+import { getCurrentUser } from '../firebase/funcionesFirestore.js';
 
 // Creacion de formulario de inicio de Sesión de forma dinámica
 export const formInicioSesion = () => {
@@ -16,7 +17,7 @@ export const formInicioSesion = () => {
             <form id="formIngreso">
                 <div class="seccionIngreso">
                     <input type="text" id="correoIngreso" class="datosIngreso" placeholder="Correo electrónico" required>
-                        <img src="imagenes/envelope.png">
+                    <img src="imagenes/envelope.png">
                 </div>
                 
                 <div class="seccionIngreso">
@@ -53,6 +54,14 @@ export const inicioSesion = (selectorForm, containerError) => {
       .then((userCredential) => {
         const user = userCredential.user;
         if (user.emailVerified === true) {
+          getCurrentUser(user.uid)
+            .then( (snapshot) => {
+              const data = snapshot.data()
+              console.log(data);
+              data.id = user.uid
+              sessionStorage.setItem("userSession", JSON.stringify(data));
+            });
+          //sessionStorage.setItem("userSession", userdata);
           window.location.hash = '#/artmuro';
         } else {
           cierreActividadUsuario();
@@ -77,6 +86,8 @@ export const inicioSesion = (selectorForm, containerError) => {
             modalUsuarioInvalido.style.display = 'none';
           }, 5000);
         } else {
+          console.log(error);
+          console.log(error.message);
           ubicacionModal.textContent = 'Ocurrió un error';
         }
       });

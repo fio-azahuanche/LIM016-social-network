@@ -2,6 +2,7 @@ import { contenidoHeader } from './headerMuro.js';
 import { seccionMuro1 } from './secionFirstMuro.js';
 import { seccionMuro2 } from './seccionSecMuro.js';
 import { contenidoPerfil } from './seccionPerfil.js';
+import { contenidoEditarPerfil } from './seccionEditarPerfil.js';
 
 export const muro = () => {
   const articleMuro = document.createElement('article');
@@ -39,4 +40,23 @@ export const muroPerfil = () => {
   articleMuroPerfil.appendChild(divSeccionPerfilusuario);
 
   return articleMuroPerfil;
+};
+
+export const muroEditarPerfil = () => {
+  const articleMuroEditarPerfil = document.createElement('article');
+  articleMuroEditarPerfil.classList.add('artEditarPerfil');
+  articleMuroEditarPerfil.setAttribute('id', 'artEditarPerfil');
+
+  const headerMuro = document.createElement('header');
+  headerMuro.classList.add('item1');
+  headerMuro.innerHTML = contenidoHeader();
+
+  const divSeccionEditarPerfilusuario = document.createElement('div');
+  divSeccionEditarPerfilusuario.classList.add('contenedor-editarPerfil');
+  divSeccionEditarPerfilusuario.appendChild(contenidoEditarPerfil());  
+  
+  articleMuroEditarPerfil.appendChild(headerMuro);
+  articleMuroEditarPerfil.appendChild(divSeccionEditarPerfilusuario);
+
+  return articleMuroEditarPerfil;
 };

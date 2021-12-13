@@ -19,7 +19,7 @@ export const seccionMuro2 = () => {
                     </a>
                 </li>
                 <li class="list">
-                    <a>
+                    <a href="#/artperfil">
                         <span class="icon">
                             <img src="imagenes/imgUsuario.png">
                         </span>                        
@@ -112,13 +112,13 @@ export const seccionMuro2 = () => {
 
 export const menuPuntosHorizontales = () => {
   const puntosHorizontales = document.querySelector('.puntosHorizontales');
-  const middle2 = document.querySelector('.middle2');
- /*  const equis2 = document.querySelector('.equis2'); */
+  console.log(puntosHorizontales);
+  const middle2 = document.querySelector('.middle2'); 
   const desplegable2 = document.querySelector('.desplegable2');
   
     puntosHorizontales.addEventListener('click', () => {
-        middle2.classList.toggle('active');
-        /* equis2.classList.toggle('active'); */
+        middle2.classList.toggle('active');        
         desplegable2.classList.toggle('active');
+        
     });
 };
