@@ -17,25 +17,25 @@ export const formInicioSesion = () => {
             <form id="formIngreso">
                 <div class="seccionIngreso">
                     <input type="text" id="correoIngreso" class="datosIngreso" placeholder="Correo electrónico" required>
-                    <img src="imagenes/envelope.png">
+                    <i class="ph-envelope"></i>
                 </div>
-                
+
                 <div class="seccionIngreso">
                     <input type="password" id="claveIngreso" class="datosIngreso" placeholder="Contraseña" required>
                     <i id="botonContraseña" class="ph-eye-closed"></i>
                 </div>
-                
+
                 <button type="submit" id="botonIngresar" class="iniciarSesion">Ingresar</button>
-                            
+
                 <p class="texto">O bien ingresa con</p>
-                
+
                 <div class="logosInicio">
                     <img id="imgFacebook" src="imagenes/FacebookOriginal.png">
                     <img id="imgGoogle" src="imagenes/GoogleOriginal.png">
                 </div>
-                
+
                 <p class="texto">¿No tienes una cuenta? <a id="registrate" href="#/registro"> Regístrate</a></p> 
-            </form> 
+            </form>
         </div>`;
   return formIngreso;
 };
@@ -43,6 +43,7 @@ export const formInicioSesion = () => {
 // Función que se encarga del inicio de Sesión por correo
 export const inicioSesion = (selectorForm, containerError) => {
   mostrarYocultarClave('botonContraseña', 'claveIngreso');
+  cierreActividadUsuario();
   const iniciarCon = document.getElementById(selectorForm);
   iniciarCon.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -53,6 +54,9 @@ export const inicioSesion = (selectorForm, containerError) => {
     inicioSesionUsuario(correoIngreso, claveIngreso)
       .then((userCredential) => {
         const user = userCredential.user;
+        // eslint-disable-next-line no-console
+        console.log(userCredential);
+
         if (user.emailVerified === true) {
           getCurrentUser(user.uid)
             .then( (snapshot) => {
@@ -64,7 +68,6 @@ export const inicioSesion = (selectorForm, containerError) => {
           //sessionStorage.setItem("userSession", userdata);
           window.location.hash = '#/artmuro';
         } else {
-          cierreActividadUsuario();
           ubicacionModal.innerHTML = modalInicioSesion.confirmar();
           setTimeout(() => {
             const modalConfirmar = document.getElementById('modalConfirmar');
@@ -104,21 +107,25 @@ export const inicioSesion = (selectorForm, containerError) => {
         // This gives you a Google Access Token. You can use it to access the Google API.
         // const credential = GoogleAuthProvider.credentialFromResult(result);
         // const token = credential.accessToken;
-        //const user = result.user;
-        //console.log(user);
+        const user = result.user;
+        // eslint-disable-next-line no-console
+        console.log(user);
       })
       .catch((error) => {
-        
-        //const errorCode = error.code;
-        //console.log(errorCode);
-
-        //const errorMessage = error.message;
-        //console.log((errorMessage));
-        
-        //const email = error.email;
-        //console.log(email);
-        
+        // Handle Errors here.
+        const errorCode = error.code;
+        // eslint-disable-next-line no-console
+        console.log(errorCode);
+        const errorMessage = error.message;
+        // eslint-disable-next-line no-console
+        console.log((errorMessage));
+        // The email of the user's account used.
+        const email = error.email;
+        // eslint-disable-next-line no-console
+        console.log(email);
+        // The AuthCredential type that was used.
         const credential = GoogleAuthProvider.credentialFromError(error);
+        // eslint-disable-next-line no-console
         console.log(credential);
       });
   });
@@ -129,13 +136,15 @@ export const inicioSesion = (selectorForm, containerError) => {
     facebookInicioSesion(proveedor)
       // eslint-disable-next-line no-unused-vars
       .then((result) => {
-        //console.log(result);
+        // eslint-disable-next-line no-console
+        console.log(result);
         window.location.hash = '#/artmuro';
         // This gives you a Facebook Access Token. You can use it to access the Facebook API.
         // const credential = FacebookAuthProvider.credentialFromResult(result);
         // const token = credential.accessToken;
-        //const user = result.user;
-        //console.log(user);
+        const user = result.user;
+        // eslint-disable-next-line no-console
+        console.log(user);
       });
   });
 };
