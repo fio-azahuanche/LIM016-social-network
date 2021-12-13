@@ -23,7 +23,7 @@ export const contenidoEditarPerfil = () => {
                 <li class="list">
                     <a href="#/artperfil">
                         <span class="icon">
-                            <img src="imagenes/imgUsuario.png">
+                            <img src="imagenes/ImgUsuario.png">
                         </span>                        
                     </a>
                 </li>
@@ -36,11 +36,11 @@ export const contenidoEditarPerfil = () => {
                 <div class="modalContent modalClose" id="modal">
                     <div class="cajaSuperior">
                         <div class="fondoImagenSecPerfil">
-                            <img src="imagenes/imgDelUsuario.png">
+                            <img src="imagenes/ImgDelUsuario.png">
                         </div>  
                         <div class="infActualDelUsuario" id="infActualDelUsuario">
                             <div class="imgPerfilUsuario">
-                                <img src="imagenes/imgUsuario.png">
+                                <img src="imagenes/ImgUsuario.png">
                             </div>
                     
                             <div class="contenidoTextPerfil">
@@ -51,7 +51,7 @@ export const contenidoEditarPerfil = () => {
                         </div>
                     </div>
 
-                    <div class="modalFormulario" id="mmodalFormulario">
+                    <div class="modalFormulario" id="modalFormulario">
                         <form id="formIngreso">
                             <div class="cajaImputDatos">
                                 <p class="textSeccActualizacion" id="">Nombre de Usuario:</p>
