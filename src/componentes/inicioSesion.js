@@ -1,11 +1,10 @@
-// eslint-disable-next-line import/no-unresolved
-import { GoogleAuthProvider, FacebookAuthProvider } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js';
 import {
   inicioSesionUsuario,
   googleInicioSesion,
   facebookInicioSesion,
   cierreActividadUsuario,
 } from '../firebase/funcionesAuth.js';
+import { proveedor, GoogleAuthProvider, proveedorFB } from '../firebase/config.js';
 import { modalInicioSesion } from './errores.js';
 import { mostrarYocultarClave } from './home.js';
 
@@ -61,8 +60,8 @@ export const inicioSesion = (selectorForm, containerError) => {
           cierreActividadUsuario();
           ubicacionModal.innerHTML = modalInicioSesion.confirmar();
           setTimeout(() => {
-            const modalConfirmar = document.getElementById('modalConfirmar');
-            modalConfirmar.style.display = 'none';
+            const modales = document.getElementById('modalConfirmar');
+            modales.style.display = 'none';
           }, 5000);
         }
       })
@@ -70,14 +69,14 @@ export const inicioSesion = (selectorForm, containerError) => {
         if (error.message === 'Firebase: Error (auth/invalid-email).' || error.message === 'Firebase: Error (auth/wrong-password).') {
           ubicacionModal.innerHTML = modalInicioSesion.datosInvalidos();
           setTimeout(() => {
-            const modalDatosInvalidos = document.getElementById('modalDatosInvalidos');
-            modalDatosInvalidos.style.display = 'none';
+            const modales = document.getElementById('modalDatosInvalidos');
+            modales.style.display = 'none';
           }, 5000);
         } else if (error.message === 'Firebase: Error (auth/user-not-found).') {
           ubicacionModal.innerHTML = modalInicioSesion.usuarioInvalido();
           setTimeout(() => {
-            const modalUsuarioInvalido = document.getElementById('modalUsuarioInvalido');
-            modalUsuarioInvalido.style.display = 'none';
+            const modales = document.getElementById('modalUsuarioInvalido');
+            modales.style.display = 'none';
           }, 5000);
         } else {
           ubicacionModal.textContent = 'Ocurrió un error';
@@ -87,7 +86,6 @@ export const inicioSesion = (selectorForm, containerError) => {
 
   const botongoogle = document.getElementById('imgGoogle');
   botongoogle.addEventListener('click', () => {
-    const proveedor = new GoogleAuthProvider();
     googleInicioSesion(proveedor)
       // eslint-disable-next-line no-unused-vars
       .then((result) => {
@@ -121,8 +119,7 @@ export const inicioSesion = (selectorForm, containerError) => {
 
   const botonFacebook = document.getElementById('imgFacebook');
   botonFacebook.addEventListener('click', () => {
-    const proveedor = new FacebookAuthProvider();
-    facebookInicioSesion(proveedor)
+    facebookInicioSesion(proveedorFB)
       // eslint-disable-next-line no-unused-vars
       .then((result) => {
         // eslint-disable-next-line no-console
