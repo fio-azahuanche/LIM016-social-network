@@ -17,7 +17,7 @@ export const formInicioSesion = () => {
             <form id="formIngreso">
                 <div class="seccionIngreso">
                     <input type="text" id="correoIngreso" class="datosIngreso" placeholder="Correo electrónico" required>
-                    <img src="imagenes/envelope.png">
+                    <i class="ph-envelope"></i>
                 </div>
 
                 <div class="seccionIngreso">

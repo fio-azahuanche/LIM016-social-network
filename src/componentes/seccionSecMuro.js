@@ -13,17 +13,7 @@ const subirContainer = (creadorPost, apodoUser, postTxt, srcImagenPost) => {
         <div class="infoUsuarioPost">
             <div class="nombreUsuarioPost"><p>${creadorPost}</p><img src="imagenes/bxs-user-plus 2.png"></div>
             <div class="descripcionUsuarioPost"><p>${apodoUser}</p></div>
-        </div>
-        <div class="puntosHorizontales">
-            <figure class="puntos"></figure>
-            <figure class="puntos middle2"></figure>
-            <p class="equis2">x</p>
-            <figure class="puntos"></figure>
-            <ul class="desplegable2">
-                <li><a id="editar"><img src="imagenes/edit.png"><span>Editar</span></a></li>
-                <li><a id="eliminar"><img src="imagenes/delete.png"><span>Eliminar</span></a></li>
-            </ul>
-        </div>
+        </div>     
     </div>
     <div class="estadoCompartido">
         <div class="contenidoCompartido">
@@ -67,16 +57,16 @@ export const seccionMuro2 = () => {
         </a>
     </li>
     <li class="list">
-        <a>
+        <a href="#/artmuro">
             <span class="icon">
                 <img src="imagenes/house-fill.png">
             </span>
         </a>
     </li>
     <li class="list">
-        <a>
+        <a href="#/artperfil">
             <span class="icon">
-                <img src="imagenes/imgUsuario.png">
+                <img src="imagenes/ImgUsuario.png">
             </span>
         </a>
     </li>

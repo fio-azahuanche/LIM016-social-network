@@ -27,7 +27,6 @@ export const vistasPantalla = () => {
       main.appendChild(muro());
       cerrarSesion();
       menuPuntosVerticales();
-      menuPuntosHorizontales();
       publicarHome('formCompartir', 'container-post');
       break;
 

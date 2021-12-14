@@ -44,8 +44,8 @@ export const contenidoEditarPerfil = () => {
                             </div>
                     
                             <div class="contenidoTextPerfil">
-                                <h2 id="nombreDelPerfil">USUARIO</h2>
-                                <p id="descripcionDelPerfil">Ingreas una descripción</p>
+                                <h2 id="nombreDelPerfil">Ingresa tu nombre de Usuario</h2>
+                                <p id="descripcionDelPerfil">Ingresa una descripción</p>
                                 <p id="ubicacionDelPerfil">Ingresa una Ubicación</p>
                             </div>
                         </div>

@@ -287,10 +287,13 @@ footer{
     padding: 3px;
     margin-top: 15px;
 }
-.botonAgregar img{
+.botonAgregar i{
+    display: flex;
+    align-items: center;
     width: 20px;
-    height: 20px;
+    height: auto;
     margin-right: 5px;
+    color: azure;
 }
 .contenedorPerfil img{
     width: 130px;
@@ -300,6 +303,7 @@ footer{
 .datosUsuario{
     width: 60%;
     padding: 2%;
+    text-align: center;
 }
 .nombreUsuario{
     font-weight: 35px;
@@ -917,6 +921,11 @@ figure{
 }
 #formIngreso{
     margin-bottom: 9%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 @media screen and (max-width:768px){
     #formIngreso{
