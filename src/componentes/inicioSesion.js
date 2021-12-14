@@ -53,10 +53,8 @@ export const inicioSesion = (selectorForm, containerError) => {
     inicioSesionUsuario(correoIngreso, claveIngreso)
       .then((userCredential) => {
         const user = userCredential.user;
-        // eslint-disable-next-line no-console
-        console.log(userCredential);
-
         if (user.emailVerified === true) {
+          sessionStorage.setItem('usuarioId', user.uid);
           window.location.hash = '#/artmuro';
         } else {
           ubicacionModal.innerHTML = modalInicioSesion.confirmar();

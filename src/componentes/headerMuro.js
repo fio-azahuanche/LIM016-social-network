@@ -28,6 +28,7 @@ export const cerrarSesion = () => {
     cierreActividadUsuario()
       .then(() => {
         // Sign-out successful.
+        sessionStorage.clear();
         window.location.hash = '#/inicio';
       }).catch((error) => {
         // An error happened.

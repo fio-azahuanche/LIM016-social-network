@@ -33,7 +33,8 @@ export const obtenerUsuario = async () => {
 
 export const obtenerUsuarioById = async (idUser) => {
   const colRef = doc(db, 'usuarios', idUser);
-  const querySnapshot = await getDoc(colRef);
+  const querySnapshot = await getDoc(colRef).then((key) => key.data());
+  console.log(querySnapshot);
   return querySnapshot;
 };
 
@@ -42,11 +43,12 @@ export const obtenerPosts = async () => {
   const querySnapshot = await getDocs(postsHome);
   return querySnapshot;
 };
+
 export const obtenerPostsbyId = async (byId) => {
   const postsHome = doc(db, 'home', byId);
-  const querySnapshot = await getDoc(postsHome);
-
-  return querySnapshot;
+  const datos = await getDoc(postsHome).then((key) => key.data());
+  console.log(datos);
+  return datos;
 };
 
 // agregar usuario a Firestore

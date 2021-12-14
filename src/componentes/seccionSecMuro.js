@@ -1,7 +1,6 @@
 import {
   subirEstadoDeUser, obtenerPosts, obtenerUsuario, obtenerPostsbyId, obtenerUsuarioById,
 } from '../firebase/funcionesFirestore.js';
-import { estadoAuthUsuario } from '../firebase/funcionesAuth.js';
 
 const subirContainer = (creadorPost, apodoUser, postTxt, srcImagenPost) => {
   const divTablero = document.createElement('div');
@@ -118,16 +117,11 @@ export const publicarHome = (formCompartir, containerPost) => {
   divCompartir.addEventListener('submit', (e) => {
     e.preventDefault();
     const inputCompartir = document.getElementById('inputCompartir').value;
-    // const datosUsuario = await obtenerUsuario();
-    // const datosPost = await obtenerPosts();
-    estadoAuthUsuario((user) => {
-      if (user) {
-        subirEstadoDeUser(user.uid, inputCompartir).then(async (doc) => {
-          const postsById = await obtenerPostsbyId(doc.id);
-          const userById = await obtenerUsuarioById(user.uid);
-          containerPosts.prepend(subirContainer(userById.data().username, 'prueba', postsById.data().publicacion, ''));
-        });
-      }
+    const user = sessionStorage.getItem('usuarioId');
+    subirEstadoDeUser(user, inputCompartir).then(async (doc) => {
+      const userById = await obtenerUsuarioById(user);
+      const post = await obtenerPostsbyId(doc.id);
+      containerPosts.prepend(subirContainer(userById.username, 'prueba', post.publicacion, ''));
     });
     divCompartir.reset();
   });
