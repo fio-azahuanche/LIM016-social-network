@@ -1,5 +1,5 @@
 // Render del formulario de registro que se imprimen en la vista de Home
-import { registroUsuario, envioCorreoVerificacion, cierreActividadUsuario } from '../firebase/funcionesAuth.js';
+import { registroUsuario, envioCorreoVerificacion } from '../firebase/funcionesAuth.js';
 import { modalRegistro } from './errores.js';
 import { mostrarYocultarClave } from './home.js';
 import { agregarUsuarioConId } from '../firebase/funcionesFirestore.js';
@@ -41,7 +41,6 @@ export const formRegistros = () => {
 // Función que se encarga del registro por correo
 export const registroCorreo = (selectorForm, containerError) => {
   mostrarYocultarClave('botonClave', 'claveRegistro');
-
   const registrarCon = document.getElementById(selectorForm);
   registrarCon.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -54,14 +53,15 @@ export const registroCorreo = (selectorForm, containerError) => {
       .then((userCredential) => {
         const user = userCredential.user;
         envioCorreoVerificacion().then(() => {
-          agregarUsuarioConId(usuarioRegistro, correoRegistro, claveRegistro, user.uid);
+          agregarUsuarioConId(usuarioRegistro, correoRegistro, user.uid);
         });
         ubicacionModal.innerHTML = modalRegistro.exito();
         setTimeout(() => {
           const modalExito = document.getElementById('modalExito');
           modalExito.style.display = 'none';
+          window.location.hash = '#/inicio';
         }, 5000);
-        cierreActividadUsuario();
+        // cierreActividadUsuario();
       })
       .catch((error) => {
         if (error.message === 'Firebase: Error (auth/invalid-email).') {
