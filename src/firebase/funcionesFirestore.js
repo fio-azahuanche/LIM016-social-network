@@ -2,18 +2,19 @@ import {
   getFirestore,
   collection,
   getDocs,
+  getDoc,
   doc,
   setDoc,
   addDoc,
-  getDoc,
 // eslint-disable-next-line import/no-unresolved
 } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js';
 import { app } from './config.js';
+import { actualizarDatosPerfil } from '../componentes/seccionEditarPerfil.js';
 
 // inicializa el firestore
 const db = getFirestore(app);
-// referenciando la coleeción segun su nombre
-/* const colRef = collection(db, 'usuarios');
+// referenciando la colección segun su nombre
+const colRef = collection(db, 'usuarios');
 // Obtener datos de la colección como array de objetos
 getDocs(colRef)
   .then((snapshot) => {
@@ -23,7 +24,7 @@ getDocs(colRef)
     });
     // eslint-disable-next-line no-console
     console.log(usuarios);
-  }); */
+  });
 
 export const obtenerUsuario = async () => {
   const colRef = collection(db, 'usuarios');
@@ -65,3 +66,28 @@ export const subirEstadoDeUser = async (id, post) => {
   });
   return functionAdd;
 };
+
+/*-------------- Funcionalidad del perfil de usuario ------------------------*/
+export const getCurrentUser = (userId) => {
+  const colRefId = doc(db, 'usuarios', userId);
+  return getDoc(colRefId);
+}
+
+export const actualizarPerfil = (userId, name, ubicacion, descripcion) => {
+  const colRefId = doc(db, 'usuarios', userId);
+  setDoc(colRefId, {
+    name: name,
+    ubicacion: ubicacion,
+    descripcion: descripcion,
+  }, { merge: true })
+  .then(() => {
+    const userData = JSON.parse(sessionStorage.userSession);
+    userData.name = name;
+    userData.ubicacion = ubicacion;
+    userData.descripcion = descripcion;
+    sessionStorage.setItem("userSession", JSON.stringify(userData));   
+    actualizarDatosPerfil(name, ubicacion, descripcion);
+  });
+};
+
+

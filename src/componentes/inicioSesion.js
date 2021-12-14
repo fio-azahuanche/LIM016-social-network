@@ -8,6 +8,7 @@ import {
 } from '../firebase/funcionesAuth.js';
 import { modalInicioSesion } from './errores.js';
 import { mostrarYocultarClave } from './home.js';
+import { getCurrentUser } from '../firebase/funcionesFirestore.js';
 
 // Creacion de formulario de inicio de Sesión de forma dinámica
 export const formInicioSesion = () => {
@@ -53,10 +54,15 @@ export const inicioSesion = (selectorForm, containerError) => {
     inicioSesionUsuario(correoIngreso, claveIngreso)
       .then((userCredential) => {
         const user = userCredential.user;
-        // eslint-disable-next-line no-console
-        console.log(userCredential);
-
         if (user.emailVerified === true) {
+          getCurrentUser(user.uid)
+            .then( (snapshot) => {
+              const data = snapshot.data()
+              console.log(data);
+              data.id = user.uid
+              sessionStorage.setItem("userSession", JSON.stringify(data));
+            });
+          //sessionStorage.setItem("userSession", userdata);
           window.location.hash = '#/artmuro';
         } else {
           ubicacionModal.innerHTML = modalInicioSesion.confirmar();
@@ -80,6 +86,8 @@ export const inicioSesion = (selectorForm, containerError) => {
             modalUsuarioInvalido.style.display = 'none';
           }, 5000);
         } else {
+          console.log(error);
+          console.log(error.message);
           ubicacionModal.textContent = 'Ocurrió un error';
         }
       });
@@ -91,28 +99,25 @@ export const inicioSesion = (selectorForm, containerError) => {
     googleInicioSesion(proveedor)
       // eslint-disable-next-line no-unused-vars
       .then((result) => {
-        // console.log(result);
+        console.log(result);
         window.location.hash = '#/artmuro';
         // This gives you a Google Access Token. You can use it to access the Google API.
         // const credential = GoogleAuthProvider.credentialFromResult(result);
         // const token = credential.accessToken;
-        const user = result.user;
-        // eslint-disable-next-line no-console
-        console.log(user);
+        //const user = result.user;
+        //console.log(user);
       })
       .catch((error) => {
-        // Handle Errors here.
-        const errorCode = error.code;
-        // eslint-disable-next-line no-console
-        console.log(errorCode);
-        const errorMessage = error.message;
-        // eslint-disable-next-line no-console
-        console.log((errorMessage));
-        // The email of the user's account used.
-        const email = error.email;
-        // eslint-disable-next-line no-console
-        console.log(email);
-        // The AuthCredential type that was used.
+        
+        //const errorCode = error.code;
+        //console.log(errorCode);
+
+        //const errorMessage = error.message;
+        //console.log((errorMessage));
+        
+        //const email = error.email;
+        //console.log(email);
+        
         const credential = GoogleAuthProvider.credentialFromError(error);
         // eslint-disable-next-line no-console
         console.log(credential);
@@ -125,15 +130,13 @@ export const inicioSesion = (selectorForm, containerError) => {
     facebookInicioSesion(proveedor)
       // eslint-disable-next-line no-unused-vars
       .then((result) => {
-        // eslint-disable-next-line no-console
-        console.log(result);
+        //console.log(result);
         window.location.hash = '#/artmuro';
         // This gives you a Facebook Access Token. You can use it to access the Facebook API.
         // const credential = FacebookAuthProvider.credentialFromResult(result);
         // const token = credential.accessToken;
-        const user = result.user;
-        // eslint-disable-next-line no-console
-        console.log(user);
+        //const user = result.user;
+        //console.log(user);
       });
   });
 };

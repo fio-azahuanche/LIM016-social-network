@@ -61,6 +61,7 @@ export const registroCorreo = (selectorForm, containerError) => {
           modalExito.style.display = 'none';
           window.location.hash = '#/inicio';
         }, 5000);
+        //cierreActividadUsuario();
       })
       .catch((error) => {
         if (error.message === 'Firebase: Error (auth/invalid-email).') {
