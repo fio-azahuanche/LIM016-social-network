@@ -44,9 +44,9 @@ export const contenidoEditarPerfil = () => {
                             </div>
                     
                             <div class="contenidoTextPerfil">
-                                <h2>Lucía Lopez</h2>
-                                <p>Amante de los animales</p>
-                                <p>Lima -Perú</p>
+                                <h2 id="nombreDelPerfil"></h2>
+                                <p id="descripcionDelPerfil"></p>
+                                <p id="ubicacionDelPerfil"></p>
                             </div>
                         </div>
                     </div>
@@ -85,9 +85,21 @@ export const btnEditarPerfil = () => {
     const btnGuardarCambios = document.getElementById("guardarCambios"); 
     btnGuardarCambios.addEventListener("click", (e) =>{
         e.preventDefault();
+        const inputNombreActualizado = document.getElementById("actualizacionNombre").value;
+        const inputDescripcionActualizado = document.getElementById("actualizacionEstado").value;
+        const inputUbicacionActualizado = document.getElementById("actualizacionUbicacion").value;
         const userData = JSON.parse(sessionStorage.userSession);
-        actualizarPerfil(userData.id);
-
+        actualizarPerfil(userData.id, inputNombreActualizado, inputUbicacionActualizado, inputDescripcionActualizado);
     });
     
 };
+
+export const actualizarDatosPerfil = (name, ubicacion, descripcion) => {
+    const nombreDelPerfil = document.getElementById("nombreDelPerfil"); 
+    const ubicacionDelPerfil = document.getElementById("ubicacionDelPerfil"); 
+    const descripcionDelPerfil = document.getElementById("descripcionDelPerfil"); 
+    nombreDelPerfil.innerHTML = name;
+    ubicacionDelPerfil.innerHTML = ubicacion;
+    descripcionDelPerfil.innerHTML = descripcion;
+} 
+
