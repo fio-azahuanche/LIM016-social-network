@@ -17,7 +17,7 @@ export const muro = () => {
   divSecciones.classList.add('grid-container');
   divSecciones.appendChild(seccionMuro1());
   divSecciones.appendChild(seccionMuro2());
-  
+
   articleMuro.appendChild(headerMuro);
   articleMuro.appendChild(divSecciones);
   return articleMuro;
@@ -34,8 +34,8 @@ export const muroPerfil = () => {
 
   const divSeccionPerfilusuario = document.createElement('div');
   divSeccionPerfilusuario.classList.add('contenedor-perfil');
-  divSeccionPerfilusuario.appendChild(contenidoPerfil());  
-  
+  divSeccionPerfilusuario.appendChild(contenidoPerfil());
+
   articleMuroPerfil.appendChild(headerMuro);
   articleMuroPerfil.appendChild(divSeccionPerfilusuario);
 
@@ -53,8 +53,8 @@ export const muroEditarPerfil = () => {
 
   const divSeccionEditarPerfilusuario = document.createElement('div');
   divSeccionEditarPerfilusuario.classList.add('contenedor-editarPerfil');
-  divSeccionEditarPerfilusuario.appendChild(contenidoEditarPerfil());  
-  
+  divSeccionEditarPerfilusuario.appendChild(contenidoEditarPerfil());
+
   articleMuroEditarPerfil.appendChild(headerMuro);
   articleMuroEditarPerfil.appendChild(divSeccionEditarPerfilusuario);
 

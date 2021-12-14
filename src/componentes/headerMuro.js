@@ -29,7 +29,7 @@ export const cerrarSesion = () => {
       .then(() => {
         // Sign-out successful.
         window.location.hash = '#/inicio';
-        sessionStorage.removeItem("userSession");
+        sessionStorage.removeItem('userSession');
       }).catch((error) => {
         // An error happened.
         // eslint-disable-next-line no-console

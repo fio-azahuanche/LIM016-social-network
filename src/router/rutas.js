@@ -9,7 +9,6 @@ import { btnEditarPerfil } from '../componentes/seccionEditarPerfil.js';
 
 export const vistasPantalla = () => {
   const main = document.getElementById('main');
-  console.log(window.location.hash.toLowerCase());
   main.innerHTML = '';
   switch (window.location.hash.toLowerCase()) {
     case '': case '#/': case '#/inicio':
@@ -35,13 +34,12 @@ export const vistasPantalla = () => {
       main.appendChild(muroPerfil());
       cerrarSesion();
       menuPuntosVerticales();
-      menuPuntosHorizontales();      
+      menuPuntosHorizontales();
       break;
 
     case '#/arteditarperfil':
-      console.log(muroEditarPerfil());
       userState();
-      main.appendChild(muroEditarPerfil());      
+      main.appendChild(muroEditarPerfil());
       cerrarSesion();
       menuPuntosVerticales();
       btnEditarPerfil();

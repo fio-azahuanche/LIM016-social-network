@@ -1,9 +1,10 @@
+// eslint-disable-next-line import/no-cycle
 import { actualizarPerfil } from '../firebase/funcionesFirestore.js';
 
 export const contenidoEditarPerfil = () => {
-    const EditarSeccion = document.createElement('section');
-    EditarSeccion.classList.add('cuerpoEditarPerfil');
-    EditarSeccion.innerHTML = `        
+  const EditarSeccion = document.createElement('section');
+  EditarSeccion.classList.add('cuerpoEditarPerfil');
+  EditarSeccion.innerHTML = `        
         <nav class= "barraNavegacionInferior">         
             <ul>
                 <li class="list">
@@ -76,30 +77,29 @@ export const contenidoEditarPerfil = () => {
                     </div>          
                 </div> 
             </div>
-        </div>`
-    ;
-    return EditarSeccion;
+        </div>`;
+  return EditarSeccion;
 };
 
 export const btnEditarPerfil = () => {
-    const btnGuardarCambios = document.getElementById("guardarCambios"); 
-    btnGuardarCambios.addEventListener("click", (e) =>{
-        e.preventDefault();
-        const inputNombreActualizado = document.getElementById("actualizacionNombre").value;
-        const inputDescripcionActualizado = document.getElementById("actualizacionEstado").value;
-        const inputUbicacionActualizado = document.getElementById("actualizacionUbicacion").value;
-        const userData = JSON.parse(sessionStorage.userSession);
-        actualizarPerfil(userData.id, inputNombreActualizado, inputUbicacionActualizado, inputDescripcionActualizado);
-    });
-    
+  const btnGuardarCambios = document.getElementById('guardarCambios');
+  btnGuardarCambios.addEventListener('click', (e) => {
+    e.preventDefault();
+    const inputNombreActualizado = document.getElementById('actualizacionNombre').value;
+    const inputDescripcionActualizado = document.getElementById('actualizacionEstado').value;
+    const inputUbicacionActualizado = document.getElementById('actualizacionUbicacion').value;
+    const userData = JSON.parse(sessionStorage.userSession);
+    actualizarPerfil(
+      userData.id, inputNombreActualizado, inputUbicacionActualizado, inputDescripcionActualizado,
+    );
+  });
 };
 
 export const actualizarDatosPerfil = (name, ubicacion, descripcion) => {
-    const nombreDelPerfil = document.getElementById("nombreDelPerfil"); 
-    const ubicacionDelPerfil = document.getElementById("ubicacionDelPerfil"); 
-    const descripcionDelPerfil = document.getElementById("descripcionDelPerfil"); 
-    nombreDelPerfil.innerHTML = name;
-    ubicacionDelPerfil.innerHTML = ubicacion;
-    descripcionDelPerfil.innerHTML = descripcion;
-} 
-
+  const nombreDelPerfil = document.getElementById('nombreDelPerfil');
+  const ubicacionDelPerfil = document.getElementById('ubicacionDelPerfil');
+  const descripcionDelPerfil = document.getElementById('descripcionDelPerfil');
+  nombreDelPerfil.innerHTML = name;
+  ubicacionDelPerfil.innerHTML = ubicacion;
+  descripcionDelPerfil.innerHTML = descripcion;
+};

@@ -38,6 +38,7 @@ const rellenarHome = async (conteinerPost) => {
     // console.log(`${doc.id}=>${doc.data()}`);
     conteinerPost.prepend(subirContainer('usuarioPrueba', 'prueba', doc.data().publicacion, ''));
   });
+  // eslint-disable-next-line no-console
   console.log(datosUsuario);
 };
 
@@ -125,13 +126,10 @@ export const publicarHome = (formCompartir, containerPost) => {
 
 export const menuPuntosHorizontales = () => {
   const puntosHorizontales = document.querySelector('.puntosHorizontales');
-  console.log(puntosHorizontales);
-  const middle2 = document.querySelector('.middle2'); 
+  const middle2 = document.querySelector('.middle2');
   const desplegable2 = document.querySelector('.desplegable2');
-  
-    puntosHorizontales.addEventListener('click', () => {
-        middle2.classList.toggle('active');        
-        desplegable2.classList.toggle('active');
-        
-    });
+  puntosHorizontales.addEventListener('click', () => {
+    middle2.classList.toggle('active');
+    desplegable2.classList.toggle('active');
+  });
 };
