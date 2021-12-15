@@ -5,7 +5,7 @@ export const contenidoHeader = () => {
         <div class="enlacePerfil">
             <img src="imagenes/ImgUsuario.png" class="imagenUsuario">
             <p class="nombreUsuario"><a id="perfil" href="#/artperfil">Lucía Lopez</a></p>
-        </div>       
+        </div>
         <img src="imagenes/CarePets.svg" class="titulo-header">
         <div class="puntosVerticales">
           <figure></figure>
@@ -16,8 +16,7 @@ export const contenidoHeader = () => {
             <li><a id="tema"><img src="imagenes/bx-palette.png"><span>Tema</span></a></li>
             <li><a id="cerrar-sesion"><img src="imagenes/sign-out.png"><span>Cerrar Sesión</span></a></li>
           </ul>
-        </div>        
-        
+        </div>
       `;
   return headerMuro;
 };
@@ -28,8 +27,8 @@ export const cerrarSesion = () => {
     cierreActividadUsuario()
       .then(() => {
         // Sign-out successful.
+        sessionStorage.clear();
         window.location.hash = '#/inicio';
-        sessionStorage.removeItem('userSession');
       }).catch((error) => {
         // An error happened.
         // eslint-disable-next-line no-console

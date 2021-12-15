@@ -44,13 +44,14 @@ export const contenidoPerfil = () => {
                 </div>
 
                 <div class="botonesDelPerfil">
-                    <button class="botonAgregar"><a href='#/arteditarperfil'>Editar Perfil</a></button>
+                    <button class="btnEditar"><a href='#/arteditarperfil'>Editar Perfil</a></button>
                     <button class="btnInicio"><a href="#/artmuro">Volver a Inicio</a></button>
                 </div>
-            </div>        
-        </div>       
+            </div>       
+        </div>  
+        <button class="btnEditar"><a href='#/arteditarperfil'>Editar Perfil</a></button>      
 
-        <div class="seccPostUsuario">
+        <div class="seccPostUsuario" id="SeccPublicacionesUsuario">
             <div class="tableroPost">            
                 <div class="usuarioPost">
                     <div class="imgUsuarioPost">
