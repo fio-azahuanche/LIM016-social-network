@@ -1,5 +1,5 @@
 import {
-  subirEstadoDeUser, obtenerPosts, obtenerUsuario, obtenerPostsbyId, obtenerUsuarioById,
+  obtenerPosts, obtenerUsuarioById, obtenerPostById, subirPostA,
 } from '../firebase/funcionesFirestore.js';
 
 const subirContainer = (creadorPost, apodoUser, postTxt, srcImagenPost) => {
@@ -12,16 +12,6 @@ const subirContainer = (creadorPost, apodoUser, postTxt, srcImagenPost) => {
         <div class="infoUsuarioPost">
             <div class="nombreUsuarioPost"><p>${creadorPost}</p><img src="imagenes/bxs-user-plus 2.png"></div>
             <div class="descripcionUsuarioPost"><p>${apodoUser}</p></div>
-        </div>
-        <div class="puntosHorizontales">
-            <figure class="puntos"></figure>
-            <figure class="puntos middle2"></figure>
-            <p class="equis2">x</p>
-            <figure class="puntos"></figure>
-            <ul class="desplegable2">
-                <li><a id="editar"><img src="imagenes/edit.png"><span>Editar</span></a></li>
-                <li><a id="eliminar"><img src="imagenes/delete.png"><span>Eliminar</span></a></li>
-            </ul>
         </div>
     </div>
     <div class="estadoCompartido">
@@ -41,13 +31,11 @@ const subirContainer = (creadorPost, apodoUser, postTxt, srcImagenPost) => {
 
 const rellenarHome = async (conteinerPost) => {
   const datosPost = await obtenerPosts();
-  const datosUsuario = await obtenerUsuario();
   datosPost.forEach((doc) => {
-    // doc.data() is never undefined for query doc snapshots
-    // console.log(`${doc.id}=>${doc.data()}`);
-    conteinerPost.prepend(subirContainer('usuarioPrueba', 'prueba', doc.data().publicacion, ''));
+    obtenerUsuarioById(doc.usuarioId).then((datosUsuario) => {
+      conteinerPost.prepend(subirContainer(datosUsuario.username, datosUsuario.descripcion, doc.publicacion, ''));
+    });
   });
-  console.log(datosUsuario);
 };
 
 export const seccionMuro2 = () => {
@@ -66,16 +54,16 @@ export const seccionMuro2 = () => {
         </a>
     </li>
     <li class="list">
-        <a>
+        <a href="#/artmuro">
             <span class="icon">
                 <img src="imagenes/house-fill.png">
             </span>
         </a>
     </li>
     <li class="list">
-        <a>
+        <a href="#/artperfil">
             <span class="icon">
-                <img src="imagenes/imgUsuario.png">
+                <img src="imagenes/ImgUsuario.png">
             </span>
         </a>
     </li>
@@ -111,17 +99,17 @@ export const seccionMuro2 = () => {
   return segundaSeccion;
 };
 
-export const publicarHome = (formCompartir, containerPost) => {
+export const creacionPost = (formCompartir, containerPost) => {
   const divCompartir = document.getElementById(formCompartir);
   const containerPosts = document.getElementById(containerPost);
-  divCompartir.addEventListener('submit', (e) => {
+  divCompartir.addEventListener('submit', async (e) => {
     e.preventDefault();
     const inputCompartir = document.getElementById('inputCompartir').value;
-    const user = sessionStorage.getItem('usuarioId');
-    subirEstadoDeUser(user, inputCompartir).then(async (doc) => {
-      const userById = await obtenerUsuarioById(user);
-      const post = await obtenerPostsbyId(doc.id);
-      containerPosts.prepend(subirContainer(userById.username, 'prueba', post.publicacion, ''));
+    const userData = JSON.parse(sessionStorage.userSession);
+    await subirPostA('home', userData.id, inputCompartir).then((doc) => {
+      obtenerPostById(doc.id).then((postsById) => {
+        containerPosts.prepend(subirContainer(userData.username, userData.descripcion, postsById.publicacion, ''));
+      });
     });
     divCompartir.reset();
   });
@@ -130,12 +118,9 @@ export const publicarHome = (formCompartir, containerPost) => {
 export const menuPuntosHorizontales = () => {
   const puntosHorizontales = document.querySelector('.puntosHorizontales');
   const middle2 = document.querySelector('.middle2');
-  const equis2 = document.querySelector('.equis2');
   const desplegable2 = document.querySelector('.desplegable2');
-
   puntosHorizontales.addEventListener('click', () => {
     middle2.classList.toggle('active');
-    equis2.classList.toggle('active');
     desplegable2.classList.toggle('active');
   });
 };
