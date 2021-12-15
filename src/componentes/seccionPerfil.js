@@ -51,7 +51,7 @@ export const contenidoPerfil = () => {
         </div>  
         <button class="btnEditar"><a href='#/arteditarperfil'>Editar Perfil</a></button>      
 
-        <div class="seccPostUsuario">
+        <div class="seccPostUsuario" id="SeccPublicacionesUsuario">
             <div class="tableroPost">            
                 <div class="usuarioPost">
                     <div class="imgUsuarioPost">

@@ -81,17 +81,24 @@ export const contenidoEditarPerfil = () => {
 };
 
 export const btnEditarPerfil = () => {
-  const btnGuardarCambios = document.getElementById('guardarCambios');
-  btnGuardarCambios.addEventListener('click', (e) => {
-    e.preventDefault();
-    const inputNombreActualizado = document.getElementById('actualizacionNombre').value;
-    const inputDescripcionActualizado = document.getElementById('actualizacionEstado').value;
-    const inputUbicacionActualizado = document.getElementById('actualizacionUbicacion').value;
-    const userData = JSON.parse(sessionStorage.userSession);
-    actualizarPerfil(
-      userData.id, inputNombreActualizado, inputUbicacionActualizado, inputDescripcionActualizado,
-    );
-  });
+    const btnGuardarCambios = document.getElementById("guardarCambios"); 
+    btnGuardarCambios.addEventListener("click", (e) =>{
+        e.preventDefault();
+        const inputNombreActualizado = document.getElementById("actualizacionNombre").value;
+        const inputDescripcionActualizado = document.getElementById("actualizacionEstado").value;
+        const inputUbicacionActualizado = document.getElementById("actualizacionUbicacion").value;
+        const userData = JSON.parse(sessionStorage.userSession);
+        actualizarPerfil(userData.id, inputNombreActualizado, inputUbicacionActualizado, inputDescripcionActualizado);
+      /*   .then(() => {
+            const userData = JSON.parse(sessionStorage.userSession);
+            userData.name = name;
+            userData.ubicacion = ubicacion;
+            userData.descripcion = descripcion;
+            sessionStorage.setItem("userSession", JSON.stringify(userData));   
+            actualizarDatosPerfil(name, ubicacion, descripcion);
+        }); */
+    });
+    
 };
 
 export const actualizarDatosPerfil = (name, ubicacion, descripcion) => {

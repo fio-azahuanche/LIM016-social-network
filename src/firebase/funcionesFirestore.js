@@ -6,9 +6,10 @@ import {
   doc,
   setDoc,
   addDoc,
+  updateDoc,
+  query, 
+  orderBy, 
   serverTimestamp,
-  query,
-  orderBy,
 // eslint-disable-next-line import/no-unresolved
 } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js';
 import { app } from './config.js';
@@ -85,17 +86,19 @@ export const subirPostA = async (nameCol, idUser, post) => {
 
 export const actualizarPerfil = (userId, name, ubicacion, descripcion) => {
   const colRefId = doc(db, 'usuarios', userId);
-  setDoc(colRefId, {
-    name,
-    ubicacion,
-    descripcion,
-  }, { merge: true })
-    .then(() => {
-      const userData = JSON.parse(sessionStorage.userSession);
-      userData.name = name;
-      userData.ubicacion = ubicacion;
-      userData.descripcion = descripcion;
-      sessionStorage.setItem('userSession', JSON.stringify(userData));
-      actualizarDatosPerfil(name, ubicacion, descripcion);
-    });
+  //const actualizarPerfilUsuario = updateDoc(colRefId, {
+  updateDoc(colRefId, {
+    name: name,
+    ubicacion: ubicacion,
+    descripcion: descripcion,
+  })
+ /*  return actualizarPerfilUsuario; */
+  .then(() => {
+    const userData = JSON.parse(sessionStorage.userSession);
+    userData.name = name;
+    userData.ubicacion = ubicacion;
+    userData.descripcion = descripcion;
+    sessionStorage.setItem("userSession", JSON.stringify(userData));   
+    actualizarDatosPerfil(name, ubicacion, descripcion);
+  });
 };
