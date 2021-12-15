@@ -354,7 +354,7 @@ header{
 .usuarioPost{
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content:space-around;
 }
 .imgUsuarioPost{
     display: flex;
@@ -430,13 +430,17 @@ header{
     padding: 1% 7%;    
 }
 .contenidoTextPerfil{
+    display: flex;
+    flex-direction: column;
     width: 55%;
     word-spacing: 2px;
+    text-align: center;
+    align-items: center;
+    align-content: center;
 }
 .contenidoTextPerfil h2, .contenidoTextPerfil p{
-    margin: 5px 0;
+    margin: 5px 0;   
     text-align: center;
-
 }
 .contenidoTextPerfil p{
     display: flex;
@@ -523,6 +527,7 @@ header{
     align-items: center;
     align-content: center;
     justify-content: space-around;
+    text-align: center;
 }
 .imgPerfilUsuario{
     display: flex;
@@ -624,13 +629,24 @@ figure{
     flex-wrap: wrap;
 }
 .puntosVerticales ul, .puntosHorizontales ul{
+    display: flex;
+    flex-direction: column;
     list-style: none;
-    width: 150px;
-    padding: 10px;
     border-radius: 10px;
     background: #E5DCC3;
     margin-right: 10%;
     text-decoration: none;
+    justify-content: space-around;
+    align-items: flex-start;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.35);
+}
+.puntosVerticales ul{
+    width: 150px;
+    padding: 8px;
+}
+.puntosHorizontales ul{
+    width: 120px;
+    padding: 9px;
 }
 .nombreUsuarioPost img{
     width: 30px;
@@ -666,22 +682,30 @@ figure{
 .desplegable li a, .desplegable2 li a{
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
     color: #844124;
     font-weight: 600;
 }
-.desplegable li a i, .desplegable2 li a i{
+.desplegable li a img, .desplegable2 li a img{
     margin-right: 5px;
-    color: #844124;
-    font-size: 25px;
+}
+#cerrar-sesion img{
+    margin-left: 5px;
 }
 .desplegable, .desplegable2{
     position: absolute;
-    right: 0;
-    top: 2em;
+    height: 100px;
     transition: all 0.25s ease-out;
     transform: scale(0);
     transform-origin: 100% 0;
+}
+.desplegable{
+    right: -20px;
+    top: 3em;
+}
+.desplegable2{
+    right: -40px;
+    top: 2em;
 }
 .desplegable.active, .desplegable2.active {
     transform: scale(1);
@@ -747,15 +771,15 @@ footer{
         padding-bottom: 60px;
     }
     .btnEditar{
-        font-size: 12px;
+        font-size: 14px;
         font-weight: 600;
     }
     .botonCompartir{
-        font-size: 12px;
+        font-size: 14px;
         font-weight: 600;
     }
    .tableroCompartir select{
-        font-size: 12px;
+        font-size: 14px;
         font-weight: 600;
     }
     .estadoUsuario{
@@ -837,7 +861,7 @@ footer{
         display: none;
     }
     .contenidoTextPerfil h2, .contenidoTextPerfil p {
-        text-align: left;
+        text-align: center;
     }
 }
 @media (max-width: 640px){
@@ -852,6 +876,10 @@ footer{
     }
     .cuerpoPerfil .usuarioPost {
         justify-content: space-between;
+        
+    }
+    .cuerpoPerfil{
+        margin-bottom: 9vh;
     }
     .infoUsuarioPost {
         width: 30%;
@@ -867,7 +895,7 @@ footer{
         width: 70%;
         min-width: 102px;
         max-width: 160px;
-        height: 4vh;
+        height: 6vh;
         cursor: pointer;
         align-items: center;
         padding: 3px;

@@ -7,6 +7,9 @@ import {
   setDoc,
   addDoc,
   updateDoc,
+  query, 
+  orderBy, 
+  serverTimestamp,
 // eslint-disable-next-line import/no-unresolved
 } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js';
 import { app } from './config.js';
