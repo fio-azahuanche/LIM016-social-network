@@ -4,7 +4,7 @@ import { seccionMuro2 } from './seccionSecMuro.js';
 import { contenidoPerfil } from './seccionPerfil.js';
 import { contenidoEditarPerfil } from './seccionEditarPerfil.js';
 
-export const muro = () => {
+export const muro = (/* parametro de la seccion2 */) => {
   const articleMuro = document.createElement('article');
   articleMuro.classList.add('artMuro');
   articleMuro.setAttribute('id', 'artMuro');
@@ -16,7 +16,7 @@ export const muro = () => {
   const divSecciones = document.createElement('div');
   divSecciones.classList.add('grid-container');
   divSecciones.appendChild(seccionMuro1());
-  divSecciones.appendChild(seccionMuro2());
+  divSecciones.appendChild(seccionMuro2()); // callback de la segunda seccion
 
   articleMuro.appendChild(headerMuro);
   articleMuro.appendChild(divSecciones);
