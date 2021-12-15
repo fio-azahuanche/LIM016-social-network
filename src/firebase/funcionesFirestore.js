@@ -6,6 +6,7 @@ import {
   doc,
   setDoc,
   addDoc,
+  updateDoc,
 // eslint-disable-next-line import/no-unresolved
 } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js';
 import { app } from './config.js';
@@ -75,11 +76,13 @@ export const getCurrentUser = (userId) => {
 
 export const actualizarPerfil = (userId, name, ubicacion, descripcion) => {
   const colRefId = doc(db, 'usuarios', userId);
-  setDoc(colRefId, {
+  //const actualizarPerfilUsuario = updateDoc(colRefId, {
+  updateDoc(colRefId, {
     name: name,
     ubicacion: ubicacion,
     descripcion: descripcion,
-  }, { merge: true })
+  })
+ /*  return actualizarPerfilUsuario; */
   .then(() => {
     const userData = JSON.parse(sessionStorage.userSession);
     userData.name = name;

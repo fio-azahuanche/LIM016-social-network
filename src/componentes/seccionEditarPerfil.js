@@ -90,6 +90,14 @@ export const btnEditarPerfil = () => {
         const inputUbicacionActualizado = document.getElementById("actualizacionUbicacion").value;
         const userData = JSON.parse(sessionStorage.userSession);
         actualizarPerfil(userData.id, inputNombreActualizado, inputUbicacionActualizado, inputDescripcionActualizado);
+      /*   .then(() => {
+            const userData = JSON.parse(sessionStorage.userSession);
+            userData.name = name;
+            userData.ubicacion = ubicacion;
+            userData.descripcion = descripcion;
+            sessionStorage.setItem("userSession", JSON.stringify(userData));   
+            actualizarDatosPerfil(name, ubicacion, descripcion);
+        }); */
     });
     
 };
