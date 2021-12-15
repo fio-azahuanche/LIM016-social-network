@@ -1,7 +1,7 @@
 export const contenidoPerfil = () => {
-    const perfilSeccion = document.createElement('section');
-    perfilSeccion.classList.add('cuerpoPerfil');
-    perfilSeccion.innerHTML = `        
+  const perfilSeccion = document.createElement('section');
+  perfilSeccion.classList.add('cuerpoPerfil');
+  perfilSeccion.innerHTML = `        
         <nav class= "barraNavegacionInferior">         
             <ul>
                 <li class="list">
@@ -44,11 +44,12 @@ export const contenidoPerfil = () => {
                 </div>
 
                 <div class="botonesDelPerfil">
-                    <button class="botonAgregar"><a href='#/arteditarperfil'>Editar Perfil</a></button>
+                    <button class="btnEditar"><a href='#/arteditarperfil'>Editar Perfil</a></button>
                     <button class="btnInicio"><a href="#/artmuro">Volver a Inicio</a></button>
                 </div>
-            </div>        
-        </div>       
+            </div>       
+        </div>  
+        <button class="btnEditar"><a href='#/arteditarperfil'>Editar Perfil</a></button>      
 
         <div class="seccPostUsuario" id="SeccPublicacionesUsuario">
             <div class="tableroPost">            
@@ -120,8 +121,6 @@ export const contenidoPerfil = () => {
                     <img src="imagenes/compartirIcono.png">
                 </div>
             </div>
-        </div>`
-    ;
-    return perfilSeccion;
+        </div>`;
+  return perfilSeccion;
 };
-
