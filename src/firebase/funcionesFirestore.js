@@ -6,13 +6,7 @@ import {
   doc,
   setDoc,
   addDoc,
-<<<<<<< HEAD
   updateDoc,
-=======
-  serverTimestamp,
-  query,
-  orderBy,
->>>>>>> rama-fio
 // eslint-disable-next-line import/no-unresolved
 } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js';
 import { app } from './config.js';
