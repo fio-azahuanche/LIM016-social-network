@@ -115,7 +115,7 @@ export const creacionPost = (formCompartir, containerPost) => {
   });
 };
 
-export const menuPuntosHorizontales = () => {
+/* export const menuPuntosHorizontales = () => {
   const puntosHorizontales = document.querySelector('.puntosHorizontales');
   const middle2 = document.querySelector('.middle2');
   const desplegable2 = document.querySelector('.desplegable2');
@@ -124,3 +124,4 @@ export const menuPuntosHorizontales = () => {
     desplegable2.classList.toggle('active');
   });
 };
+ */

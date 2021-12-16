@@ -7,7 +7,7 @@ import {
 import { proveedor, GoogleAuthProvider, proveedorFB } from '../firebase/config.js';
 import { modalInicioSesion } from './errores.js';
 import { mostrarYocultarClave } from './home.js';
-import { obtenerUsuarioById } from '../firebase/funcionesFirestore.js';
+import { obtenerUsuarioById, agregarGoogleUser } from '../firebase/funcionesFirestore.js';
 
 // Creacion de formulario de inicio de Sesión de forma dinámica
 export const formInicioSesion = () => {
@@ -59,8 +59,9 @@ export const inicioSesion = (selectorForm, containerError) => {
             const dataa = data;
             dataa.id = user.uid;
             sessionStorage.setItem('userSession', JSON.stringify(dataa));
+            window.location.hash = '#/artmuro';
           });
-          window.location.hash = '#/artmuro';
+          
         } else {
           ubicacionModal.innerHTML = modalInicioSesion.confirmar();
           setTimeout(() => {
@@ -90,10 +91,24 @@ export const inicioSesion = (selectorForm, containerError) => {
 
   const botongoogle = document.getElementById('imgGoogle');
   botongoogle.addEventListener('click', () => {
+    sessionStorage.clear();
     googleInicioSesion(proveedor)
       // eslint-disable-next-line no-unused-vars
       .then((result) => {
-        window.location.hash = '#/artmuro';
+        //console.log(result.user);
+        const googleUser = result.user
+
+        agregarGoogleUser(googleUser.uid, googleUser)
+        .then(()=> {
+          const data = {
+            correo: googleUser.email,
+            username: googleUser.displayName,
+            id: googleUser.uid
+          }
+          sessionStorage.setItem('userSession', JSON.stringify(data));
+          window.location.hash = '#/artmuro';
+        })
+        
         // This gives you a Google Access Token. You can use it to access the Google API.
         // const credential = GoogleAuthProvider.credentialFromResult(result);
         // const token = credential.accessToken;

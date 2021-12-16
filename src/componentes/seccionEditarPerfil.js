@@ -1,9 +1,11 @@
 // eslint-disable-next-line import/no-cycle
 import { actualizarPerfil } from '../firebase/funcionesFirestore.js';
+import { validateSessionStorage } from './validaciones.js';
 
 export const contenidoEditarPerfil = () => {
   const EditarSeccion = document.createElement('section');
   EditarSeccion.classList.add('cuerpoEditarPerfil');
+  const userData = validateSessionStorage();
   EditarSeccion.innerHTML = `
         <nav class= "barraNavegacionInferior">
             <ul>
@@ -45,9 +47,10 @@ export const contenidoEditarPerfil = () => {
                             </div>
 
                             <div class="contenidoTextPerfil">
-                                <h2 id="nombreDelPerfil">Ingresa tu nombre de Usuario</h2>
-                                <p id="descripcionDelPerfil">Ingresa una descripción</p>
-                                <p id="ubicacionDelPerfil">Ingresa una Ubicación</p>
+                                <h2 id="nombreDelUsuario">${userData.name}</h2>
+                                <p id="nombreDelPerfil">${userData.username}</p>
+                                <p id="descripcionDelPerfil">${userData.descripcion}</p>
+                                <p id="ubicacionDelPerfil">${userData.ubicacion}</p>
                             </div>
                         </div>
                     </div>
@@ -55,12 +58,17 @@ export const contenidoEditarPerfil = () => {
                     <div class="modalFormulario" id="modalFormulario">
                         <form id="formIngreso">
                             <div class="cajaImputDatos">
-                                <p class="textSeccActualizacion" id="">Nombre de Usuario:</p>
+                                <p class="textSeccActualizacion" id="">Usuario:</p>
+                                <input type="text" id="actualizacionUsuario" class="datosParaActualizar">
+                            </div>
+
+                            <div class="cajaImputDatos">
+                                <p class="textSeccActualizacion" id="">Nombre:</p>
                                 <input type="text" id="actualizacionNombre" class="datosParaActualizar">
                             </div>
 
                             <div class="cajaImputDatos">
-                                <p class="textSeccActualizacion" id="">Cambiar estado:</p>
+                                <p class="textSeccActualizacion" id="">Estado:</p>
                                 <input type="text" id="actualizacionEstado" class="datosParaActualizar">
                             </div>
 
@@ -80,32 +88,35 @@ export const contenidoEditarPerfil = () => {
   return EditarSeccion;
 };
 
+export const actualizarDatosPerfil = (username, name, ubicacion, descripcion) => {
+    const nombreDelUsuario = document.getElementById('nombreDelUsuario');
+    const nombreDelPerfil = document.getElementById('nombreDelPerfil');
+    const ubicacionDelPerfil = document.getElementById('ubicacionDelPerfil');
+    const descripcionDelPerfil = document.getElementById('descripcionDelPerfil');
+    nombreDelUsuario.innerHTML = username;
+    nombreDelPerfil.innerHTML = name;
+    ubicacionDelPerfil.innerHTML = ubicacion;
+    descripcionDelPerfil.innerHTML = descripcion;
+};
+
 export const btnEditarPerfil = () => {
     const btnGuardarCambios = document.getElementById("guardarCambios"); 
     btnGuardarCambios.addEventListener("click", (e) =>{
         e.preventDefault();
+        const inputusuarioActualizado = document.getElementById("actualizacionUsuario").value;
         const inputNombreActualizado = document.getElementById("actualizacionNombre").value;
         const inputDescripcionActualizado = document.getElementById("actualizacionEstado").value;
         const inputUbicacionActualizado = document.getElementById("actualizacionUbicacion").value;
         const userData = JSON.parse(sessionStorage.userSession);
-        actualizarPerfil(userData.id, inputNombreActualizado, inputUbicacionActualizado, inputDescripcionActualizado);
-      /*   .then(() => {
+        actualizarPerfil(userData.id, inputNombreActualizado, inputusuarioActualizado,  inputUbicacionActualizado, inputDescripcionActualizado)
+        .then(() => {
             const userData = JSON.parse(sessionStorage.userSession);
-            userData.name = name;
-            userData.ubicacion = ubicacion;
-            userData.descripcion = descripcion;
+            userData.username = inputusuarioActualizado;
+            userData.name = inputNombreActualizado;
+            userData.ubicacion = inputUbicacionActualizado;
+            userData.descripcion = inputDescripcionActualizado;
             sessionStorage.setItem("userSession", JSON.stringify(userData));   
-            actualizarDatosPerfil(name, ubicacion, descripcion);
-        }); */
+            actualizarDatosPerfil(inputusuarioActualizado, inputNombreActualizado, inputUbicacionActualizado, inputDescripcionActualizado);
+        });
     });
-    
-};
-
-export const actualizarDatosPerfil = (name, ubicacion, descripcion) => {
-  const nombreDelPerfil = document.getElementById('nombreDelPerfil');
-  const ubicacionDelPerfil = document.getElementById('ubicacionDelPerfil');
-  const descripcionDelPerfil = document.getElementById('descripcionDelPerfil');
-  nombreDelPerfil.innerHTML = name;
-  ubicacionDelPerfil.innerHTML = ubicacion;
-  descripcionDelPerfil.innerHTML = descripcion;
-};
+}
