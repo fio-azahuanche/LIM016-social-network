@@ -4,8 +4,9 @@ import { formInicioSesion, inicioSesion } from '../componentes/inicioSesion.js';
 import { muro, muroPerfil, muroEditarPerfil } from '../componentes/muro.js';
 import { cerrarSesion, menuPuntosVerticales } from '../componentes/headerMuro.js';
 import { userState } from '../componentes/validaciones.js';
-import { creacionPost, menuPuntosHorizontales } from '../componentes/seccionSecMuro.js';
+import { creacionPost } from '../componentes/seccionSecMuro.js';
 import { btnEditarPerfil } from '../componentes/seccionEditarPerfil.js';
+//import { btnEliminarPost } from '../componentes/seccionPerfil.js';
 
 export const vistasPantalla = () => {
   const main = document.getElementById('main');
@@ -33,8 +34,8 @@ export const vistasPantalla = () => {
       userState();
       main.appendChild(muroPerfil());
       cerrarSesion();
-      menuPuntosVerticales();
-      menuPuntosHorizontales();
+      menuPuntosVerticales();      
+      /* menuPuntosHorizontales(); */
       break;
 
     case '#/arteditarperfil':

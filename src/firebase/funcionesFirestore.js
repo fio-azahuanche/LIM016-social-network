@@ -11,26 +11,14 @@ import {
   orderBy,
   where,
   serverTimestamp,
+  deleteDoc
 // eslint-disable-next-line import/no-unresolved
 } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js';
 import { app } from './config.js';
-// eslint-disable-next-line import/no-cycle
-import { actualizarDatosPerfil } from '../componentes/seccionEditarPerfil.js';
 
 // inicializa el firestore
 const db = getFirestore(app);
-/* // referenciando la colección segun su nombre
-const colRefs = collection(db, 'usuarios');
-// Obtener datos de la colección como array de objetos
-getDocs(colRefs)
-  .then((snapshot) => {
-    const usuarios = [];
-    snapshot.docs.forEach((docs) => {
-      usuarios.push({ ...docs.data(), id: docs.id });
-    });
-    // eslint-disable-next-line no-console
-    console.log(usuarios);
-  }); */
+
 // Obtener todos los documentos de la coleccion 'home' de firestore y mandarlo como array de objetos
 export const obtenerPosts = async () => {
   const colRef = collection(db, 'home');
@@ -58,16 +46,15 @@ export const obtenerPostById = async (byId) => {
   const datos = await getDoc(postsHome).then((key) => key.data());
   return datos;
 };
-
 // Agregar data inicial al momento de registro a la coleccion usuarios
 export const agregarDataUserFS = async (id, Username, Correo, Name, Descripcion, Ubicacion) => {
   const colRefId = doc(db, 'usuarios', id);
   await setDoc(colRefId, {
-    username: Username,
+    username: Name,
     correo: Correo,
     ubicacion: Ubicacion,
-    name: Name,
-    descripcion: Descripcion,
+    name: Username,
+    descripcion: Descripcion
   });
 };
 
@@ -104,21 +91,37 @@ export const actualizarDatosPost = async (userId, creadorPost, descripcionPost) 
   return getDoc(colRefId);
 }; */
 
-export const actualizarPerfil = (userId, name, ubicacion, descripcion) => {
+export const actualizarPerfil = (userId, name, username, ubicacion, descripcion) => {
   const colRefId = doc(db, 'usuarios', userId);
-  //const actualizarPerfilUsuario = updateDoc(colRefId, {
-  updateDoc(colRefId, {
-    name: name,
+  return updateDoc(colRefId, {
+    username: username,
+    name: name,    
     ubicacion: ubicacion,
-    descripcion: descripcion,
-  })
- /*  return actualizarPerfilUsuario; */
-  .then(() => {
-    const userData = JSON.parse(sessionStorage.userSession);
-    userData.name = name;
-    userData.ubicacion = ubicacion;
-    userData.descripcion = descripcion;
-    sessionStorage.setItem("userSession", JSON.stringify(userData));   
-    actualizarDatosPerfil(name, ubicacion, descripcion);
+    descripcion: descripcion
   });
 };
+/*---------------  Agregar  usuario a firestore desde boton de google -----------------------*/
+export const agregarGoogleUser = (id, user) => {
+  const colRefId = doc(db, 'usuarios', id);
+  return setDoc(colRefId, {
+    username: user.displayName,
+    correo: user.email
+  })
+};
+/*---------------- Buscar posts creados por el usuario logueado--------------------------- */
+export const obtenerUserPosts = async () => {
+  const userId = JSON.parse(sessionStorage.userSession).id;
+  const colRef = collection(db, 'home');
+  const q = query(colRef, where("usuarioId", "==", userId));
+  const querySnapshot = await getDocs(q);
+  let posts = []
+  const values = querySnapshot.forEach((doc) => {
+    posts.push({...doc.data(), id: doc.id});
+  });
+  return posts;
+};
+/*---------------- Eliminar un post de con respecto al postId-------------------------- */
+export const eliminarPost = async (postId) => {
+  await deleteDoc(doc(db, "home", postId)
+)}
+
