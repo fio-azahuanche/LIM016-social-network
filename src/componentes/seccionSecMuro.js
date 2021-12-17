@@ -1,10 +1,11 @@
 import {
-  obtenerPosts, obtenerUsuarioById, obtenerPostById, subirPostA,
+  obtenerPosts, obtenerPostById, subirPostA,
 } from '../firebase/funcionesFirestore.js';
 
-const subirContainer = (creadorPost, apodoUser, postTxt, srcImagenPost) => {
+const subirContainer = (idPost, creadorPost, apodoUser, postTxt, srcImagenPost) => {
   const divTablero = document.createElement('div');
   divTablero.classList.add('tableroPost');
+  divTablero.setAttribute('id', idPost);
 
   divTablero.innerHTML = `
     <div class="usuarioPost">
@@ -21,7 +22,7 @@ const subirContainer = (creadorPost, apodoUser, postTxt, srcImagenPost) => {
         </div>
     </div>
     <div class="botonesReaccion">
-        <img src="imagenes/heartIcono.png">
+        <img src="imagenes/heartIcono.png" class="like">
         <img src="imagenes/comentIcono.png">
         <img src="imagenes/compartirIcono.png">
     </div>
@@ -32,9 +33,7 @@ const subirContainer = (creadorPost, apodoUser, postTxt, srcImagenPost) => {
 const rellenarHome = async (conteinerPost) => {
   const datosPost = await obtenerPosts();
   datosPost.forEach((doc) => {
-    obtenerUsuarioById(doc.usuarioId).then((datosUsuario) => {
-      conteinerPost.prepend(subirContainer(datosUsuario.username, datosUsuario.descripcion, doc.publicacion, ''));
-    });
+    conteinerPost.prepend(subirContainer(doc.postId, doc.creador, doc.descripcion, doc.publicacion, ''));
   });
 };
 
@@ -106,11 +105,12 @@ export const creacionPost = (formCompartir, containerPost) => {
     e.preventDefault();
     const inputCompartir = document.getElementById('inputCompartir').value;
     const userData = JSON.parse(sessionStorage.userSession);
-    await subirPostA('home', userData.id, inputCompartir).then((doc) => {
-      obtenerPostById(doc.id).then((postsById) => {
-        containerPosts.prepend(subirContainer(userData.username, userData.descripcion, postsById.publicacion, ''));
+    await subirPostA('home', userData.id, inputCompartir, userData.username, userData.descripcion)
+      .then((doc) => {
+        obtenerPostById(doc.id).then((postsById) => {
+          containerPosts.prepend(subirContainer(doc.id, postsById.creador, postsById.descripcion, postsById.publicacion, ''));
+        });
       });
-    });
     divCompartir.reset();
   });
 };
