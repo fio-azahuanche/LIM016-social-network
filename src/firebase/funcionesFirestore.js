@@ -16,7 +16,7 @@ import {
 } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js';
 import { app } from './config.js';
 // eslint-disable-next-line import/no-cycle
-import { actualizarDatosPerfil } from '../componentes/seccionEditarPerfil.js';
+//import { actualizarDatosPerfil } from '../componentes/seccionEditarPerfil.js';
 
 // inicializa el firestore
 const db = getFirestore(app);
@@ -29,8 +29,6 @@ getDocs(colRefs)
     snapshot.docs.forEach((docs) => {
       usuarios.push({ ...docs.data(), id: docs.id });
     });
-    // eslint-disable-next-line no-console
-    //console.log(usuarios);
   });
 // Obtener todos los documentos de la coleccion 'home' de firestore y mandarlo como array de objetos
 export const obtenerPosts = async () => {
@@ -53,13 +51,11 @@ export const obtenerUsuarioById = async (idUser) => {
   return querySnapshot;
 };
 // Obtener una publicacion por su id
-
 export const obtenerPostById = async (byId) => {
   const postsHome = doc(db, 'home', byId);
   const datos = await getDoc(postsHome).then((key) => key.data());
   return datos;
 };
-
 // Agregar data inicial al momento de registro a la coleccion usuarios
 export const agregarDataUserFS = async (id, Username, Correo, Name, Descripcion, Ubicacion) => {
   const colRefId = doc(db, 'usuarios', id);
@@ -71,7 +67,6 @@ export const agregarDataUserFS = async (id, Username, Correo, Name, Descripcion,
     descripcion: Descripcion
   });
 };
-
 export const subirPostA = async (nameCol, idUser, post) => {
   const colRefPost = collection(db, nameCol);
   const functionAdd = await addDoc(colRefPost, {
@@ -81,7 +76,6 @@ export const subirPostA = async (nameCol, idUser, post) => {
   });
   return functionAdd;
 };
-
 /* -------------- Funcionalidad del perfil de usuario ------------------------*/
 /* export const getCurrentUser = (userId) => {
   const colRefId = doc(db, 'usuarios', userId);
@@ -97,7 +91,6 @@ export const actualizarPerfil = (userId, name, username, ubicacion, descripcion)
     descripcion: descripcion
   });
 };
-
 /*---------------  Agregar  usuario a firestore desde boton de google -----------------------*/
 export const agregarGoogleUser = (id, user) => {
   const colRefId = doc(db, 'usuarios', id);
@@ -119,7 +112,7 @@ export const obtenerUserPosts = async () => {
   return posts;
 };
 /* Eliminar un post de con respecto al postId */
-/* export const deletePostById = async (postId) => {
-  await deleteDoc(doc(db, "home", postId),
-};
- */
+export const eliminarPost = async (postId) => {
+  await deleteDoc(doc(db, "home", postId)
+)}
+

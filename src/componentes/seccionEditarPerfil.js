@@ -59,22 +59,22 @@ export const contenidoEditarPerfil = () => {
                         <form id="formIngreso">
                             <div class="cajaImputDatos">
                                 <p class="textSeccActualizacion" id="">Usuario:</p>
-                                <input type="text" id="actualizacionUsuario" class="datosParaActualizar">
+                                <input type="text" id="actualizacionUsuario" class="datosParaActualizar" autocapitalize="sentence">
                             </div>
 
                             <div class="cajaImputDatos">
                                 <p class="textSeccActualizacion" id="">Nombre:</p>
-                                <input type="text" id="actualizacionNombre" class="datosParaActualizar">
+                                <input type="text" id="actualizacionNombre" class="datosParaActualizar" autocapitalize="sentence">
                             </div>
 
                             <div class="cajaImputDatos">
                                 <p class="textSeccActualizacion" id="">Estado:</p>
-                                <input type="text" id="actualizacionEstado" class="datosParaActualizar">
+                                <input type="text" id="actualizacionEstado" class="datosParaActualizar" autocapitalize="sentence">
                             </div>
 
                             <div class="cajaImputDatos">
                                 <p class="textSeccActualizacion">Ubicación:</p>
-                                <input type="text" id="actualizacionUbicacion" class="datosParaActualizar">
+                                <input type="text" id="actualizacionUbicacion" class="datosParaActualizar" autocapitalize="sentence">
                             </div>
                             <div class="botonesFormularios">
                                 <button type="submit" id="guardarCambios" class="guardarCambios">Guardar Cambios</button>  
