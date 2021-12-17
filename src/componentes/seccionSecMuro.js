@@ -81,7 +81,6 @@ export const seccionMuro2 = () => {
             <option value="value3">Adoptar</option>
             <option value="value4">Lugares</option>
             <option value="value5">Donaciones</option>
-            <option value="value6"></option>
         </select>
         <button class="botonCompartir">Compartir</button>
     </div>
