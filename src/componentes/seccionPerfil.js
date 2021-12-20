@@ -2,15 +2,15 @@ import { obtenerUserPosts, eliminarPost, actualizarPost } from '../firebase/func
 import { validateSessionStorage } from './validaciones.js';
 
 const subirContainer = (idPost, creadorPost, apodoUser, postTxt, srcImagenPost) => {
-    const divPost = document.createElement('div');
-    divPost.classList.add('tableroPost');
+  const divPost = document.createElement('div');
+  divPost.classList.add('tableroPost');
 
-    divPost.innerHTML = `
+  divPost.innerHTML = `
     <div class="usuarioPost" id="${idPost}">
         <div class="imgUsuarioPost"><img class="imgPost"src="imagenes/ImgUsuario3.png"></div>
         <div class="infoUsuarioPost">
             <div class="nombreUsuarioPost"><p>${creadorPost}</p><img src="imagenes/bxs-user-plus 2.png"></div>
-            <div class="descripcionUsuarioPost"><p>${apodoUser}</p></div>            
+            <div class="descripcionUsuarioPost"><p>${apodoUser}</p></div>
         </div>
         <button class="btnEdit"><img src="imagenes/edit.png"></button>
         <button class="btnDelete"><img src="imagenes/delete.png"></button>       
@@ -29,64 +29,81 @@ const subirContainer = (idPost, creadorPost, apodoUser, postTxt, srcImagenPost) 
         <img src="imagenes/compartirIcono.png">
     </div>
     `;
-    return divPost;
+  return divPost;
+};
+
+export const btnEliminarPost = () => {
+    const postsCards = document.getElementsByClassName("usuarioPost");
+    Array.from(postsCards).forEach((postCard) => {
+        const btnEliminar = postCard.querySelector(".btnDelete");       
+        btnEliminar.addEventListener("click", async () => {
+            const confirmarcion = window.confirm("¿Esta seguro que quiere eliminar el post?");
+            if (!confirmarcion) {
+                return
+            }
+            const postEliminado = document.getElementById(postCard.id);
+            await eliminarPost(postCard.id);  
+            console.log("si elimino el post");          
+            postEliminado.parentElement.remove(); 
+
+        });        
+    });   
 };
 
 const rellenarPerfil = async (containerPost) => {
-    const datosPost = await obtenerUserPosts();
-    const userData = JSON.parse(sessionStorage.userSession);
-    datosPost.forEach((post) => {
-        containerPost.prepend(subirContainer(post.id, userData.username, userData.descripcion, post.publicacion, ''));
-    });
+  const datosPost = await obtenerUserPosts();
+  const userData = JSON.parse(sessionStorage.userSession);
+  datosPost.forEach((post) => {
+    containerPost.prepend(subirContainer(post.id, userData.username, userData.descripcion, post.publicacion, ''));
+  });
     btnEliminarPost();
     btnEditarPost();
 };
-  
+
 export const contenidoPerfil = () => {
-    const perfilSeccion = document.createElement('section');
-    perfilSeccion.classList.add('cuerpoPerfil');
+  const perfilSeccion = document.createElement('section');
+  perfilSeccion.classList.add('cuerpoPerfil');
 
-    const userData = validateSessionStorage();
+  const userData = validateSessionStorage();
 
-    const navInferior = document.createElement('nav');
-    navInferior.classList.add('barraNavegacionInferior');
-    navInferior.innerHTML = `
+  const navInferior = document.createElement('nav');
+  navInferior.classList.add('barraNavegacionInferior');
+  navInferior.innerHTML = `
       <ul>
-        <li class="list">
-            <a>
-                <span class="icon iconCategorias" id="categorias">
-                    <img src="imagenes/users-three.png">
-                </span>
-            </a>
-        </li>
-        <li class="list">
-            <a href="#/artmuro">
-                <span class="icon">
-                    <img src="imagenes/house-fill.png">
-                </span>
-            </a>
-        </li>
-        <li class="list">
-            <a href="#/artperfil">
-                <span class="icon">
-                    <img src="imagenes/ImgUsuario.png">
-                </span>
-            </a>
-        </li>
-      </ul>  
+      <li class="list">
+          <a class="abrirModal">
+              <span class="icon">
+                  <img src="imagenes/users-three.png">
+              </span>
+          </a>
+      </li>
+      <li class="list">
+          <a href="#/artmuro">
+              <span class="icon">
+                  <img src="imagenes/house-fill.png">
+              </span>
+          </a>
+      </li>
+      <li class="list">
+          <a href="#/artperfil">
+              <span class="icon">
+                  <img src="imagenes/ImgUsuario.png">
+              </span>
+          </a>
+      </li>
+      </ul>
     `;
-   
-    const tableroInformacionUsuario = document.createElement('div');    
-    tableroInformacionUsuario.classList.add('fondo1');
-    tableroInformacionUsuario.innerHTML = `
+  const tableroInformacionUsuario = document.createElement('div');
+  tableroInformacionUsuario.classList.add('fondo1');
+  tableroInformacionUsuario.innerHTML = `
         <div class="fondoImagenPerfil">
             <img src="imagenes/ImgDelUsuario.png">
-        </div>  
+        </div>
         <div class="fondo2">
             <div class="imgPerfilUsuario">
                 <img src="imagenes/ImgUsuario.png">
             </div>
-            
+
             <div class="contenidoTextPerfil">
                 <h2>${userData.username}</h2>
                 <p>${userData.name}</p>
@@ -119,24 +136,6 @@ export const contenidoPerfil = () => {
     perfilSeccion.appendChild(contenedorPublicacionesPerfil);
     
     return perfilSeccion;
-};
-
-export const btnEliminarPost = () => {
-    const postsCards = document.getElementsByClassName("usuarioPost");
-    Array.from(postsCards).forEach((postCard) => {
-        const btnEliminar = postCard.querySelector(".btnDelete");       
-        btnEliminar.addEventListener("click", async () => {
-            const confirmarcion = window.confirm("¿Esta seguro que quiere eliminar el post?");
-            if (!confirmarcion) {
-                return
-            }
-            const postEliminado = document.getElementById(postCard.id);
-            await eliminarPost(postCard.id);  
-            console.log("si elimino el post");          
-            postEliminado.parentElement.remove(); 
-
-        });        
-    });   
 };
 
 export const btnEditarPost = () => {
