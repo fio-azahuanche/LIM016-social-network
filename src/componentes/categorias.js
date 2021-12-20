@@ -5,6 +5,7 @@ import {
   obtenerById,
   subirLikes,
 } from '../firebase/funcionesFirestore.js';
+import { validateSessionStorage } from './validaciones.js';
 
 export const btnLikes1 = () => {
   const postsCards = document.getElementsByClassName('botonesReaccion');
@@ -53,6 +54,7 @@ export const contenidoCategoria = (imgsrc, tituloCategoria) => {
 
   const navInferior = document.createElement('nav');
   navInferior.classList.add('barraNavegacionInferior');
+  const userData = validateSessionStorage();
   navInferior.innerHTML = `
         <ul>
         <li class="list">
@@ -72,7 +74,7 @@ export const contenidoCategoria = (imgsrc, tituloCategoria) => {
         <li class="list">
             <a href="#/artperfil">
                 <span class="icon">
-                    <img src="imagenes/ImgUsuario.png">
+                    <img src="${userData.imgUsuario}">
                 </span>
             </a>
         </li>

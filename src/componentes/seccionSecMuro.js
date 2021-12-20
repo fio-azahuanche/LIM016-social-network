@@ -2,6 +2,7 @@ import {
   obtenerPosts, obtenerById, subirDataHomeCol, subirLikes, obtenerUsuarios,
 } from '../firebase/funcionesFirestore.js';
 import { subirFileStorage } from '../firebase/funcionesStorage.js';
+import { validateSessionStorage } from './validaciones.js';
 
 export const subirContainer = (idPost, dataPost, dataCreador) => {
   const divTablero = document.createElement('div');
@@ -9,7 +10,7 @@ export const subirContainer = (idPost, dataPost, dataCreador) => {
 
   divTablero.innerHTML = `
     <div class="usuarioPost" id= "${idPost}">
-        <div class="imgUsuarioPost"><img class="imgPost"src="imagenes/ImgUsuario3.png"></div>
+        <div class="imgUsuarioPost"><img class="imgPost"src="${dataCreador.imgUsuario}"></div>
         <div class="infoUsuarioPost">
             <div class="nombreUsuarioPost"><p>${dataCreador.username}</p><img src="imagenes/bxs-user-plus 2.png"></div>
             <div class="descripcionUsuarioPost"><p>${dataCreador.descripcion}</p></div>
@@ -61,6 +62,7 @@ const rellenarHome = async (conteinerPost) => {
     querySnapshot.docChanges().forEach((change) => {
       if (change.type === 'added') {
         const creadorPost = usuarios.filter((user) => user.userId === change.doc.data().usuarioId);
+        console.log(creadorPost[0]);
         conteinerPost.prepend(subirContainer(change.doc.id, change.doc.data(), creadorPost[0]));
 
         if (change.doc.data().likes.includes(userData.id)) {
@@ -98,6 +100,7 @@ export const seccionMuro2 = () => {
 
   const navInferior = document.createElement('nav');
   navInferior.classList.add('barraNavegacionInferior');
+  const userData = validateSessionStorage();
   navInferior.innerHTML = `
     <ul>
     <li class="list">
@@ -117,7 +120,7 @@ export const seccionMuro2 = () => {
     <li class="list">
         <a href="#/artperfil">
             <span class="icon">
-                <img src="imagenes/ImgUsuario.png">
+                <img src="${userData.imgUsuario}">
             </span>
         </a>
     </li>
@@ -219,7 +222,7 @@ export const creacionPost = (formCompartir) => {
       categoriaSelect = [];
       divCompartir.reset();
     } else {
-      const archivo = await subirFileStorage(urlImg[urlImg.length - 1]);
+      const archivo = await subirFileStorage(urlImg[urlImg.length - 1], 'imgPosts');
       await subirDataHomeCol(userData.id, postTxt, categoria, archivo);
       /* .then((doc) => {
         obtenerById(doc.id, 'posts').then((postsById) => {
