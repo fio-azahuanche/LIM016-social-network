@@ -75,9 +75,8 @@ const rellenarHome = async (conteinerPost) => {
       if (change.type === 'removed') {
         /* const postEliminado = document.getElementById(change.doc.id);
         postEliminado.parentElement.remove(); */
-        console.log(('se removio algo'));
       }
-      console.log(change);
+      
     });    
   }); 
 };
