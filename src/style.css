@@ -703,7 +703,7 @@ figure{
     color: #844124;
     font-weight: 600;
 }
-.btnDelete{
+.btnDelete, .btnEdit{
     display: flex;
     align-items: center;
     justify-content: center;

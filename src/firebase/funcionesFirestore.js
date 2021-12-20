@@ -124,4 +124,11 @@ export const obtenerUserPosts = async () => {
 export const eliminarPost = async (postId) => {
   await deleteDoc(doc(db, "home", postId)
 )}
+/*---------------- Editar un post en especifico ----------------------------------- */
+export const actualizarPost = (postId, publicacion) => {
+  const colRefId = doc(db, 'home', postId);
+  return updateDoc(colRefId, {
+    publicacion: publicacion,
+  });
+};
 

@@ -3,10 +3,10 @@ import { actualizarPerfil, actualizarDatosPost } from '../firebase/funcionesFire
 import { validateSessionStorage } from './validaciones.js';
 
 export const contenidoEditarPerfil = () => {
-  const EditarSeccion = document.createElement('section');
-  EditarSeccion.classList.add('cuerpoEditarPerfil');
-  const userData = validateSessionStorage();
-  EditarSeccion.innerHTML = `
+const EditarSeccion = document.createElement('section');
+EditarSeccion.classList.add('cuerpoEditarPerfil');
+const userData = validateSessionStorage();
+    EditarSeccion.innerHTML = `
         <nav class= "barraNavegacionInferior">
             <ul>
                 <li class="list">
@@ -82,10 +82,12 @@ export const contenidoEditarPerfil = () => {
                             </div>
                         </form>
                     </div>
+            
                 </div>
             </div>
-        </div>`;
-  return EditarSeccion;
+        </div>
+    `;
+    return EditarSeccion;
 };
 
 export const actualizarDatosPerfil = (username, name, ubicacion, descripcion) => {
@@ -122,11 +124,3 @@ export const btnEditarPerfil = () => {
     });
 };
 
-/* export const actualizarDatosPerfil = (name, ubicacion, descripcion) => {
-  const nombreDelPerfil = document.getElementById('nombreDelPerfil');
-  const ubicacionDelPerfil = document.getElementById('ubicacionDelPerfil');
-  const descripcionDelPerfil = document.getElementById('descripcionDelPerfil');
-  nombreDelPerfil.innerHTML = name;
-  ubicacionDelPerfil.innerHTML = ubicacion;
-  descripcionDelPerfil.innerHTML = descripcion;
-}; */

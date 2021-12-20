@@ -6,7 +6,6 @@ import { cerrarSesion, menuPuntosVerticales } from '../componentes/headerMuro.js
 import { userState } from '../componentes/validaciones.js';
 import { creacionPost } from '../componentes/seccionSecMuro.js';
 import { btnEditarPerfil } from '../componentes/seccionEditarPerfil.js';
-//import { btnEliminarPost } from '../componentes/seccionPerfil.js';
 
 export const vistasPantalla = () => {
   const main = document.getElementById('main');
@@ -34,7 +33,7 @@ export const vistasPantalla = () => {
       userState();
       main.appendChild(muroPerfil());
       cerrarSesion();
-      menuPuntosVerticales();      
+      menuPuntosVerticales();       
       /* menuPuntosHorizontales(); */
       break;
 
