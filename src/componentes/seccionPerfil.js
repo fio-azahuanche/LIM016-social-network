@@ -142,7 +142,7 @@ const subirContainer = (idPost, creadorPost, apodoUser, postTxt, srcImagenPost) 
         <div class="imgUsuarioPost"><img class="imgPost"src="imagenes/ImgUsuario3.png"></div>
         <div class="infoUsuarioPost">
             <div class="nombreUsuarioPost"><p>${creadorPost}</p><img src="imagenes/bxs-user-plus 2.png"></div>
-            <div class="descripcionUsuarioPost"><p>${apodoUser}</p></div>            
+            <div class="descripcionUsuarioPost"><p>${apodoUser}</p></div>
         </div>
         <button class="btnDelete"><img src="imagenes/delete.png"></button>
     </div>
@@ -222,12 +222,12 @@ export const contenidoPerfil = () => {
   tableroInformacionUsuario.innerHTML = `
         <div class="fondoImagenPerfil">
             <img src="imagenes/ImgDelUsuario.png">
-        </div>  
+        </div>
         <div class="fondo2">
             <div class="imgPerfilUsuario">
                 <img src="imagenes/ImgUsuario.png">
             </div>
-            
+
             <div class="contenidoTextPerfil">
                 <h2>${userData.username}</h2>
                 <p>(${userData.name})</p>

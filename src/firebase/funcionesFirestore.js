@@ -13,6 +13,7 @@ import {
   where,
   serverTimestamp,
   deleteDoc,
+  onSnapshot,
 // eslint-disable-next-line import/no-unresolved
 } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js';
 import { app } from './config.js';
@@ -21,13 +22,27 @@ import { app } from './config.js';
 const db = getFirestore(app);
 
 // Obtener todos los documentos de la coleccion 'home' de firestore y mandarlo como array de objetos
-export const obtenerPosts = async () => {
+export const obtenerPosts = async (callback) => {
   const colRef = collection(db, 'home');
   const q = query(colRef, orderBy('timestamp'));
-  const querySnapshot = await getDocs(q).then((snapshot) => {
+  await onSnapshot(q, callback);
+
+  /* const querySnapshot = await getDocs(q).then((snapshot) => {
     const posts = [];
     snapshot.docs.forEach((docs) => {
       posts.push({ ...docs.data(), postId: docs.id });
+    });
+    return posts;
+  });
+  return querySnapshot; */
+};
+
+export const obtenerUsuarios = async () => {
+  const colRef = collection(db, 'usuarios');
+  const querySnapshot = await getDocs(colRef).then((snapshot) => {
+    const posts = [];
+    snapshot.docs.forEach((docs) => {
+      posts.push({ ...docs.data(), userId: docs.id });
     });
     return posts;
   });
@@ -59,22 +74,21 @@ export const agregarDataUserFS = async (id, Username, Correo, Name, Descripcion,
   });
 };
 
-export const subirDataHomeCol = async (idUser, post, creadorPost, descripcionPost, Categoria) => {
+export const subirDataHomeCol = async (creadorPost, post, Categoria, urlImg) => {
   const colRefPost = collection(db, 'home');
   const functionAdd = await addDoc(colRefPost, {
-    usuarioId: idUser,
+    usuarioId: creadorPost,
     publicacion: post,
-    creador: creadorPost,
     categoria: Categoria,
-    descripcion: descripcionPost,
+    imgPost: urlImg,
     timestamp: serverTimestamp(),
+    likes: [],
   });
   return functionAdd;
 };
 
-export const actualizarDatosPost = async (userId, creadorPost, descripcionPost) => {
+/* export const actualizarDatosPost = async (userId, creadorPost, descripcionPost) => {
   const colRef = collection(db, 'home');
-  // Create a query against the collection.
   const q = query(colRef, where('usuarioId', '==', userId));
   await getDocs(q).then((snapshot) => {
     snapshot.forEach((el) => {
@@ -84,6 +98,13 @@ export const actualizarDatosPost = async (userId, creadorPost, descripcionPost) 
         descripcion: descripcionPost,
       });
     });
+  });
+}; */
+
+export const subirLikes = async (idPost, dataLikes) => {
+  const docId = doc(db, 'home', idPost);
+  await updateDoc(docId, {
+    likes: dataLikes,
   });
 };
 
@@ -117,7 +138,7 @@ export const obtenerUserPosts = async () => {
   const q = query(colRef, where('usuarioId', '==', userId));
   const querySnapshot = await getDocs(q);
   const posts = [];
-  const values = querySnapshot.forEach((docs) => {
+  querySnapshot.forEach((docs) => {
     posts.push({ ...docs.data(), id: docs.id });
   });
   return posts;

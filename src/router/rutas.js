@@ -11,7 +11,6 @@ import { cerrarSesion, menuPuntosVerticales } from '../componentes/headerMuro.js
 import { userState } from '../componentes/validaciones.js';
 import { creacionPost, modalCategorias } from '../componentes/seccionSecMuro.js';
 import { btnEditarPerfil } from '../componentes/seccionEditarPerfil.js';
-// import { btnEliminarPost } from '../componentes/seccionPerfil.js';
 
 export const vistasPantalla = () => {
   const main = document.getElementById('main');

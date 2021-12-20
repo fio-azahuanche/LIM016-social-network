@@ -1,8 +1,9 @@
 import {
-  obtenerPosts, obtenerPostById, subirDataHomeCol,
+  obtenerPosts, obtenerPostById, subirDataHomeCol, subirLikes, obtenerUsuarios,
 } from '../firebase/funcionesFirestore.js';
+import { subirFileStorage } from '../firebase/funcionesStorage.js';
 
-export const subirContainer = (idPost, creadorPost, apodoUser, postTxt, srcImagenPost) => {
+export const subirContainer = (idPost, dataPost, dataCreador) => {
   const divTablero = document.createElement('div');
   divTablero.classList.add('tableroPost');
 
@@ -10,30 +11,86 @@ export const subirContainer = (idPost, creadorPost, apodoUser, postTxt, srcImage
     <div class="usuarioPost" id= "${idPost}">
         <div class="imgUsuarioPost"><img class="imgPost"src="imagenes/ImgUsuario3.png"></div>
         <div class="infoUsuarioPost">
-            <div class="nombreUsuarioPost"><p>${creadorPost}</p><img src="imagenes/bxs-user-plus 2.png"></div>
-            <div class="descripcionUsuarioPost"><p>${apodoUser}</p></div>
+            <div class="nombreUsuarioPost"><p>${dataCreador.username}</p><img src="imagenes/bxs-user-plus 2.png"></div>
+            <div class="descripcionUsuarioPost"><p>${dataCreador.descripcion}</p></div>
         </div>
     </div>
     <div class="estadoCompartido">
         <div class="contenidoCompartido">
-            <p>${postTxt}</p>
-            <img src="${srcImagenPost}">
+            <p>${dataPost.publicacion}</p>
+            <img src="${dataPost.imgPost}">
         </div>
     </div>
     <div class="botonesReaccion">
-        <img src="imagenes/heartIcono.png" class="like">
+
+    <img src="imagenes/heartIcono.png" class="like" name= "${idPost}"><p>${dataPost.likes.length}</p>
         <img src="imagenes/comentIcono.png">
         <img src="imagenes/compartirIcono.png">
     </div>
     `;
+
   return divTablero;
 };
 
-const rellenarHome = async (conteinerPost) => {
-  const datosPost = await obtenerPosts();
-  datosPost.forEach((doc) => {
-    conteinerPost.prepend(subirContainer(doc.postId, doc.creador, doc.descripcion, doc.publicacion, ''));
+export const btnLikes = () => {
+  const postsCards = document.getElementsByClassName('botonesReaccion');
+  // console.log(postsCards);
+  Array.from(postsCards).forEach((postCard) => {
+    const btnLike = postCard.querySelector('.like');
+    btnLike.addEventListener('click', async () => {
+      const hijo = btnLike.getAttribute('name');
+      // const hermano = btnLike.nextElementSibling;
+      // console.log(hermano);
+      const userData = JSON.parse(sessionStorage.userSession);
+      const veamos = await obtenerPostById(hijo);
+      // console.log(veamos);
+      if (veamos.likes.includes(userData.id)) {
+        console.log('esta');
+        subirLikes(hijo, veamos.likes.filter((item) => item !== userData.id));
+        // hermano.textContent = veamos.likes.length;
+      } else {
+        console.log('no esta');
+        subirLikes(hijo, [...veamos.likes, userData.id]);
+        // hermano.textContent = veamos.likes.length;
+      }
+    });
   });
+};
+
+const rellenarHome = async (conteinerPost) => {
+  const usuarios = await obtenerUsuarios();
+  await obtenerPosts((querySnapshot) => {
+    querySnapshot.docChanges().forEach((change) => {
+      if (change.type === 'added') {
+        const creadorPost = usuarios.filter((user) => user.userId === change.doc.data().usuarioId);
+        conteinerPost.prepend(subirContainer(change.doc.id, change.doc.data(), creadorPost[0]));
+        btnLikes();
+      }
+      if (change.type === 'modified') {
+        const btnLike = document.getElementsByName(change.doc.id);
+        const hermano = btnLike[0].nextElementSibling;
+        hermano.textContent = change.doc.data().likes.length;
+        btnLikes();
+      }
+      if (change.type === 'removed') {
+        /* const postEliminado = document.getElementById(change.doc.id);
+        postEliminado.parentElement.remove(); */
+        console.log(('se removio algo'));
+      }
+      console.log(change);
+    });
+    /* cities.forEach((doc) => {
+        conteinerPost.prepend(subirContainer(doc.postId, doc, ''));
+      }); */
+  });
+  /* const datosPost = await obtenerPosts();
+  datosPost.forEach((doc) => {
+    conteinerPost.prepend(subirContainer(doc.postId, doc, ''));
+    const btnLike = document.querySelector('.like');
+    const hermano = btnLike.nextElementSibling;
+    hermano.textContent = doc.likes.length;
+  });
+  btnLikes(); */
 };
 
 export const seccionMuro2 = () => {
@@ -96,7 +153,7 @@ export const seccionMuro2 = () => {
             <img src="imagenes/medicinasIcono.png" >
             <p>Donaciones</p>
         </a>
-    </div> 
+    </div>
     </section>`;
   const tableroCompartir = document.createElement('form');
   tableroCompartir.setAttribute('id', 'formCompartir');
@@ -104,7 +161,8 @@ export const seccionMuro2 = () => {
   tableroCompartir.innerHTML = `
     <input type="text" placeholder="¿Qué quieres reportar?" id="inputCompartir"><img id="imgPost"></input>
     <div class="botones">
-        <button class="botonCompartirImagen"><img src="imagenes/botonCompartirImagen.png"></button>
+        <input type="file" placeholder="Añadir Imagen" id="compartirImg">
+        <!--<button class="botonCompartirImagen" id="compartirImg"><img src="imagenes/botonCompartirImagen.png"></button>-->
         <select name="Grupo" id="Grupo" class="Grupo">
             <option value="" selected disabled>Seleccionar</option>
             <option value="Refugios">Refugios</option>
@@ -128,30 +186,50 @@ export const seccionMuro2 = () => {
   return segundaSeccion;
 };
 
-export const creacionPost = (formCompartir, containerPost) => {
+export const creacionPost = (formCompartir/* , containerPost */) => {
   const divCompartir = document.getElementById(formCompartir);
-  const containerPosts = document.getElementById(containerPost);
-  let categoriaSeleccionada = [];
-  const btnSelector = document.getElementById('Grupo');
-  btnSelector.addEventListener('change', (e) => {
-    categoriaSeleccionada.push(e.target.value);
+  // const containerPosts = document.getElementById(containerPost);
+
+  let urlImg = [];
+  const btnImg = document.getElementById('compartirImg');
+  btnImg.addEventListener('change', async (e) => {
+    urlImg.push(e.target.files[0]);
   });
+
+  let categoriaSelect = [];
+  const botonSelector = document.getElementById('Grupo');
+  botonSelector.addEventListener('change', (e) => {
+    categoriaSelect.push(e.target.value);
+  });
+
   divCompartir.addEventListener('submit', async (e) => {
     e.preventDefault();
-    let categoria = categoriaSeleccionada[categoriaSeleccionada.length - 1];
+    let categoria = categoriaSelect[categoriaSelect.length - 1];
     const postTxt = document.getElementById('inputCompartir').value;
     const userData = JSON.parse(sessionStorage.userSession);
     if (categoria === undefined) categoria = 'inicio';
-    await subirDataHomeCol(
-      userData.id, postTxt, userData.username, userData.descripcion, categoria,
-    )
-      .then((doc) => {
+    if (urlImg.length === 0) {
+      await subirDataHomeCol(userData.id, postTxt, categoria, '');
+      /* .then((doc) => {
         obtenerPostById(doc.id).then((postsById) => {
-          containerPosts.prepend(subirContainer(doc.id, postsById.creador, postsById.descripcion, postsById.publicacion, ''));
+          containerPosts.prepend(subirContainer(doc.id, postsById, ''));
         });
-      });
-    categoriaSeleccionada = [];
-    divCompartir.reset();
+      }); */
+      categoriaSelect = [];
+      divCompartir.reset();
+    } else {
+      const archivo = await subirFileStorage(urlImg[urlImg.length - 1]);
+      await subirDataHomeCol(userData.id, postTxt, categoria, archivo);
+      /* .then((doc) => {
+        obtenerPostById(doc.id).then((postsById) => {
+          containerPosts.prepend(subirContainer(doc.id, postsById, ''));
+        });
+      }); */
+      categoriaSelect = [];
+      divCompartir.reset();
+      urlImg = [];
+    }
+    // console.log(archivo);
   });
 };
 

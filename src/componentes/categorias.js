@@ -1,11 +1,44 @@
 import { subirContainer } from './seccionSecMuro.js';
-import { obtenerPostsGrupo } from '../firebase/funcionesFirestore.js';
+import {
+  obtenerPostsGrupo,
+  obtenerUsuarios,
+  obtenerPostById,
+  subirLikes,
+} from '../firebase/funcionesFirestore.js';
+
+export const btnLikes1 = () => {
+  const postsCards = document.getElementsByClassName('botonesReaccion');
+  // console.log(postsCards);
+  Array.from(postsCards).forEach((postCard) => {
+    const btnLike = postCard.querySelector('.like');
+    btnLike.addEventListener('click', async () => {
+      const hijo = btnLike.getAttribute('name');
+      const hermano = btnLike.nextElementSibling;
+      // console.log(hermano);
+      const userData = JSON.parse(sessionStorage.userSession);
+      const veamos = await obtenerPostById(hijo);
+      // console.log(veamos);
+      if (veamos.likes.includes(userData.id)) {
+        console.log('esta');
+        subirLikes(hijo, veamos.likes.filter((item) => item !== userData.id));
+        hermano.textContent = veamos.likes.length;
+      } else {
+        console.log('no esta');
+        subirLikes(hijo, [...veamos.likes, userData.id]);
+        hermano.textContent = veamos.likes.length;
+      }
+    });
+  });
+};
 
 const mostrarPostPorCategoria = async (containerPost, grupo) => {
+  const usuarios = await obtenerUsuarios();
   const datosPost = await obtenerPostsGrupo(grupo);
   datosPost.forEach((docs) => {
-    containerPost.prepend(subirContainer(docs.postId, docs.creador, docs.descripcion, docs.publicacion, ''));
+    const creadorPost = usuarios.filter((user) => user.userId === docs.usuarioId);
+    containerPost.prepend(subirContainer(docs.postId, docs, creadorPost[0]));
   });
+  btnLikes1();
 };
 
 export const contenidoCategoria = (imgsrc, tituloCategoria) => {

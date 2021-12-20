@@ -1,5 +1,4 @@
-// eslint-disable-next-line import/no-cycle
-import { actualizarPerfil, actualizarDatosPost } from '../firebase/funcionesFirestore.js';
+import { actualizarPerfil } from '../firebase/funcionesFirestore.js';
 import { validateSessionStorage } from './validaciones.js';
 
 export const contenidoEditarPerfil = () => {
@@ -109,7 +108,6 @@ export const btnEditarPerfil = () => {
     const inputDescripcionActualizado = document.getElementById('actualizacionEstado').value;
     const inputUbicacionActualizado = document.getElementById('actualizacionUbicacion').value;
     const userData = JSON.parse(sessionStorage.userSession);
-    actualizarDatosPost(userData.id, inputusuarioActualizado, inputDescripcionActualizado);
     actualizarPerfil(
       userData.id,
       inputNombreActualizado,
@@ -118,7 +116,6 @@ export const btnEditarPerfil = () => {
       inputDescripcionActualizado,
     )
       .then(() => {
-        // const userData = JSON.parse(sessionStorage.userSession);
         userData.username = inputusuarioActualizado;
         userData.name = inputNombreActualizado;
         userData.ubicacion = inputUbicacionActualizado;
