@@ -10,7 +10,7 @@ const subirContainer = (idPost, dataCreador, dataPost) => {
 
   divPost.innerHTML = `
     <div class="usuarioPost" id="${idPost}">
-        <div class="imgUsuarioPost"><img class="imgPost"src="imagenes/ImgUsuario3.png"></div>
+        <div class="imgUsuarioPost"><img class="imgPost"src="${dataCreador.imgUsuario}"></div>
         <div class="infoUsuarioPost">
             <div class="nombreUsuarioPost"><p>${dataCreador.username}</p></div>
             <div class="descripcionUsuarioPost"><p>${dataCreador.descripcion}</p></div>
@@ -25,7 +25,10 @@ const subirContainer = (idPost, dataCreador, dataPost) => {
         </div>
     </div>
     <div class="botonesReaccion">
-        <img src="imagenes/heartIcono.png" class="like" name="${idPost}"><p>${dataPost.likes.length}</p>        
+        <i class="ph-heart-bold like" name= "${idPost}"}></i>
+        <p>${dataPost.likes.length}</p>
+        <img src="imagenes/comentIcono.png">
+        <img src="imagenes/compartirIcono.png">
     </div>
     `;
   return divPost;
@@ -101,11 +104,17 @@ export const btnEditarPost = () => {
 };
 
 const rellenarPerfil = async (containerPost) => {
+  const userData = JSON.parse(sessionStorage.userSession);
   const usuarios = await obtenerUsuarios();
   const datosPost = await obtenerUserPosts();
   datosPost.forEach((post) => {
     const dataCreador = usuarios.filter((user) => user.userId === post.usuarioId);
     containerPost.prepend(subirContainer(post.id, dataCreador[0], post));
+    if (post.likes.includes(userData.id)) {
+      document.getElementsByName(post.id)[0].style.color = 'red';
+    } else {
+      document.getElementsByName(post.id)[0].style.color = '#8F7D7D';
+    }
   });
   btnLikes1();
   btnEliminarPost();
@@ -139,7 +148,7 @@ export const contenidoPerfil = () => {
       <li class="list">
           <a href="#/artperfil">
               <span class="icon">
-                  <img src="imagenes/ImgUsuario.png">
+                  <img src="${userData.imgUsuario}">
               </span>
           </a>
       </li>
@@ -153,7 +162,7 @@ export const contenidoPerfil = () => {
         </div>
         <div class="fondo2">
             <div class="imgPerfilUsuario">
-                <img src="imagenes/ImgUsuario.png">
+                <img src="${userData.imgUsuario}">
             </div>
 
             <div class="contenidoTextPerfil">
