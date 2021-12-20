@@ -25,7 +25,8 @@ const subirContainer = (idPost, dataCreador, dataPost) => {
         </div>
     </div>
     <div class="botonesReaccion">
-        <img src="imagenes/heartIcono.png" class="like" name="${idPost}"><p>${dataPost.likes.length}</p>
+        <i class="ph-heart-bold like" name= "${idPost}"}></i>
+        <p>${dataPost.likes.length}</p>
         <img src="imagenes/comentIcono.png">
         <img src="imagenes/compartirIcono.png">
     </div>
@@ -103,11 +104,17 @@ export const btnEditarPost = () => {
 };
 
 const rellenarPerfil = async (containerPost) => {
+  const userData = JSON.parse(sessionStorage.userSession);
   const usuarios = await obtenerUsuarios();
   const datosPost = await obtenerUserPosts();
   datosPost.forEach((post) => {
     const dataCreador = usuarios.filter((user) => user.userId === post.usuarioId);
     containerPost.prepend(subirContainer(post.id, dataCreador[0], post));
+    if (post.likes.includes(userData.id)) {
+      document.getElementsByName(post.id)[0].style.color = 'red';
+    } else {
+      document.getElementsByName(post.id)[0].style.color = '#8F7D7D';
+    }
   });
   btnLikes1();
   btnEliminarPost();
