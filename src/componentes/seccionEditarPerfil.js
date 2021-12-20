@@ -26,7 +26,7 @@ export const contenidoEditarPerfil = () => {
                 <li class="list">
                     <a href="#/artperfil">
                         <span class="icon">
-                            <img src="imagenes/ImgUsuario.png">
+                            <img src="${userData.imgUsuario}">
                         </span>
                     </a>
                 </li>
