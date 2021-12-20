@@ -12,7 +12,7 @@ const subirContainer = (idPost, dataCreador, dataPost) => {
     <div class="usuarioPost" id="${idPost}">
         <div class="imgUsuarioPost"><img class="imgPost"src="${dataCreador.imgUsuario}"></div>
         <div class="infoUsuarioPost">
-            <div class="nombreUsuarioPost"><p>${dataCreador.username}</p><img src="imagenes/bxs-user-plus 2.png"></div>
+            <div class="nombreUsuarioPost"><p>${dataCreador.username}</p></div>
             <div class="descripcionUsuarioPost"><p>${dataCreador.descripcion}</p></div>
         </div>
         <button class="btnEdit"><img src="imagenes/edit.png"></button>
@@ -56,7 +56,7 @@ const editarPost = (postCard) => {
   formularioEditar.classList.add('editForm');
   formularioEditar.innerHTML = `
     <textarea id="inputEditar" name="inputEditar" rows="5" cols="33"></textarea>    
-    <div class="">
+    <div class="secBtnEditarPost">
         <button class="botonGuardarCambios">Guardar</button>
         <button class="botonCancelarCambios">Cancelar</button>  
     </div>

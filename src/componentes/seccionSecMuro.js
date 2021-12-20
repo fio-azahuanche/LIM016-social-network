@@ -12,7 +12,7 @@ export const subirContainer = (idPost, dataPost, dataCreador) => {
     <div class="usuarioPost" id= "${idPost}">
         <div class="imgUsuarioPost"><img class="imgPost"src="${dataCreador.imgUsuario}"></div>
         <div class="infoUsuarioPost">
-            <div class="nombreUsuarioPost"><p>${dataCreador.username}</p><img src="imagenes/bxs-user-plus 2.png"></div>
+            <div class="nombreUsuarioPost"><p>${dataCreador.username}</p></div>
             <div class="descripcionUsuarioPost"><p>${dataCreador.descripcion}</p></div>
         </div>
     </div>
@@ -88,7 +88,6 @@ const rellenarHome = async (conteinerPost) => {
       if (change.type === 'removed') {
         /* const postEliminado = document.getElementById(change.doc.id);
         postEliminado.parentElement.remove(); */
-        console.log(('se removio algo'));
       }
     });
   });
@@ -130,19 +129,20 @@ export const seccionMuro2 = () => {
   tableroCompartir.setAttribute('id', 'formCompartir');
   tableroCompartir.classList.add('tableroCompartir');
   tableroCompartir.innerHTML = `
-    <input type="text" placeholder="¿Qué quieres reportar?" id="inputCompartir"><img id="imgPost"></input>
+    <textarea id="inputCompartir" placeholder="¿Qué quieres reportar?" rows="8" cols="76"></textarea>  
+    
     <div class="botones">
-        <input type="file" placeholder="Añadir Imagen" id="compartirImg">
-        <!--<button class="botonCompartirImagen" id="compartirImg"><img src="imagenes/botonCompartirImagen.png"></button>-->
+        <input type="file" placeholder="Añadir Imagen" id="compartirImg">         
         <select name="Grupo" id="Grupo" class="Grupo">
-            <option value="" selected disabled>Seleccionar</option>
-            <option value="Refugios">Refugios</option>
-            <option value="Mascotas Perdidas">Mascotas Perdidas</option>
-            <option value="Adoptar">Adoptar</option>
-            <option value="Lugares">Lugares</option>
-            <option value="Donaciones">Donaciones</option>
+          <option value="" selected disabled>Seleccionar</option>
+          <option value="Refugios">Refugios</option>
+          <option value="Mascotas Perdidas">Mascotas Perdidas</option>
+          <option value="Adoptar">Adoptar</option>
+          <option value="Lugares">Lugares</option>
+          <option value="Donaciones">Donaciones</option>
         </select>
         <button class="botonCompartir">Compartir</button>
+          
     </div>
   `;
 
