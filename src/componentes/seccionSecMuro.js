@@ -78,19 +78,8 @@ const rellenarHome = async (conteinerPost) => {
         console.log(('se removio algo'));
       }
       console.log(change);
-    });
-    /* cities.forEach((doc) => {
-        conteinerPost.prepend(subirContainer(doc.postId, doc, ''));
-      }); */
-  });
-  /* const datosPost = await obtenerPosts();
-  datosPost.forEach((doc) => {
-    conteinerPost.prepend(subirContainer(doc.postId, doc, ''));
-    const btnLike = document.querySelector('.like');
-    const hermano = btnLike.nextElementSibling;
-    hermano.textContent = doc.likes.length;
-  });
-  btnLikes(); */
+    });    
+  }); 
 };
 
 export const seccionMuro2 = () => {
@@ -142,7 +131,42 @@ export const seccionMuro2 = () => {
         </select>
         <button class="botonCompartir">Compartir</button>
     </div>
-    `;
+  `;
+
+  const containerModalCategorias = document.createElement('div');
+  containerModalCategorias.classList.add('categorias-container');
+  containerModalCategorias.setAttribute('id', 'categoriasContainer');
+  containerModalCategorias.innerHTML = `
+    <div class="modal-categorias modal-close" >
+        <p class="xClose">X</p>
+        <section class="secCategorias">
+            <h1>Grupos</h1>            
+            <div class= "contenedorCategorias">         
+                <a class="categoriaUnica">
+                    <img src="imagenes/iconoRefugioMascotas.png" >
+                    <p>Refugio</p>
+                <a>
+                <a class="categoriaUnica">
+                    <img src="imagenes/reportarIcono.png" >
+                    <p>Mascotas perdidas</p>
+                </a>
+                <a class="categoriaUnica">
+                    <img src="imagenes/adoptarIcono.png" >
+                    <p>Adoptar</p>
+                </a>
+                <a class="categoriaUnica">
+                    <img src="imagenes/localizacionIcono.png" >
+                    <p>Localización</p>
+                </a>
+                <a class="categoriaUnica">
+                    <img src="imagenes/medicinasIcono.png" >
+                    <p>Donaciones</p>
+                </a>           
+            </div> 
+        </section>       
+    </div> 
+  `;
+
   const contenedorPublicaciones = document.createElement('div');
   contenedorPublicaciones.classList.add('container-post');
   contenedorPublicaciones.setAttribute('id', 'container-post');
@@ -154,9 +178,8 @@ export const seccionMuro2 = () => {
   return segundaSeccion;
 };
 
-export const creacionPost = (formCompartir/* , containerPost */) => {
+export const creacionPost = (formCompartir) => {
   const divCompartir = document.getElementById(formCompartir);
-  // const containerPosts = document.getElementById(containerPost);
 
   let urlImg = [];
   const btnImg = document.getElementById('compartirImg');
@@ -197,7 +220,6 @@ export const creacionPost = (formCompartir/* , containerPost */) => {
       divCompartir.reset();
       urlImg = [];
     }
-    // console.log(archivo);
   });
 };
 

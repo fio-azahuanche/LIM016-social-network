@@ -96,7 +96,7 @@ export const inicioSesion = (selectorForm, containerError) => {
       .then((result) => {
         const googleUser = result.user;
 
-        agregarGoogleUser(googleUser.uid, googleUser)
+        agregarGoogleUser(googleUser.uid, googleUser)     
           .then(() => {
             const data = {
               correo: googleUser.email,
@@ -104,6 +104,7 @@ export const inicioSesion = (selectorForm, containerError) => {
               id: googleUser.uid,
               descripcion: '',
               name: '',
+              ubicacion: ' '
             };
             sessionStorage.setItem('userSession', JSON.stringify(data));
             window.location.hash = '#/artmuro';

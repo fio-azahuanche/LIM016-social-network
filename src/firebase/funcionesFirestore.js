@@ -24,15 +24,6 @@ export const obtenerPosts = async (callback) => {
   const colRef = collection(db, 'home');
   const q = query(colRef, orderBy('timestamp'));
   await onSnapshot(q, callback);
-
-  /* const querySnapshot = await getDocs(q).then((snapshot) => {
-    const posts = [];
-    snapshot.docs.forEach((docs) => {
-      posts.push({ ...docs.data(), postId: docs.id });
-    });
-    return posts;
-  });
-  return querySnapshot; */
 };
 
 export const obtenerUsuarios = async () => {
@@ -85,20 +76,6 @@ export const subirDataHomeCol = async (creadorPost, post, Categoria, urlImg) => 
   return functionAdd;
 };
 
-/* export const actualizarDatosPost = async (userId, creadorPost, descripcionPost) => {
-  const colRef = collection(db, 'home');
-  const q = query(colRef, where('usuarioId', '==', userId));
-  await getDocs(q).then((snapshot) => {
-    snapshot.forEach((el) => {
-      const colRefId = doc(db, 'home', el.id);
-      updateDoc(colRefId, {
-        creador: creadorPost,
-        descripcion: descripcionPost,
-      });
-    });
-  });
-}; */
-
 export const subirLikes = async (idPost, dataLikes) => {
   const docId = doc(db, 'home', idPost);
   await updateDoc(docId, {
@@ -143,7 +120,14 @@ export const obtenerUserPosts = async () => {
 };
 /* ---------------- Eliminar un post de con respecto al postId-------------------------- */
 export const eliminarPost = async (postId) => {
-  await deleteDoc(doc(db, 'home', postId));
+  await deleteDoc(doc(db, "home", postId)
+)}
+/*---------------- Editar un post en especifico ----------------------------------- */
+export const actualizarPost = (postId, publicacion) => {
+  const colRefId = doc(db, 'home', postId);
+  return updateDoc(colRefId, {
+    publicacion: publicacion,
+  });
 };
 /* ---------------- Obtener posts de la seccion grupos por categoria--------------------------- */
 export const obtenerPostsGrupo = async (grupoCategoria) => {
