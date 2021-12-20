@@ -12,7 +12,7 @@ const subirContainer = (idPost, dataCreador, dataPost) => {
     <div class="usuarioPost" id="${idPost}">
         <div class="imgUsuarioPost"><img class="imgPost"src="imagenes/ImgUsuario3.png"></div>
         <div class="infoUsuarioPost">
-            <div class="nombreUsuarioPost"><p>${dataCreador.username}</p><img src="imagenes/bxs-user-plus 2.png"></div>
+            <div class="nombreUsuarioPost"><p>${dataCreador.username}</p></div>
             <div class="descripcionUsuarioPost"><p>${dataCreador.descripcion}</p></div>
         </div>
         <button class="btnEdit"><img src="imagenes/edit.png"></button>
@@ -25,9 +25,7 @@ const subirContainer = (idPost, dataCreador, dataPost) => {
         </div>
     </div>
     <div class="botonesReaccion">
-        <img src="imagenes/heartIcono.png" class="like" name="${idPost}"><p>${dataPost.likes.length}</p>
-        <img src="imagenes/comentIcono.png">
-        <img src="imagenes/compartirIcono.png">
+        <img src="imagenes/heartIcono.png" class="like" name="${idPost}"><p>${dataPost.likes.length}</p>        
     </div>
     `;
   return divPost;
@@ -55,7 +53,7 @@ const editarPost = (postCard) => {
   formularioEditar.classList.add('editForm');
   formularioEditar.innerHTML = `
     <textarea id="inputEditar" name="inputEditar" rows="5" cols="33"></textarea>    
-    <div class="">
+    <div class="secBtnEditarPost">
         <button class="botonGuardarCambios">Guardar</button>
         <button class="botonCancelarCambios">Cancelar</button>  
     </div>
