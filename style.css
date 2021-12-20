@@ -198,6 +198,7 @@ header{
     font-size: 25px;
     text-align: center;
     font-weight: bold;
+    text-transform: capitalize;
 }
 .imagenUsuario{
     width: 60px;
@@ -225,6 +226,7 @@ header{
     height: 100%;
 }
 .contenedorPerfil{
+    display: flex;
     height: 20vh;
     background-color: #F2E0AA;
     display: flex;
@@ -241,18 +243,28 @@ header{
     height: 130px;
 }
 .datosUsuario{
-    width: 60%;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
     padding: 2%;
     text-align: center;
+    justify-content: center;
 }
-.nombreUsuario{
+.datosUsuario .nombreUsuario{
     font-weight: 35px;
     color: #000000;  
+    text-transform: capitalize;
 }
-.estadoUsuario{
+.datosUsuario .correoUsuario{
+    color: #1e3b99;
+    font-weight: bold;
+}
+.datosUsuario .estadoUsuario{
+    text-transform: capitalize;
     font-weight: 20px;
     color: #605D5D;
 }
+
 .secCategorias{
     background-color: #E5DCC3;
     border-radius: 10px;
@@ -271,6 +283,7 @@ header{
     display: flex;
     padding: 1% 0;
     align-items: center;
+    text-decoration: none;
 }
 .categoriaUnica img{
     align-items: center;
@@ -288,6 +301,46 @@ header{
     color: #8F7D7D;
 }
 /* ---------------características de la sección de post-----------*/
+#tituloCategoria{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+/*----MODAL GRUPOS----*/
+.modalCategoria {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0,0.5);
+}
+.seccionModal{
+    background-color: #E5DCC3;
+    border-radius: 10px;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.35);
+    margin: 40% auto;
+    padding: 2% 5%;
+    width: 70%;
+    box-shadow: 0 5px 8px 0 rgb(0 0 0 / 20%), 0 7px 20px 0 rgb(0 0 0 / 17%);
+}
+.seccionModal .categoriaUnica {
+    justify-content: left;
+}
+.tituloModal {
+    display: flex;
+    justify-content: space-between;
+    font-size: 25px;
+    color: #844124;
+}
+.btnCerrar{
+    font-weight: bold;
+    color: #ED0F0F;
+}
+/*--------------------------------------------------------------*/
 .tableroCompartir, .tableroPost{
     margin: 3vh 5.5% 3vh 0;
     border-radius: 10px;
@@ -354,11 +407,12 @@ header{
 .usuarioPost{
     display: flex;
     align-items: center;
-    justify-content:space-around;
+    justify-content:center;
+    padding: 0 3%;
 }
 .imgUsuarioPost{
     display: flex;
-    width: 30%;
+    width: 20%;
     overflow: hidden;
     justify-content: center;
     align-items: center;
@@ -368,7 +422,10 @@ header{
     height: 80px;  
 }
 .infoUsuarioPost{
-    display: block;
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    text-transform: capitalize;
 }
 .nombreUsuarioPost{
     display: flex;
@@ -437,6 +494,7 @@ header{
     text-align: center;
     align-items: center;
     align-content: center;
+    text-transform: capitalize;
 }
 .contenidoTextPerfil h2, .contenidoTextPerfil p{
     margin: 5px 0;   
@@ -686,6 +744,16 @@ figure{
     color: #844124;
     font-weight: 600;
 }
+.btnDelete, .btnEdit{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #844124;
+    font-weight: 600;
+    cursor: pointer;
+    border: transparent;
+    background-color: transparent;
+}
 .desplegable li a img, .desplegable2 li a img{
     margin-right: 5px;
 }
@@ -758,12 +826,44 @@ footer{
 }
 /*----------------------------------------------------MEDIA QUERIES---------------------------------------------*/
 /*---------------responsive de la primera vista-----------------*/
-@media (max-width: 1024px){
-    .seccionIngreso{
-        height: auto;
+@media (max-width: 1160px) {
+    .correoUsuario{
+        font-size: 13px;
     }
+}
+@media (max-width: 993px){
+    .contenedorPerfil{
+        flex-direction: column;
+    }
+    .contenedorPerfil img{
+        width:80px;
+        height: 80px;
+        border-radius: 50%;
+    }
+    .contenedorPerfil p{
+        text-align: center;
+    }
+    .contenedorPerfil .estadoUsuario{
+        font-size: 14px;
+    }
+
+}
+@media (max-width: 1024px){
+    /* .seccionIngreso{
+        height: auto;
+    } */
     .seccionIngreso i{
         font-size: 30px;
+    }
+}
+@media screen and (max-width:800px){
+    .fondo1{
+        width: 95%;
+        height: 60vh;
+    }
+    .seccPostUsuario{
+        width: 95%;
+        margin-bottom: 8vh;
     }
 }
 @media screen and (max-width:860px){
@@ -823,6 +923,9 @@ footer{
     .enlacePerfil, .secUsuario, .secCategorias{
         display: none;
     }
+    .categoriaUnica{
+        justify-content: center;
+    }
     .enlacePerfil{
         display: none;
     }
@@ -840,6 +943,7 @@ footer{
     }
     .seccPostUsuario{
         width: 85%;
+        margin-bottom: 8vh;
     }
     .item3 .container-post .tableroPost {
         justify-content: flex-start;
@@ -862,7 +966,7 @@ footer{
     }
     .contenidoTextPerfil h2, .contenidoTextPerfil p {
         text-align: center;
-    }
+    }   
 }
 @media (max-width: 640px){
     .slogan{
@@ -876,13 +980,9 @@ footer{
     }
     .cuerpoPerfil .usuarioPost {
         justify-content: space-between;
-        
     }
     .cuerpoPerfil{
         margin-bottom: 9vh;
-    }
-    .infoUsuarioPost {
-        width: 30%;
     }
     .btnEditar{
         display: block;
@@ -903,6 +1003,16 @@ footer{
     }
     
 } 
+@media screen and (max-width:480px){
+    .fondo1{
+        width: 95%;
+        height: 55vh;
+    }
+    .seccPostUsuario{
+        width: 95%;
+        margin-bottom: 8vh;
+    }
+}
 @media screen and (max-width:478px){
     .nombreUsuarioPost{
         font-size: 20px;
@@ -943,8 +1053,39 @@ footer{
         font-size: 16px;
     }
     .imgPerfilUsuario img {
-        width: 100px;
-        height: 100px;
+        width: 90px;
+        height: 90px;
+    }
+    .puntosHorizontales{
+        width: 50px;
+    }
+    figure, .puntos {
+        width: 6px;
+        height: 6px;
+    }
+    .fondo1{
+        width: 95%;
+        height: 60vh;
+    }
+    .seccPostUsuario{
+        width: 95%;
+        margin-bottom: 6vh;
+    }
+}
+@media screen and (max-width: 360px){
+    .fondo1{
+        width: 95%;
+        height: 55vh;
+    }
+    .contenidoTextPerfil h2, .contenidoTextPerfil p{
+        margin: 0;
+    }
+    .contenidoTextPerfil p{
+        font-size: 14;
+    }
+    .imgPerfilUsuario img {
+        width: 90px;
+        height: 90px;
     }
 }
 @media screen and (max-width: 320px){
@@ -953,5 +1094,48 @@ footer{
     }
     .tableroCompartir{
         min-width: 315px;
-    }    
+    } 
+    .contenidoTextPerfil{
+        font-size: 13px ;
+    }  
+    .contenidoTextPerfil h2, .contenidoTextPerfil p{
+        margin: 0;
+    }
+    .fondo1{
+        width: 95%;
+        height: 55vh;
+    }
+    .seccPostUsuario{
+        width: 95%;
+    }
+    .datosIngreso{
+        font-size: 13px;
+    }
+    .imgPerfilUsuario img {
+        width: 80px;
+        height: 80px;
+    }
+}
+@media screen and (max-height: 360px){
+    .imgPerfilUsuario{
+        width: 80px;
+        height: 80px;
+    }
+    .fondo1{
+        width: 85%;
+        height: 70vh;
+    }
+    .seccPostUsuario{
+        width: 85%;
+    }
+    .fondo2{
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+        height: 30vh;
+    }
+    .btnEditar{
+        height: 10vh;
+    }
 }
