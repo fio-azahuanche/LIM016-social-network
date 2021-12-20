@@ -21,11 +21,11 @@ export const btnLikes1 = () => {
       if (veamos.likes.includes(userData.id)) {
         console.log('esta');
         subirLikes(hijo, veamos.likes.filter((item) => item !== userData.id));
-        hermano.textContent = veamos.likes.length;
+        hermano.textContent = veamos.likes.length - 1;
       } else {
         console.log('no esta');
         subirLikes(hijo, [...veamos.likes, userData.id]);
-        hermano.textContent = veamos.likes.length;
+        hermano.textContent = veamos.likes.length + 1;
       }
     });
   });

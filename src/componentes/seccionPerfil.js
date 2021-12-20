@@ -10,7 +10,7 @@ const subirContainer = (idPost, dataCreador, dataPost) => {
 
   divPost.innerHTML = `
     <div class="usuarioPost" id="${idPost}">
-        <div class="imgUsuarioPost"><img class="imgPost"src="imagenes/ImgUsuario3.png"></div>
+        <div class="imgUsuarioPost"><img class="imgPost"src="${dataCreador.imgUsuario}"></div>
         <div class="infoUsuarioPost">
             <div class="nombreUsuarioPost"><p>${dataCreador.username}</p><img src="imagenes/bxs-user-plus 2.png"></div>
             <div class="descripcionUsuarioPost"><p>${dataCreador.descripcion}</p></div>
@@ -155,7 +155,7 @@ export const contenidoPerfil = () => {
         </div>
         <div class="fondo2">
             <div class="imgPerfilUsuario">
-                <img src="imagenes/ImgUsuario.png">
+                <img src="${userData.imgUsuario}">
             </div>
 
             <div class="contenidoTextPerfil">

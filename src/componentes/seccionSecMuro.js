@@ -9,7 +9,7 @@ export const subirContainer = (idPost, dataPost, dataCreador) => {
 
   divTablero.innerHTML = `
     <div class="usuarioPost" id= "${idPost}">
-        <div class="imgUsuarioPost"><img class="imgPost"src="imagenes/ImgUsuario3.png"></div>
+        <div class="imgUsuarioPost"><img class="imgPost"src="${dataCreador.imgUsuario}"></div>
         <div class="infoUsuarioPost">
             <div class="nombreUsuarioPost"><p>${dataCreador.username}</p><img src="imagenes/bxs-user-plus 2.png"></div>
             <div class="descripcionUsuarioPost"><p>${dataCreador.descripcion}</p></div>
@@ -62,6 +62,7 @@ const rellenarHome = async (conteinerPost) => {
     querySnapshot.docChanges().forEach((change) => {
       if (change.type === 'added') {
         const creadorPost = usuarios.filter((user) => user.userId === change.doc.data().usuarioId);
+        console.log(creadorPost[0]);
         conteinerPost.prepend(subirContainer(change.doc.id, change.doc.data(), creadorPost[0]));
         /* console.log(change.doc.data().imgPost);
         if (change.doc.data().imgPost === '') {
@@ -214,7 +215,7 @@ export const creacionPost = (formCompartir) => {
       categoriaSelect = [];
       divCompartir.reset();
     } else {
-      const archivo = await subirFileStorage(urlImg[urlImg.length - 1]);
+      const archivo = await subirFileStorage(urlImg[urlImg.length - 1], 'imgPosts');
       await subirDataHomeCol(userData.id, postTxt, categoria, archivo);
       /* .then((doc) => {
         obtenerById(doc.id, 'posts').then((postsById) => {
