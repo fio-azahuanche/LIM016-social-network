@@ -937,9 +937,6 @@ footer{
     .estadoUsuario{
         font-size: 13px;
     }
-    .categoriaUnica{
-        justify-content: center;
-    }
 }
 @media screen and (max-width:768px){
     .cajaInterna1{

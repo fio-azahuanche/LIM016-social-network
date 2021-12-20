@@ -25,9 +25,6 @@ export const subirContainer = (idPost, dataPost, dataCreador) => {
     <div class="botonesReaccion">
         <i class="ph-heart-bold like" name= "${idPost}"}></i>
         <p>${dataPost.likes.length}</p>
-        <!--<img src="imagenes/heartIcono.png" class="like" name= "${idPost}"><p>${dataPost.likes.length}</p>-->
-        <img src="imagenes/comentIcono.png">
-        <img src="imagenes/compartirIcono.png">
     </div>
     `;
 
