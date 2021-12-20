@@ -102,7 +102,7 @@ export const seccionMuro2 = () => {
   navInferior.innerHTML = `
     <ul>
     <li class="list">
-        <a id="abrirModal">
+        <a class="abrirModal">
             <span class="icon">
                 <img src="imagenes/users-three.png">
             </span>
@@ -124,37 +124,6 @@ export const seccionMuro2 = () => {
     </li>
     </ul>
     `;
-  const seccionModal = document.createElement('div');
-  seccionModal.classList.add('modalCategoria');
-  seccionModal.setAttribute('id', 'modalCategoria');
-  seccionModal.innerHTML = `<section class="seccionModal">
-    <div class="tituloModal">
-      <h1>Grupos</h1>
-      <span class="btnCerrar">&times;</span>
-    </div>
-    <div class= "contenedorCategorias">
-        <a href="#/artrefugio" class="categoriaUnica">
-            <img src="imagenes/iconoRefugioMascotas.png" >
-            <p>Refugios</p>
-        <a>
-        <a href="#/artmascotasperdidas" class="categoriaUnica">
-            <img src="imagenes/reportarIcono.png" >
-            <p>Mascotas Perdidas</p>
-        </a>
-        <a href="#/artadoptar" class="categoriaUnica">
-            <img src="imagenes/adoptarIcono.png" >
-            <p>Adoptar</p>
-        </a>
-        <a href="#/artlugares" class="categoriaUnica">
-            <img src="imagenes/localizacionIcono.png" >
-            <p>Lugares</p>
-        </a>
-        <a href="#/artdonaciones" class="categoriaUnica">
-            <img src="imagenes/medicinasIcono.png" >
-            <p>Donaciones</p>
-        </a>
-    </div>
-    </section>`;
   const tableroCompartir = document.createElement('form');
   tableroCompartir.setAttribute('id', 'formCompartir');
   tableroCompartir.classList.add('tableroCompartir');
@@ -181,7 +150,6 @@ export const seccionMuro2 = () => {
 
   segundaSeccion.appendChild(navInferior);
   segundaSeccion.appendChild(tableroCompartir);
-  segundaSeccion.appendChild(seccionModal);
   segundaSeccion.appendChild(contenedorPublicaciones);
   return segundaSeccion;
 };
@@ -243,25 +211,3 @@ export const creacionPost = (formCompartir/* , containerPost */) => {
   });
 };
  */
-
-export const modalCategorias = () => {
-  const modalCategoria = document.getElementById('modalCategoria');
-  const abrirModal = document.getElementById('abrirModal');
-  const btnCerrar = document.querySelector('.btnCerrar');
-
-  abrirModal.addEventListener('click', () => {
-    modalCategoria.style.display = 'block';
-  });
-
-  btnCerrar.addEventListener('click', () => {
-    modalCategoria.style.display = 'none';
-  });
-
-  /* outside click */
-  window.addEventListener('click', (e) => {
-    // eslint-disable-next-line eqeqeq
-    if (e.target == modalCategoria) {
-      modalCategoria.style.display = 'none';
-    }
-  });
-};

@@ -50,7 +50,7 @@ export const contenidoCategoria = (imgsrc, tituloCategoria) => {
   navInferior.innerHTML = `
         <ul>
         <li class="list">
-            <a>
+            <a class="abrirModal">
                 <span class="icon">
                     <img src="imagenes/users-three.png">
                 </span>

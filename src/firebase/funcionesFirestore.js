@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import {
   getFirestore,
   collection,
@@ -14,9 +13,8 @@ import {
   serverTimestamp,
   deleteDoc,
   onSnapshot,
-// eslint-disable-next-line import/no-unresolved
-} from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js';
-import { app } from './config.js';
+  app,
+} from './config.js';
 
 // inicializa el firestore
 const db = getFirestore(app);
