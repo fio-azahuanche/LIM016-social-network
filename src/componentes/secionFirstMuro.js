@@ -5,7 +5,7 @@ export const seccionMuro1 = () => {
   primeraSeccion.classList.add('item2');
 
   const userData = validateSessionStorage();
-  //const userData = JSON.parse(sessionStorage.userSession);
+  // const userData = JSON.parse(sessionStorage.userSession);
   primeraSeccion.innerHTML = `
         <section class="secUsuario">
             <div class="contenedorPortada">

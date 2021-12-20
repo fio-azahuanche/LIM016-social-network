@@ -1,9 +1,9 @@
 export const seccionAdoptar = () => {
-    const segundaSeccion = document.createElement('section');
-    segundaSeccion.classList.add('item3');
-    const navInferior = document.createElement('nav');
-    navInferior.classList.add('barraNavegacionInferior');
-    navInferior.innerHTML = `
+  const segundaSeccion = document.createElement('section');
+  segundaSeccion.classList.add('item3');
+  const navInferior = document.createElement('nav');
+  navInferior.classList.add('barraNavegacionInferior');
+  navInferior.innerHTML = `
       <ul>
       <li class="list">
           <a>

@@ -1,5 +1,4 @@
-// eslint-disable-next-line import/no-cycle
-import { actualizarPerfil, actualizarDatosPost } from '../firebase/funcionesFirestore.js';
+import { actualizarPerfil } from '../firebase/funcionesFirestore.js';
 import { validateSessionStorage } from './validaciones.js';
 
 export const contenidoEditarPerfil = () => {
@@ -89,37 +88,35 @@ export const contenidoEditarPerfil = () => {
 };
 
 export const actualizarDatosPerfil = (username, name, ubicacion, descripcion) => {
-    const nombreDelUsuario = document.getElementById('nombreDelUsuario');
-    const nombreDelPerfil = document.getElementById('nombreDelPerfil');
-    const ubicacionDelPerfil = document.getElementById('ubicacionDelPerfil');
-    const descripcionDelPerfil = document.getElementById('descripcionDelPerfil');
-    nombreDelUsuario.innerHTML = username;
-    nombreDelPerfil.innerHTML = name;
-    ubicacionDelPerfil.innerHTML = ubicacion;
-    descripcionDelPerfil.innerHTML = descripcion;
+  const nombreDelUsuario = document.getElementById('nombreDelUsuario');
+  const nombreDelPerfil = document.getElementById('nombreDelPerfil');
+  const ubicacionDelPerfil = document.getElementById('ubicacionDelPerfil');
+  const descripcionDelPerfil = document.getElementById('descripcionDelPerfil');
+  nombreDelUsuario.innerHTML = username;
+  nombreDelPerfil.innerHTML = name;
+  ubicacionDelPerfil.innerHTML = ubicacion;
+  descripcionDelPerfil.innerHTML = descripcion;
 };
 
 export const btnEditarPerfil = () => {
-    const btnGuardarCambios = document.getElementById("guardarCambios"); 
-    btnGuardarCambios.addEventListener("click", (e) =>{
-        e.preventDefault();
-        const inputusuarioActualizado = document.getElementById("actualizacionUsuario").value;
-        const inputNombreActualizado = document.getElementById("actualizacionNombre").value;
-        const inputDescripcionActualizado = document.getElementById("actualizacionEstado").value;
-        const inputUbicacionActualizado = document.getElementById("actualizacionUbicacion").value;
-        const userData = JSON.parse(sessionStorage.userSession);
-        actualizarDatosPost(userData.id, inputusuarioActualizado, inputDescripcionActualizado);
-        actualizarPerfil(userData.id, inputNombreActualizado, inputusuarioActualizado,  inputUbicacionActualizado, inputDescripcionActualizado)
-        .then(() => {
-            const userData = JSON.parse(sessionStorage.userSession);
-            userData.username = inputusuarioActualizado;
-            userData.name = inputNombreActualizado;
-            userData.ubicacion = inputUbicacionActualizado;
-            userData.descripcion = inputDescripcionActualizado;
-            sessionStorage.setItem("userSession", JSON.stringify(userData));   
-            actualizarDatosPerfil(inputusuarioActualizado, inputNombreActualizado, inputUbicacionActualizado, inputDescripcionActualizado);
-        });
-    });
+  const btnGuardarCambios = document.getElementById('guardarCambios');
+  btnGuardarCambios.addEventListener('click', (e) => {
+    e.preventDefault();
+    const inputusuarioActualizado = document.getElementById('actualizacionUsuario').value;
+    const inputNombreActualizado = document.getElementById('actualizacionNombre').value;
+    const inputDescripcionActualizado = document.getElementById('actualizacionEstado').value;
+    const inputUbicacionActualizado = document.getElementById('actualizacionUbicacion').value;
+    const userData = JSON.parse(sessionStorage.userSession);
+    actualizarPerfil(userData.id, inputNombreActualizado, inputusuarioActualizado,  inputUbicacionActualizado, inputDescripcionActualizado)
+      .then(() => {
+        userData.username = inputusuarioActualizado;
+        userData.name = inputNombreActualizado;
+        userData.ubicacion = inputUbicacionActualizado;
+        userData.descripcion = inputDescripcionActualizado;
+        sessionStorage.setItem('userSession', JSON.stringify(userData));
+        actualizarDatosPerfil(inputusuarioActualizado, inputNombreActualizado, inputUbicacionActualizado, inputDescripcionActualizado);
+      });
+  });
 };
 
 /* export const actualizarDatosPerfil = (name, ubicacion, descripcion) => {

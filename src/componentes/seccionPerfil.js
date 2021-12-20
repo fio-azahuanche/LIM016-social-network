@@ -126,18 +126,18 @@ import { validateSessionStorage } from './validaciones.js';
             </div>
         </div>`;
   return perfilSeccion;
-};*/
+}; */
 
 const subirContainer = (idPost, creadorPost, apodoUser, postTxt, srcImagenPost) => {
-    const divPost = document.createElement('div');
-    divPost.classList.add('tableroPost');
+  const divPost = document.createElement('div');
+  divPost.classList.add('tableroPost');
 
-    divPost.innerHTML = `
+  divPost.innerHTML = `
     <div class="usuarioPost" id="${idPost}">
         <div class="imgUsuarioPost"><img class="imgPost"src="imagenes/ImgUsuario3.png"></div>
         <div class="infoUsuarioPost">
             <div class="nombreUsuarioPost"><p>${creadorPost}</p><img src="imagenes/bxs-user-plus 2.png"></div>
-            <div class="descripcionUsuarioPost"><p>${apodoUser}</p></div>            
+            <div class="descripcionUsuarioPost"><p>${apodoUser}</p></div>
         </div>
         <button class="btnDelete"><img src="imagenes/delete.png"></button>
     </div>
@@ -153,28 +153,27 @@ const subirContainer = (idPost, creadorPost, apodoUser, postTxt, srcImagenPost) 
         <img src="imagenes/compartirIcono.png">
     </div>
     `;
-return divPost;
+  return divPost;
 };
 
 const rellenarPerfil = async (containerPost) => {
-    const datosPost = await obtenerUserPosts();
-    const userData = JSON.parse(sessionStorage.userSession);
-    datosPost.forEach((post) => {
-        containerPost.prepend(subirContainer(post.id, userData.username, userData.descripcion, post.publicacion, ''));
-    });
-    btnEliminarPost();;
-
+  const datosPost = await obtenerUserPosts();
+  const userData = JSON.parse(sessionStorage.userSession);
+  datosPost.forEach((post) => {
+    containerPost.prepend(subirContainer(post.id, userData.username, userData.descripcion, post.publicacion, ''));
+  });
+  btnEliminarPost();
 };
-  
+
 export const contenidoPerfil = () => {
-    const perfilSeccion = document.createElement('section');
-    perfilSeccion.classList.add('cuerpoPerfil');
+  const perfilSeccion = document.createElement('section');
+  perfilSeccion.classList.add('cuerpoPerfil');
 
-    const userData = validateSessionStorage();
+  const userData = validateSessionStorage();
 
-    const navInferior = document.createElement('nav');
-    navInferior.classList.add('barraNavegacionInferior');
-    navInferior.innerHTML = `
+  const navInferior = document.createElement('nav');
+  navInferior.classList.add('barraNavegacionInferior');
+  navInferior.innerHTML = `
       <ul>
       <li class="list">
           <a>
@@ -199,17 +198,17 @@ export const contenidoPerfil = () => {
       </li>
       </ul>
     `;
-    const tableroInformacionUsuario = document.createElement('div');    
-    tableroInformacionUsuario.classList.add('fondo1');
-    tableroInformacionUsuario.innerHTML = `
+  const tableroInformacionUsuario = document.createElement('div');
+  tableroInformacionUsuario.classList.add('fondo1');
+  tableroInformacionUsuario.innerHTML = `
         <div class="fondoImagenPerfil">
             <img src="imagenes/ImgDelUsuario.png">
-        </div>  
+        </div>
         <div class="fondo2">
             <div class="imgPerfilUsuario">
                 <img src="imagenes/ImgUsuario.png">
             </div>
-            
+
             <div class="contenidoTextPerfil">
                 <h2>${userData.username}</h2>
                 <p>(${userData.name})</p>
@@ -223,37 +222,34 @@ export const contenidoPerfil = () => {
             </div>
         </div>
     `;
-    const btnEditarPerfilResponsive = document.createElement('button');    
-    btnEditarPerfilResponsive.classList.add('btnEditar');
-    btnEditarPerfilResponsive.innerHTML = `
+  const btnEditarPerfilResponsive = document.createElement('button');
+  btnEditarPerfilResponsive.classList.add('btnEditar');
+  btnEditarPerfilResponsive.innerHTML = `
         <a href='#/arteditarperfil'>Editar Perfil</a>
     `;
-    const contenedorPublicacionesPerfil = document.createElement('div');
-    contenedorPublicacionesPerfil.classList.add('seccPostUsuario');
-    contenedorPublicacionesPerfil.setAttribute('id', 'SeccPublicacionesUsuario');
-    //contenedorPublicacionesPerfil.prepend(subirContainer('Prueba', 'Amante De Los Animales', 'A veces me preguntan: ¿Por qué inviertes todo ese tiempo y dinero hablando de la amabilidad para con los animales, cuando existe tanta crueldad hacia el hombre?. A lo que yo respondo: Estoy trabajando en las raíces.', ''));
-    rellenarPerfil(contenedorPublicacionesPerfil);
-  
-    perfilSeccion.appendChild(navInferior);
-    perfilSeccion.appendChild(tableroInformacionUsuario);
-    perfilSeccion.appendChild(btnEditarPerfilResponsive);
-    perfilSeccion.appendChild(contenedorPublicacionesPerfil);
-    return perfilSeccion;
+  const contenedorPublicacionesPerfil = document.createElement('div');
+  contenedorPublicacionesPerfil.classList.add('seccPostUsuario');
+  contenedorPublicacionesPerfil.setAttribute('id', 'SeccPublicacionesUsuario');
+
+  rellenarPerfil(contenedorPublicacionesPerfil);
+
+  perfilSeccion.appendChild(navInferior);
+  perfilSeccion.appendChild(tableroInformacionUsuario);
+  perfilSeccion.appendChild(btnEditarPerfilResponsive);
+  perfilSeccion.appendChild(contenedorPublicacionesPerfil);
+  return perfilSeccion;
 };
 
 export const btnEliminarPost = () => {
-    const postsCards = document.getElementsByClassName("usuarioPost");
-    //console.log(postsCards);
-    Array.from(postsCards).forEach((postCard) => {
-        const btnEliminar = postCard.querySelector(".btnDelete");       
-        btnEliminar.addEventListener("click", async () => {
-            const postEliminado = document.getElementById(postCard.id);
-            await eliminarPost(postCard.id);  
-            console.log("si elimino el post");          
-            postEliminado.parentElement.remove();
-          
-        })
-        
-    })
-   
+  const postsCards = document.getElementsByClassName('usuarioPost');
+  // console.log(postsCards);
+  Array.from(postsCards).forEach((postCard) => {
+    const btnEliminar = postCard.querySelector('.btnDelete');
+    btnEliminar.addEventListener('click', async () => {
+      const postEliminado = document.getElementById(postCard.id);
+      await eliminarPost(postCard.id);
+      console.log('si elimino el post');
+      postEliminado.parentElement.remove();
+    });
+  });
 };
