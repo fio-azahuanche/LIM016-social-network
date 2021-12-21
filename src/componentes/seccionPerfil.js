@@ -26,9 +26,7 @@ const subirContainer = (idPost, dataCreador, dataPost) => {
     </div>
     <div class="botonesReaccion">
         <i class="ph-heart-bold like" name= "${idPost}"}></i>
-        <p>${dataPost.likes.length}</p>
-        <img src="imagenes/comentIcono.png">
-        <img src="imagenes/compartirIcono.png">
+        <p>${dataPost.likes.length}</p>        
     </div>
     `;
   return divPost;
@@ -112,8 +110,6 @@ const rellenarPerfil = async (containerPost) => {
     containerPost.prepend(subirContainer(post.id, dataCreador[0], post));
     if (post.likes.includes(userData.id)) {
       document.getElementsByName(post.id)[0].style.color = 'red';
-    } else {
-      document.getElementsByName(post.id)[0].style.color = '#8F7D7D';
     }
   });
   btnLikes1();
@@ -158,7 +154,7 @@ export const contenidoPerfil = () => {
   tableroInformacionUsuario.classList.add('fondo1');
   tableroInformacionUsuario.innerHTML = `
         <div class="fondoImagenPerfil">
-            <img src="imagenes/ImgDelUsuario.png">
+            <img src="${userData.imgPortada}">
         </div>
         <div class="fondo2">
             <div class="imgPerfilUsuario">

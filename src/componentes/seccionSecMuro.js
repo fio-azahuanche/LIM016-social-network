@@ -25,9 +25,6 @@ export const subirContainer = (idPost, dataPost, dataCreador) => {
     <div class="botonesReaccion">
         <i class="ph-heart-bold like" name= "${idPost}"}></i>
         <p>${dataPost.likes.length}</p>
-        <!--<img src="imagenes/heartIcono.png" class="like" name= "${idPost}"><p>${dataPost.likes.length}</p>-->
-        <img src="imagenes/comentIcono.png">
-        <img src="imagenes/compartirIcono.png">
     </div>
     `;
 
@@ -62,13 +59,11 @@ const rellenarHome = async (conteinerPost) => {
     querySnapshot.docChanges().forEach((change) => {
       if (change.type === 'added') {
         const creadorPost = usuarios.filter((user) => user.userId === change.doc.data().usuarioId);
-        console.log(creadorPost[0]);
+        //console.log(creadorPost[0]);
         conteinerPost.prepend(subirContainer(change.doc.id, change.doc.data(), creadorPost[0]));
 
         if (change.doc.data().likes.includes(userData.id)) {
           document.getElementsByName(change.doc.id)[0].style.color = 'red';
-        } else {
-          document.getElementsByName(change.doc.id)[0].style.color = '#8F7D7D';
         }
         /* console.log(change.doc.data().imgPost);
         if (change.doc.data().imgPost === '') {
