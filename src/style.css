@@ -379,6 +379,7 @@ header{
     border-color: transparent;
     border-radius: 10px;
     padding: 2%;
+    font-size: 18px;
 }
 .tableroCompartir .botones{
     padding: 1vh 0;
