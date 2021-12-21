@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import {
   getFirestore,
   collection,
@@ -9,7 +10,6 @@ import {
   updateDoc,
   query,
   orderBy,
-  where,
   serverTimestamp,
   deleteDoc,
   onSnapshot,
@@ -26,6 +26,7 @@ export const obtenerPosts = async (callback) => {
   await onSnapshot(q, callback);
 };
 
+// Obtener data de todos los usuarios
 export const obtenerUsuarios = async () => {
   const colRef = collection(db, 'usuarios');
   const querySnapshot = await getDocs(colRef).then((snapshot) => {
@@ -38,7 +39,7 @@ export const obtenerUsuarios = async () => {
   return querySnapshot;
 };
 
-// Obtener la data de cada usuarui guardado en Firestore, lo buscamos por id
+// Obtener la data de cada usuaruo guardado en Firestore, lo buscamos por id
 export const obtenerById = async (idUser, nameColeccion) => {
   const docRef = doc(db, nameColeccion, idUser);
   const querySnapshot = await getDoc(docRef).then((docs) => docs.data());
@@ -46,7 +47,7 @@ export const obtenerById = async (idUser, nameColeccion) => {
 };
 
 // Agregar data inicial al momento de registro a la coleccion usuarios
-export const agregarDataUserFS = async (id, Username, Correo, Name, Descripcion, Ubicacion) => {
+export const agregarDataUserFS = async (id, Username, Correo, Name, Descripcion, Ubicacion, srcImg) => {
   const colRefId = doc(db, 'usuarios', id);
   await setDoc(colRefId, {
     username: Name,
@@ -54,9 +55,11 @@ export const agregarDataUserFS = async (id, Username, Correo, Name, Descripcion,
     ubicacion: Ubicacion,
     name: Username,
     descripcion: Descripcion,
+    imgUsuario: srcImg,
   });
 };
 
+// Subir data a la colección posts en firestore
 export const subirDataHomeCol = async (creadorPost, post, Categoria, urlImg) => {
   const colRefPost = collection(db, 'posts');
   const functionAdd = await addDoc(colRefPost, {
@@ -70,6 +73,7 @@ export const subirDataHomeCol = async (creadorPost, post, Categoria, urlImg) => 
   return functionAdd;
 };
 
+// Para actualizar arreglo de likes
 export const subirLikes = async (idPost, dataLikes) => {
   const docId = doc(db, 'posts', idPost);
   await updateDoc(docId, {
@@ -83,16 +87,20 @@ export const subirLikes = async (idPost, dataLikes) => {
   return getDoc(colRefId);
 }; */
 
-export const actualizarPerfil = (userId, name, username, ubicacion, descripcion) => {
+// Para actualizar datos del perfil en la coleccion usuarios
+export const actualizarPerfil = (userId, name, username, ubicacion, descripcion, imgUsuario, imgPortada) => {
   const colRefId = doc(db, 'usuarios', userId);
   return updateDoc(colRefId, {
     username,
     name,
     ubicacion,
     descripcion,
+    imgUsuario,
+    imgPortada,
   });
 };
-/* ---------------  Agregar  usuario a firestore desde boton de google -----------------------*/
+
+// Agregar  usuario a firestore desde boton de google
 export const agregarGoogleUser = (id, user) => {
   const colRefId = doc(db, 'usuarios', id);
   return setDoc(colRefId, {
@@ -100,40 +108,45 @@ export const agregarGoogleUser = (id, user) => {
     correo: user.email,
   });
 };
-/* ---------------- Buscar posts creados por el usuario logueado--------------------------- */
+
+// Buscar posts creados por el usuario logueado
 export const obtenerUserPosts = async () => {
   const userId = JSON.parse(sessionStorage.userSession).id;
   const colRef = collection(db, 'posts');
-  const q = query(colRef, where('usuarioId', '==', userId));
+  const q = query(colRef, orderBy('timestamp'));
   const querySnapshot = await getDocs(q);
   const posts = [];
   querySnapshot.forEach((docs) => {
     posts.push({ ...docs.data(), id: docs.id });
   });
-  return posts;
+  const postFiltrado = posts.filter((e) => e.usuarioId === userId);
+  return postFiltrado;
 };
-/* ---------------- Eliminar un post de con respecto al postId-------------------------- */
+
+// Eliminar un post de con respecto al postId
 export const eliminarPost = async (postId) => {
   await deleteDoc(doc(db, 'posts', postId));
 };
 
-/* ---------------- Editar un post en especifico ----------------------------------- */
+// Editar un post en especifico
 export const actualizarPost = (postId, publicacion) => {
   const colRefId = doc(db, 'posts', postId);
   return updateDoc(colRefId, {
     publicacion,
   });
 };
-/* ---------------- Obtener posts de la seccion grupos por categoria--------------------------- */
-export const obtenerPostsGrupo = async (grupoCategoria) => {
+
+// Obtener posts de la seccion grupos por categoria
+export const obtenerPostsGrupo = async (grupo) => {
   const colRef = collection(db, 'posts');
-  const q = query(colRef, where('categoria', '==', grupoCategoria));
+  const q = query(colRef, orderBy('timestamp'));
   const querySnapshot = await getDocs(q).then((snapshot) => {
     const posts = [];
     snapshot.docs.forEach((docs) => {
       posts.push({ ...docs.data(), postId: docs.id });
     });
-    return posts;
+    const postFiltrado = posts.filter((e) => e.categoria === grupo);
+    return postFiltrado;
   });
   return querySnapshot;
 };

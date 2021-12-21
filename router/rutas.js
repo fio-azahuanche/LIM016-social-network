@@ -1,4 +1,4 @@
-import { componentes } from '../lib/index.js';
+import { fondoHome } from '../componentes/home.js';
 import { formRegistros, registroCorreo } from '../componentes/registro.js';
 import { formInicioSesion, inicioSesion } from '../componentes/inicioSesion.js';
 import {
@@ -17,12 +17,12 @@ export const vistasPantalla = () => {
   main.innerHTML = '';
   switch (window.location.hash.toLowerCase()) {
     case '': case '#/': case '#/inicio':
-      main.appendChild(componentes.fondoHome(formInicioSesion()));
+      main.appendChild(fondoHome(formInicioSesion()));
       inicioSesion('formIngreso', 'ubicacionModal');
       break;
 
     case '#/registro':
-      main.appendChild(componentes.fondoHome(formRegistros()));
+      main.appendChild(fondoHome(formRegistros()));
       registroCorreo('formRegistro', 'ubicacionModal');
       break;
 

@@ -1,5 +1,6 @@
 import { validateSessionStorage } from './validaciones.js';
 
+// Renderizando de la seccion de datos del usuario y categorias de version desktop
 export const seccionMuro1 = () => {
   const primeraSeccion = document.createElement('section');
   primeraSeccion.classList.add('item2');
@@ -9,10 +10,10 @@ export const seccionMuro1 = () => {
   primeraSeccion.innerHTML = `
         <section class="secUsuario">
             <div class="contenedorPortada">
-                <img src="imagenes/ImgDelUsuario.png">
+                <img src="${userData.imgPortada}">
             </div>  
             <div class="contenedorPerfil">
-                <img src="imagenes/ImgUsuario.png">
+                <img src="${userData.imgUsuario}">
                 <div class="datosUsuario">
                     <h2 class="nombreUsuario">${userData.username}</h2>
                     <p class="correoUsuario">${userData.correo}</p>
