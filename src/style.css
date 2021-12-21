@@ -245,7 +245,6 @@ header{
     display: flex;
     height: 20vh;
     background-color: #F2E0AA;
-    display: flex;
     position: relative;
     justify-content: center;
     align-items: center;
@@ -343,7 +342,6 @@ header{
 .seccionModal{
     background-color: #E5DCC3;
     border-radius: 10px;
-    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.35);
     margin: 40% auto;
     padding: 2% 5%;
     width: 70%;
@@ -810,7 +808,6 @@ figure{
     border-radius: 50%;
     width: 50px;
     height: 50px;
-    cursor: pointer;
     border: 2px solid #844124;
     background-repeat:no-repeat;
     background-size: cover;   
@@ -1089,9 +1086,9 @@ footer{
     .seccionIngreso i{
         font-size: 30px;
     }
-    .botonesDelPerfil {
+    /* .botonesDelPerfil {
         display: block;
-    }
+    } */
     .cuerpoPerfil .usuarioPost {
         justify-content: space-between;
     }

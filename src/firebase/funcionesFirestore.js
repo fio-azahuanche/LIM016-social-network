@@ -47,7 +47,7 @@ export const obtenerById = async (idUser, nameColeccion) => {
 };
 
 // Agregar data inicial al momento de registro a la coleccion usuarios
-export const agregarDataUserFS = async (id, Username, Correo, Name, Descripcion, Ubicacion, srcImg, srcImgPortada,) => {
+export const agregarDataUserFS = async (id, Username, Correo, Name, Descripcion, Ubicacion, srcImg, srcImgPortada) => {
   const colRefId = doc(db, 'usuarios', id);
   await setDoc(colRefId, {
     username: Name,
