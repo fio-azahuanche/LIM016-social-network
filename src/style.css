@@ -378,6 +378,8 @@ header{
     height: 15vh;
     border-color: transparent;
     border-radius: 10px;
+    padding: 2%;
+    font-size: 18px;
 }
 .tableroCompartir .botones{
     padding: 1vh 0;
@@ -430,7 +432,7 @@ header{
 .usuarioPost{
     display: flex;
     align-items: center;
-    justify-content:center;
+    justify-content:left;
     padding: 0 3%;
 }
 .imgUsuarioPost{
@@ -679,6 +681,7 @@ header{
     border: transparent;
     border-radius: 7px;
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.35);
+    padding: 0 2%;
 }
 #selbtn, #ImgPortadaUpdate{
     /* display: flex; */
@@ -778,7 +781,8 @@ figure{
     cursor: pointer;
 }
 .contenidoCompartido{
-    width: auto;
+    width: 100%;
+    overflow: hidden;
 }
 .contenidoCompartido img{
     width: 100%;

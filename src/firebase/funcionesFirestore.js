@@ -47,7 +47,7 @@ export const obtenerById = async (idUser, nameColeccion) => {
 };
 
 // Agregar data inicial al momento de registro a la coleccion usuarios
-export const agregarDataUserFS = async (id, Username, Correo, Name, Descripcion, Ubicacion, srcImg) => {
+export const agregarDataUserFS = async (id, Username, Correo, Name, Descripcion, Ubicacion, srcImg, srcImgPortada,) => {
   const colRefId = doc(db, 'usuarios', id);
   await setDoc(colRefId, {
     username: Name,
@@ -56,6 +56,7 @@ export const agregarDataUserFS = async (id, Username, Correo, Name, Descripcion,
     name: Username,
     descripcion: Descripcion,
     imgUsuario: srcImg,
+    imgPortada: srcImgPortada,
   });
 };
 
@@ -106,6 +107,8 @@ export const agregarGoogleUser = (id, user) => {
   return setDoc(colRefId, {
     username: user.displayName,
     correo: user.email,
+    imgUsuario: 'imagenes/user-circle-fill.png',
+    imgPortada: 'imagenes/ImgDelUsuario.png',
   });
 };
 
