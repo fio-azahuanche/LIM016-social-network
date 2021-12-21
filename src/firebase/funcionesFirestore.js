@@ -83,7 +83,7 @@ export const subirLikes = async (idPost, dataLikes) => {
   return getDoc(colRefId);
 }; */
 
-export const actualizarPerfil = (userId, name, username, ubicacion, descripcion, imgUsuario) => {
+export const actualizarPerfil = (userId, name, username, ubicacion, descripcion, imgUsuario, imgPortada) => {
   const colRefId = doc(db, 'usuarios', userId);
   return updateDoc(colRefId, {
     username,
@@ -91,6 +91,7 @@ export const actualizarPerfil = (userId, name, username, ubicacion, descripcion,
     ubicacion,
     descripcion,
     imgUsuario,
+    imgPortada,
   });
 };
 /* ---------------  Agregar  usuario a firestore desde boton de google -----------------------*/
