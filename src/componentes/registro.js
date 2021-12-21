@@ -53,7 +53,7 @@ export const registroCorreo = (selectorForm, containerError) => {
       .then((userCredential) => {
         const user = userCredential.user;
         envioCorreoVerificacion().then(() => {
-          agregarDataUserFS(user.uid, usuarioRegistro, correoRegistro, '', '', '', 'imagenes/user-circle-fill.png');
+          agregarDataUserFS(user.uid, usuarioRegistro, correoRegistro, '', '', '', 'imagenes/user-circle-fill.png', 'imagenes/ImgDelUsuario.png');
         });
         ubicacionModal.innerHTML = modalRegistro.exito();
         setTimeout(() => {

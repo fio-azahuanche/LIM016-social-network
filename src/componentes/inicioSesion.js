@@ -105,6 +105,8 @@ export const inicioSesion = (selectorForm, containerError) => {
               descripcion: '',
               name: '',
               ubicacion: ' ',
+              imgUsuario: 'imagenes/user-circle-fill.png',
+              imgPortada: 'imagenes/ImgDelUsuario.png',
             };
             sessionStorage.setItem('userSession', JSON.stringify(data));
             window.location.hash = '#/artmuro';
