@@ -909,9 +909,6 @@ footer{
     }
 }
 @media (max-width: 993px){
-    .contenedorPerfil{
-        flex-direction: column;
-    }
     .contenedorPerfil img{
         width:80px;
         height: 80px;
