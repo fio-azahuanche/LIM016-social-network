@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { actualizarPerfil } from '../firebase/funcionesFirestore.js';
 import { validateSessionStorage } from './validaciones.js';
 import { subirFileStorage } from '../firebase/funcionesStorage.js';
@@ -124,7 +125,6 @@ export const btnEditarPerfil = () => {
   const urlImgPortada = [];
   btnArchivoLocal.addEventListener('change', (e) => {
     urlImgUsuario.push(e.target.files[0]);
-   
   });
   btnArchivoLocalPortada.addEventListener('change', (e) => {
     urlImgPortada.push(e.target.files[0]);
@@ -138,7 +138,6 @@ export const btnEditarPerfil = () => {
     const userData = JSON.parse(sessionStorage.userSession);
     const archivo = await subirFileStorage(urlImgUsuario[urlImgUsuario.length - 1], 'imgUsuarios');
     const archivoPortada = await subirFileStorage(urlImgPortada[urlImgPortada.length - 1], 'imgPortada');
-    console.log(archivoPortada);
     actualizarPerfil(
       userData.id,
       inputNombreActualizado,

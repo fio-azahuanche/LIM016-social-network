@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import {
   obtenerUserPosts, eliminarPost, actualizarPost, obtenerUsuarios,
 } from '../firebase/funcionesFirestore.js';
@@ -43,7 +44,7 @@ export const btnEliminarPost = () => {
       }
       const postEliminado = document.getElementById(postCard.id);
       await eliminarPost(postCard.id);
-      console.log('si elimino el post');
+      // console.log('si elimino el post');
       postEliminado.parentElement.remove();
     });
   });
@@ -83,7 +84,7 @@ const editarPost = (postCard) => {
     const changedText = form.firstElementChild.value;
     actualizarPost(postId, changedText)
       .then(() => {
-        console.log('sabemos si funciono');
+        // console.log('sabemos si funciono');
         contenidoCompartido.firstElementChild.textContent = changedText;
         estadoCompartido.innerHTML = '';
         estadoCompartido.appendChild(contenidoCompartido);

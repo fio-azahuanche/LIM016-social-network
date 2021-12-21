@@ -14,10 +14,3 @@ export const subirFileStorage = async (file, carpeta) => {
   const traerFile = getDownloadURL(archivoRef);
   return traerFile;
 };
-
-/* export const subirImgStorage = async (file) => {
-  const storageRef = ref(storage, `imgUsuarios/${file.name}`);
-  await uploadBytes(storageRef, file);
-  const urlDescarga = await getDownloadURL(storageRef);
-  return urlDescarga;
-}; */
