@@ -1,5 +1,6 @@
 // importamos la funcion que vamos a testear
 import { inicioSesionUsuario } from '../src/firebase/funcionesAuth';
+import { signInWithEmailAndPassword } from '../src/firebase/config';
 
 jest.mock('../src/firebase/config');
 
@@ -9,8 +10,14 @@ describe('inicioSesionUsuario', () => {
   });
   it('', () => {
     // nos retorna un objeto
-    inicioSesionUsuario('fazahuanchef@gmail.com', 'ejemploClave')
-      .then(() => {
-      });
+    const data = inicioSesionUsuario('', '');
+    data.then(() => {
+      console.log(signInWithEmailAndPassword.mock.calls);
+    });
+    data.catch((e) => {
+      console.log(e);
+      // eslint-disable-next-line no-console
+      console.log(signInWithEmailAndPassword.mock);
+    });
   });
 });
