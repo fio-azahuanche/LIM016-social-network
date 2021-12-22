@@ -1,6 +1,5 @@
 /* eslint-disable max-len */
 import {
-  getFirestore,
   collection,
   getDocs,
   getDoc,
@@ -13,11 +12,8 @@ import {
   serverTimestamp,
   deleteDoc,
   onSnapshot,
-  app,
+  db,
 } from './config.js';
-
-// inicializa el firestore
-const db = getFirestore(app);
 
 // Obtener todos los documentos de la coleccion 'post' usando onsnapshot
 export const obtenerPosts = async (callback) => {
