@@ -7,7 +7,7 @@ describe('inicioSesionUsuario', () => {
   it('deberia ser una funcion', () => {
     expect(typeof inicioSesionUsuario).toBe('function');
   });
-  it('', () => {
+  it('los parametros de entrada deben ser válidos', () => {
     // nos retorna un objeto
     inicioSesionUsuario('fazahuanchef@gmail.com', 'ejemploClave')
       .then(() => {
