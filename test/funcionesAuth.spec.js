@@ -1,7 +1,7 @@
 // importamos la funcion que vamos a testear
 import {
   signInWithEmailAndPassword, createUserWithEmailAndPassword,
-  signOut, onAuthStateChanged, sendEmailVerification, /* auth, */
+  signOut, onAuthStateChanged, sendEmailVerification, signInWithPopup, /* auth, */
 } from '../src/firebase/config';
 import {
   inicioSesionUsuario, registroUsuario, cierreActividadUsuario, estadoAuthUsuario,
@@ -71,6 +71,10 @@ describe('googleInicioSesion', () => {
   it('debería ser una función', () => {
     expect(typeof googleInicioSesion).toBe('function');
   });
+  const provider = { id: 123, correo: 'hola@gmail.com' };
+  it('proveedor', () => googleInicioSesion(provider).then(() => {
+    console.log(signInWithPopup.mock.calls[0][1]);
+  }));
 });
 
 //facebookInicioSesion
