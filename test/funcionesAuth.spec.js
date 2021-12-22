@@ -10,6 +10,7 @@ import {
 
 jest.mock('../src/firebase/config');
 
+//registroUsuario
 describe('registroUsuario', () => {
   it('deberia ser una funcion', () => {
     expect(typeof registroUsuario).toBe('function');
@@ -21,6 +22,7 @@ describe('registroUsuario', () => {
     }));
 });
 
+//inicioSesionUsuario
 describe('inicioSesionUsuario', () => {
   it('deberia ser una funcion', () => {
     expect(typeof inicioSesionUsuario).toBe('function');
@@ -32,6 +34,7 @@ describe('inicioSesionUsuario', () => {
     }));
 });
 
+//cierreActividadUsuario
 describe('cierreActividadUsuario', () => {
   it('deberia cerrar sesion', () => cierreActividadUsuario()
     .then(() => {
@@ -39,6 +42,7 @@ describe('cierreActividadUsuario', () => {
     }));
 });
 
+//estadoAuthUsuario
 describe('estadoAuthUsuario', () => {
   it('debería ser una función', () => {
     expect(typeof estadoAuthUsuario).toBe('function');
@@ -50,6 +54,7 @@ describe('estadoAuthUsuario', () => {
     }));
 });
 
+//envioCorreoVerificacion
 describe('envioCorreoVerificacion', () => {
   it('debería ser una función', () => {
     expect(typeof envioCorreoVerificacion).toBe('function');
@@ -61,12 +66,14 @@ describe('envioCorreoVerificacion', () => {
     }));
 });
 
+//googleInicioSesion
 describe('googleInicioSesion', () => {
   it('debería ser una función', () => {
     expect(typeof googleInicioSesion).toBe('function');
   });
 });
 
+//facebookInicioSesion
 describe('facebookInicioSesion', () => {
   it('debería ser una función', () => {
     expect(typeof facebookInicioSesion).toBe('function');
