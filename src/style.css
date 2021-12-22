@@ -383,7 +383,7 @@ header{
     padding: 1vh 0;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    /* align-items: center; */
     margin-top: 2%;
     align-items: flex-start;
 }
