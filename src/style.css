@@ -383,9 +383,8 @@ header{
     padding: 1vh 0;
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    margin-top: 2%;
     align-items: flex-start;
+    margin-top: 2%;
 }
 .botonCompartirImagen{
     border-color: transparent;
@@ -972,6 +971,11 @@ footer{
         height: 40px;
         min-height: 40px;
     }
+    .botones input{
+        font-size: 15px;
+        height: 30px;
+        min-height: 30px;
+    }
 }
 @media screen and (max-width:785px){
     /* .datosIngreso{
@@ -1275,10 +1279,12 @@ footer{
 .botones input{
     /* display: flex; */
     align-items: center;
-    width: 40%;
-    height: auto;
+    width: 29%;
+    height: 55px;
+    /* height: auto; */
     border-radius: 0;
     padding: 0 8px 0 0;
+    
 
 }
 .editForm{
@@ -1369,7 +1375,7 @@ footer{
     visibility: hidden;
 }
 #compartirImg::before{
-    content: 'Selecciona una imagen';
+    content: 'Imagen';
     display: flex;
     background-color: #F0AA70;
     box-shadow: 4px 4px 10px rgb(0 0 0 / 35%);
@@ -1377,7 +1383,7 @@ footer{
     align-items: center;
     justify-content: center;
     height: 39px;
-    width: auto;
+    /* width: 29%; */
     min-width: 95px;
     border-color: transparent;
     border-radius: 10px;
