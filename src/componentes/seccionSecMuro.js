@@ -68,9 +68,11 @@ const rellenarHome = async (conteinerPost) => {
     querySnapshot.docChanges().forEach((change) => {
       if (window.location.hash === '#/artmuro') {
         if (change.type === 'added') {
-          const userIdentifier = change.doc.data().usuarioId;
-          const creadorPost = usuarios.filter((user) => user.userId === userIdentifier);
+          // eslint-disable-next-line max-len
+          const creadorPost = usuarios.filter((user) => user.userId === change.doc.data().usuarioId);
+          // console.log(creadorPost[0]);
           conteinerPost.prepend(renderPost(change.doc.id, change.doc.data(), creadorPost[0]));
+
           if (change.doc.data().likes.includes(userData.id)) {
             document.getElementsByName(change.doc.id)[0].style.color = 'red';
           }
