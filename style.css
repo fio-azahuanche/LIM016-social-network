@@ -245,7 +245,6 @@ header{
     display: flex;
     height: 20vh;
     background-color: #F2E0AA;
-    display: flex;
     position: relative;
     justify-content: center;
     align-items: center;
@@ -343,7 +342,6 @@ header{
 .seccionModal{
     background-color: #E5DCC3;
     border-radius: 10px;
-    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.35);
     margin: 40% auto;
     padding: 2% 5%;
     width: 70%;
@@ -378,13 +376,16 @@ header{
     height: 15vh;
     border-color: transparent;
     border-radius: 10px;
+    padding: 2%;
+    font-size: 18px;
 }
 .tableroCompartir .botones{
     padding: 1vh 0;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    /* align-items: center; */
     margin-top: 2%;
+    align-items: flex-start;
 }
 .botonCompartirImagen{
     border-color: transparent;
@@ -404,6 +405,7 @@ header{
     min-width: 95px;
     height: 6vh;
     cursor: pointer;
+    text-shadow: 1px 1px rgb(119, 114, 114);
 }
 .tableroCompartir select{
     background-color: #F0AA70;
@@ -418,6 +420,7 @@ header{
     height: 6vh;
     cursor: pointer;
     text-align: center;
+    text-shadow: 1px 1px rgb(119, 114, 114);
 }
 .container-post{
     width: auto;
@@ -430,7 +433,7 @@ header{
 .usuarioPost{
     display: flex;
     align-items: center;
-    justify-content:center;
+    justify-content:left;
     padding: 0 3%;
 }
 .imgUsuarioPost{
@@ -566,6 +569,7 @@ header{
     align-items: center;
     padding: 3px;
     margin-top: 15px;
+    text-shadow: 1px 1px rgb(119, 114, 114);
 }
 .btnInicio a, .btnEditar a{
     text-decoration: none;
@@ -679,17 +683,16 @@ header{
     border: transparent;
     border-radius: 7px;
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.35);
+    padding: 0 2%;
 }
-#selbtn, #ImgPortadaUpdate{
-    /* display: flex; */
+/* #selbtn, #ImgPortadaUpdate{
     width: 100%;
     height: 30%;
     min-height: 32px;
-    /* margin: 2% 0; */
     border: transparent;
     border-radius: 0;
     box-shadow: none;
-}
+} */
 #imgUsuario {
     height: 100px;
     width: 100px;
@@ -778,7 +781,8 @@ figure{
     cursor: pointer;
 }
 .contenidoCompartido{
-    width: auto;
+    width: 100%;
+    overflow: hidden;
 }
 .contenidoCompartido img{
     width: 100%;
@@ -806,7 +810,6 @@ figure{
     border-radius: 50%;
     width: 50px;
     height: 50px;
-    cursor: pointer;
     border: 2px solid #844124;
     background-repeat:no-repeat;
     background-size: cover;   
@@ -1085,9 +1088,9 @@ footer{
     .seccionIngreso i{
         font-size: 30px;
     }
-    .botonesDelPerfil {
+    /* .botonesDelPerfil {
         display: block;
-    }
+    } */
     .cuerpoPerfil .usuarioPost {
         justify-content: space-between;
     }
@@ -1110,6 +1113,7 @@ footer{
         align-items: center;
         padding: 3px;
         margin-top: 15px;
+        text-shadow: 1px 1px rgb(119, 114, 114);
     }
     .botonesDelPerfil{
         display: none;
@@ -1269,11 +1273,13 @@ footer{
     }
 }
 .botones input{
-    display: flex;
+    /* display: flex; */
     align-items: center;
     width: 40%;
     height: auto;
     border-radius: 0;
+    padding: 0 8px 0 0;
+
 }
 .editForm{
     display: flex;
@@ -1311,3 +1317,78 @@ footer{
     padding: 3px;
 }
 
+.cajaImputDatosImg{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    height: auto;
+    padding: 2% 5%;
+    justify-content: center;
+    align-items: center;
+    background-color: #F4DCB6;
+    border: transparent;
+    border-radius: 10px;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.35);
+    margin: 2.5%;
+}
+.cajaImputDatosImg input{
+    display: flex;
+    justify-content: center;
+}
+.imgParaActualizar::-webkit-file-upload-button {
+    visibility: hidden;
+}
+
+.imgParaActualizar::before {
+    content: 'Selecciona una imagen';
+    display: flex;
+    background-color: #F0AA70;
+    box-shadow: 4px 4px 10px rgb(0 0 0 / 35%);
+    color:white;
+    align-items: center;
+    justify-content: space-around;
+    height: 30%;
+    width: 90%;
+    border-color: transparent;
+    border-radius: 7px;
+    padding: 2%;
+    margin: 2%;
+    outline: none;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    cursor: pointer;
+    text-shadow: 1px 1px rgb(119, 114, 114);
+    font-weight: 700;
+    font-size: 13px;
+}
+#selbtn, #ImgPortadaUpdate{
+    width: 100%;
+    height: 80px;
+}
+#compartirImg::-webkit-file-upload-button {
+    visibility: hidden;
+}
+#compartirImg::before{
+    content: 'Selecciona una imagen';
+    display: flex;
+    background-color: #F0AA70;
+    box-shadow: 4px 4px 10px rgb(0 0 0 / 35%);
+    color:white;
+    align-items: center;
+    justify-content: center;
+    height: 39px;
+    width: auto;
+    min-width: 95px;
+    border-color: transparent;
+    border-radius: 10px;
+    padding: 2%;
+    /* margin: 2%; */
+    outline: none;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    cursor: pointer;
+    text-shadow: 1px 1px rgb(119, 114, 114);
+    font-weight: 600;
+    font-size: 16px;
+    overflow: hidden;
+}

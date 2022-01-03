@@ -55,7 +55,7 @@ export const registroCorreo = (selectorForm, containerError) => {
         const user = userCredential.user;
         // se envia el mensaje de verificacion por correo
         envioCorreoVerificacion().then(() => {
-          agregarDataUserFS(user.uid, usuarioRegistro, correoRegistro, '', '', '', 'imagenes/user-circle-fill.png');
+          agregarDataUserFS(user.uid, usuarioRegistro, correoRegistro, '', '', '', 'imagenes/user-circle-fill.png', 'imagenes/ImgDelUsuario.png');
         });
         ubicacionModal.innerHTML = modalRegistro.exito();
         setTimeout(() => {

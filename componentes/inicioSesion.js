@@ -110,6 +110,8 @@ export const inicioSesion = (selectorForm, containerError) => {
               descripcion: '',
               name: '',
               ubicacion: ' ',
+              imgUsuario: 'imagenes/user-circle-fill.png',
+              imgPortada: 'imagenes/ImgDelUsuario.png',
             };
             // agregando datos al sessionStorage
             sessionStorage.setItem('userSession', JSON.stringify(data));
