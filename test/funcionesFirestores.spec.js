@@ -15,3 +15,10 @@ describe('subirDataHomeCol', () => {
     expect(addDoc.mock(colRefPost)).toBe(''); */
   }));
 });
+
+/* describe('obtenerById', () => {
+  it('Obtener documento por id', () => obtenerById('123', 'nameCollection')
+    .then(() => {
+
+  }));
+}); */

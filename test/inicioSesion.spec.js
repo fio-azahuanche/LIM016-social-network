@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-const jsdom = require('jsdom');
+/* const jsdom = require('jsdom');
 
 const { JSDOM } = jsdom;
 
@@ -32,3 +32,4 @@ describe('formInicioSesion', () => {
     console.log(root);
   });
 });
+ */
