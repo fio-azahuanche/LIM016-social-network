@@ -2,7 +2,7 @@ import {
   obtenerPosts, obtenerById, subirDataHomeCol, subirLikes, obtenerUsuarios,
 } from '../firebase/funcionesFirestore.js';
 import { subirFileStorage } from '../firebase/funcionesStorage.js';
-import { validateSessionStorage } from './validaciones.js';
+// import { validateSessionStorage } from './validaciones.js';
 
 // Renderizar todos los posts
 export const renderPost = (idPost, dataPost, dataCreador) => {
@@ -104,7 +104,7 @@ export const seccionMuro2 = () => {
 
   const navInferior = document.createElement('nav');
   navInferior.classList.add('barraNavegacionInferior');
-  const userData = validateSessionStorage();
+  const userData = JSON.parse(sessionStorage.userSession);
   navInferior.innerHTML = `
     <ul>
     <li class="list">
@@ -139,7 +139,7 @@ export const seccionMuro2 = () => {
     <div class="botones">
         <input type="file" placeholder="Añadir Imagen" id="compartirImg">         
         <select name="Grupo" id="Grupo" class="Grupo">
-          <option value="" selected disabled>Seleccionar</option>
+          <option value="" selected disabled>Grupo</option>
           <option value="Refugios">Refugios</option>
           <option value="Mascotas Perdidas">Mascotas Perdidas</option>
           <option value="Adoptar">Adoptar</option>
