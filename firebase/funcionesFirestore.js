@@ -36,9 +36,9 @@ export const obtenerUsuarios = async () => {
 };
 
 // Obtener la data de cada usuaruo guardado en Firestore, lo buscamos por id
-export const obtenerById = async (idUser, nameColeccion) => {
+export const obtenerById = (idUser, nameColeccion) => {
   const docRef = doc(db, nameColeccion, idUser);
-  const querySnapshot = await getDoc(docRef).then((docs) => docs.data());
+  const querySnapshot = getDoc(docRef).then((docs) => docs.data());
   return querySnapshot;
 };
 
@@ -97,13 +97,36 @@ export const actualizarPerfil = (userId, name, username, ubicacion, descripcion,
   });
 };
 
+export const searchUser = async (userId) => {
+  const colRef = doc(db, 'usuarios', userId);
+  const user = getDoc(colRef);
+  return user;
+};
+
 // Agregar  usuario a firestore desde boton de google
 export const agregarGoogleUser = (id, user) => {
   const colRefId = doc(db, 'usuarios', id);
   return setDoc(colRefId, {
     username: user.displayName,
     correo: user.email,
-    imgUsuario: 'imagenes/user-circle-fill.png',
+    descripcion: '',
+    name: '',
+    ubicacion: '',
+    imgUsuario: user.photoURL,
+    imgPortada: 'imagenes/ImgDelUsuario.png',
+  });
+};
+
+// Agregar  usuario a firestore desde boton de facebook
+export const agregarFacebookUser = (id, user) => {
+  const colRefId = doc(db, 'usuarios', id);
+  return setDoc(colRefId, {
+    username: user.displayName,
+    correo: user.email,
+    descripcion: '',
+    name: '',
+    ubicacion: '',
+    imgUsuario: user.photoURL,
     imgPortada: 'imagenes/ImgDelUsuario.png',
   });
 };
