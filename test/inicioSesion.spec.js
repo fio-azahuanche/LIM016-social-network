@@ -1,5 +1,5 @@
-/* eslint-disable max-len */
-/* const jsdom = require('jsdom');
+/* slint-disable max-len */
+const jsdom = require('jsdom');
 
 const { JSDOM } = jsdom;
 
@@ -14,6 +14,7 @@ describe('formInicioSesion', () => {
       virtualConsole, // insertamos nuestra consola virtual
     })
       .then((dom) => { // ya tenemos nuestro dom
+        // eslint-disable-next-line max-len
         global.document = dom.window.document; // no es recomendado pero creamos nuestro document de forma global para reemplazar el window.document
         global.virtualConsole = dom.virtualConsole; // tambien la consola para poder usarla después
         done(); // listo, pasamos a las pruebas
@@ -29,7 +30,6 @@ describe('formInicioSesion', () => {
     // verificamos que tenemos el elemto raíz
     const root = document.getElementById('main');
     expect(root).not.toBe(undefined);
-    console.log(root);
+    /* console.log(root); */
   });
 });
- */
