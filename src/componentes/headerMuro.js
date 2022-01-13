@@ -22,8 +22,6 @@ export const contenidoHeader = () => {
       `;
   return headerMuro;
 };
-// eslint-disable-next-line no-lone-blocks
-/* <li><a id="tema"><img src="imagenes/bx-palette.png"><span>Tema</span></a></li> */
 
 // Funcion de boton cerrar sesion, limpiando el sessionStorage
 // redirige a inicio

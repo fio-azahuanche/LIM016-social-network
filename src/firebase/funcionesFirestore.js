@@ -78,12 +78,6 @@ export const subirLikes = async (idPost, dataLikes) => {
   });
 };
 
-/* -------------- Funcionalidad del perfil de usuario ------------------------*/
-/* export const getCurrentUser = (userId) => {
-  const colRefId = doc(db, 'usuarios', userId);
-  return getDoc(colRefId);
-}; */
-
 // Para actualizar datos del perfil en la coleccion usuarios
 export const actualizarPerfil = (userId, name, username, ubicacion, descripcion, imgUsuario, imgPortada) => {
   const colRefId = doc(db, 'usuarios', userId);

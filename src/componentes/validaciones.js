@@ -26,7 +26,3 @@ export const validateSessionStorage = () => {
   }
   return userData;
 };
-
-/* export const borrarCache = (section) => {
-  section.in
-} */

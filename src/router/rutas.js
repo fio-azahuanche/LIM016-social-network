@@ -15,6 +15,7 @@ import { btnEditarPerfil } from '../componentes/seccionEditarPerfil.js';
 export const vistasPantalla = () => {
   const main = document.getElementById('main');
   main.innerHTML = '';
+  // devuelve la parte de anclaje de la URL(ruta)
   switch (window.location.hash.toLowerCase()) {
     case '': case '#/': case '#/inicio':
       main.appendChild(fondoHome(formInicioSesion()));

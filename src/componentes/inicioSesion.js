@@ -48,7 +48,7 @@ export const inicioSesion = (selectorForm, containerError) => {
   sessionStorage.clear(); // limpia el Storage
   const iniciarCon = document.getElementById(selectorForm);
   iniciarCon.addEventListener('submit', (e) => {
-    e.preventDefault();
+    e.preventDefault(); // hace que no se refresque el formulario
     const correoIngreso = document.getElementById('correoIngreso').value;
     const claveIngreso = document.getElementById('claveIngreso').value;
     // se llama al contenedor de los modales error
@@ -168,10 +168,6 @@ export const inicioSesion = (selectorForm, containerError) => {
                 window.location.hash = '#/artmuro';
               });
           });
-        // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-        // const credential = FacebookAuthProvider.credentialFromResult(result);
-        // const token = credential.accessToken;
-        // console.log(user);
       });
   });
 };

@@ -2,7 +2,6 @@ import {
   obtenerPosts, obtenerById, subirDataHomeCol, subirLikes, obtenerUsuarios,
 } from '../firebase/funcionesFirestore.js';
 import { subirFileStorage } from '../firebase/funcionesStorage.js';
-// import { validateSessionStorage } from './validaciones.js';
 
 // Renderizar todos los posts
 export const renderPost = (idPost, dataPost, dataCreador) => {
@@ -221,11 +220,6 @@ export const creacionPost = (formCompartir) => {
       // obtencion de la url del archivo subido desde el storage
       const urlImagen = await subirFileStorage(archivoLocal, 'imgPosts');
       await subirDataHomeCol(userData.id, postTxt, categoria, urlImagen);
-      /* .then((doc) => {
-        obtenerById(doc.id, 'posts').then((postsById) => {
-          containerPosts.prepend(subirContainer(doc.id, postsById, ''));
-        });
-      }); */
     }
     e.target.reset();
   });
